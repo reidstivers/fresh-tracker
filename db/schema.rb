@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_01_112214) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_01_114132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_112214) do
   create_table "pantries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.bigint "ingredient_id", null: false
+    t.bigint "recipe_id", null: false
+    t.bigint "shopping_list_id", null: false
+    t.float "amount"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
+    t.index ["shopping_list_id"], name: "index_recipe_ingredients_on_shopping_list_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -57,11 +70,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_112214) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.bigint "pantry_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["pantry_id"], name: "index_users_on_pantry_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "ingredients", "pantries"
+  add_foreign_key "recipe_ingredients", "ingredients"
+  add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_ingredients", "shopping_lists"
   add_foreign_key "recipes", "users"
   add_foreign_key "shopping_lists", "users"
+  add_foreign_key "users", "pantries"
 end
