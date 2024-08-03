@@ -75,3 +75,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Our gems
+gem 'rtesseract'
