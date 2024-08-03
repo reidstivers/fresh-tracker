@@ -10,9 +10,9 @@ class IngredientsController < ApplicationController
     @ingredient.in_pantry = true
 
     if @ingredient.save
-      redirect_to pantry_path(@pantry), notice: "Ingredient saved"
+      redirect_to ingredients_path, notice: "Ingredient saved"
     else
-      render "pantries/show", notice: "Ingredient not saved"
+      render "ingredients/index", notice: "Ingredient not saved"
     end
   end
 

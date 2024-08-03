@@ -8,9 +8,22 @@
   </div>
   <div>
     <i class="fa-solid fa-triangle-exclamation"></i></i> Expiring soon!
-    <% expiring = @ingredients.select do |ingredient| %>
-      <%# Selects ingr %>
-      <% ingredient.expiration_date < Date.today + 3 %>
+    <%# Filters for items expiring in the next 3 days; may need to expand that range %>
+    <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
+    <% expiring.each do |ingredient| %>
+      <div class="card">
+        <p><%= ingredient.name %></p>
+        <p>
+        <%# conditional leans up display, returns whole numbers & decimals %>
+          <% if ingredient.amount % 1 == 0 %>
+            <%= ingredient.amount.to_i %>
+          <% else %>
+            <%= ingredient.amount %>
+          <% end %>
+          <%= ingredient.unit %>
+        </p>
+        <p> In <%= (ingredient.expiration_date - Date.today).to_i %> days </p>
+      </div>
     <% end %>
   <div>
   <div>
