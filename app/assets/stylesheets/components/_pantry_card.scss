@@ -1,6 +1,22 @@
-.card-content{
+.card{
+  padding:5px 12px;
+}
+
+.card-title{
+  margin:0px;
   font-size: 24px;
 }
-.card-detail{
+
+.card-content{
+  margin:0px;
+  display:flex;
   font-size: 20px;
 }
+.card-detail{
+  margin-right: 20px;
+}
+
+/*
+.card-date{
+}
+*/

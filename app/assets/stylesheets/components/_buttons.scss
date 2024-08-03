@@ -1,14 +1,20 @@
+.buttons-filter{
+  overflow-x: scroll;
+  display: flex;
+}
+
 .btn-filter {
   background-color: $ft-green;
-  font-size: 24px;
+  font-size: 20px;
   border-style: none;
   border-radius: 20px;
   padding: 0px 8px;
-  min-width: 50px;
+  // min-width: 50px;
   text-align: center;
   width: max-content;
   max-width: 90%;
   margin-inline: auto;
+  margin-right: 8px;
 }
 
 .btn-filter-selected {
