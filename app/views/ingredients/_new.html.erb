@@ -2,7 +2,9 @@
   <%= f.input :name %>
   <%= f.input :amount %>
   <%= f.input :unit %>
-  <%= f.input :category %>
+  <%= f.input :category, as: :select,
+              collection: ["Fruits", "Vegetables", "Meat", "Fish", "Dairy", "Condiments", "Beverage", "Leftovers", "Oils", "Spices", "Canned", "Miscellaneous"],
+              prompt: "Select a category" %>
   <%= f.input :expiration_date %>
   <%= f.submit "Add ingredient" %>
 <% end %>
