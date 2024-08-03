@@ -3,10 +3,21 @@
 <h2>Would you like to Read a Receipt?</h2>
 
 <div class="">
-<%= RTesseract.new("app/assets/images/test_receipt.jpg") %>
+<%= RTesseract.new("app/assets/images/test_receipt4.png").to_box %>
+
+<% RTesseract::Text %>
+<%= simple_form_for "ingredient new" do |f| %>
+  <%= f.input :name %>
+  <%= f.submit %>
+<% end %>
 </div>
 <h2>Scan a barcode?</h2>
 Coming Soon!
 
 <h2>Manually Enter your Groceries?</h2>
 Jon's got you covered!
+
+Notes and snippets
+
+pantries/current_user.pantry_id/ingredients/new
+, input_html: {value= RTesseract::Text}
