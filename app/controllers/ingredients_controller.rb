@@ -19,6 +19,7 @@ class IngredientsController < ApplicationController
   def index
     @ingredients = current_user.pantry.ingredients
     @ingredient = Ingredient.new
+    @categories = Category.all
   end
 
   def show
@@ -47,6 +48,6 @@ class IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category, :in_pantry, :pantry_id)
+    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :pantry_id)
   end
 end
