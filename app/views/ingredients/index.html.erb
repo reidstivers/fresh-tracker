@@ -6,41 +6,41 @@
       <%= render partial: "new"%>
     </div>
   </div>
+  <%# Div for filter buttons %>
   <div>
-    <i class="fa-solid fa-triangle-exclamation"></i></i> Expiring soon!
-    <%# Filters for items expiring in the next 3 days; may need to expand that range %>
-    <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
-    <% expiring.each do |ingredient| %>
-      <div class="card">
-        <p><%= ingredient.name %></p>
-        <p>
-        <%# conditional leans up display, returns whole numbers & decimals %>
-          <% if ingredient.amount % 1 == 0 %>
-            <%= ingredient.amount.to_i %>
-          <% else %>
-            <%= ingredient.amount %>
-          <% end %>
-          <%= ingredient.unit %>
-        </p>
-        <p> In <%= (ingredient.expiration_date - Date.today).to_i %> days </p>
-      </div>
+    <% @categories.each do |category| %>
+      <button> <%= category.name %> </button>
     <% end %>
+  </div>
   <div>
-  <div>
-    <% @ingredients.each do |ingredient| %>
-      <div class="card">
-        <p><%= ingredient.name %></p>
-        <p>
-        <%# conditional leans up display, returns whole numbers & decimals %>
-          <% if ingredient.amount % 1 == 0 %>
-            <%= ingredient.amount.to_i %>
-          <% else %>
-            <%= ingredient.amount %>
-          <% end %>
-          <%= ingredient.unit %>
-        </p>
-      </div>
-    <% end %>
-  <div>
-
+  <%# <%# Filters for items expiring in the next 3 days; may need to expand that range %>
+  <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
+  <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
+  <% if expiring.any? %>
+    <div>
+      <i class="fa-solid fa-triangle-exclamation"></i></i> Expiring soon!
+      <% expiring.each do |ingredient| %>
+        <div class="card">
+          <p><%= ingredient.name %></p>
+          <p>
+          <%# conditional leans up display, returns whole numbers & decimals %>
+            <% if ingredient.amount % 1 == 0 %>
+              <%= ingredient.amount.to_i %>
+            <% else %>
+              <%= ingredient.amount %>
+            <% end %>
+            <%= ingredient.unit %>
+          </p>
+          <p> In <%= (ingredient.expiration_date - Date.today).to_i %> days </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <% @categories.each do |category| %>
+    <div>
+      <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+    </div>
+  <% end %>
 </div>
