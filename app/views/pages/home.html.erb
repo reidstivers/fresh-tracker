@@ -1,7 +1,32 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<% if user_signed_in? %>
-  <%= link_to "My Pantry", ingredients_path %>
-<% else %>
-  If user is signed out perhaps we can have a big create account button? I feel like it might be a good idea to let them browse recipes or use some other features to entice them to use the app
-<% end %>
+<div class="container">
+  <body>
+    <div class="homepage">
+      <%= image_tag 'logo.jpeg', alt: 'logo' %>
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <%= image_tag 'strawberries.jpg', class: 'd-block w-100', alt: '...' %>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <%= image_tag 'pasta.jpg', class: 'd-block w-100', alt: '...' %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'fresh.jpg', class: 'd-block w-100', alt: '...' %>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div>
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </body>
+</div>
