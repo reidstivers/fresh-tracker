@@ -19,6 +19,7 @@ class PantriesController < ApplicationController
     # Showing current user's pantry, with collection of ingredients
     @pantry = current_user.pantry
     @ingredients = @pantry.ingredients.select { |ingredient| ingredient.in_pantry == true }
+    @ingredient = Ingredient.new
   end
 
   private

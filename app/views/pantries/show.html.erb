@@ -3,7 +3,7 @@
   <div data-controller="toggler">
     <button data-action="toggler#toggle" data-target-name="newForm"> Stock the pantry! </button>
     <div data-toggler-target="newForm" class="d-none">
-      <%= render partial: "new_ingredient" %>
+      <%= render partial: "new_ingredient", locals: { ingredient: @ingredient, pantry: @pantry } %>
     </div>
   </div>
   <div>

@@ -1,1 +1,8 @@
-<h4> Add to the pantry! </h4>
+<%= simple_form_for [pantry, ingredient] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :amount %>
+  <%= f.input :unit %>
+  <%= f.input :category %>
+  <%= f.input :expiration_date %>
+  <%= f.submit "Add ingredient" %>
+<% end %>

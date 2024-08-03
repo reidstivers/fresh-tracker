@@ -4,12 +4,15 @@ class IngredientsController < ApplicationController
   end
 
   def create
+    @pantry = current_user.pantry
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.pantry = @pantry
+    @ingredient.in_pantry = true
 
     if @ingredient.save
-      redirect_to @ingredient
+      redirect_to pantry_path(@pantry), notice: "Ingredient saved"
     else
-      render "pantry/show", notice: "Ingredient not saved"
+      render "pantries/show", notice: "Ingredient not saved"
     end
   end
 
@@ -33,5 +36,11 @@ class IngredientsController < ApplicationController
     else
       render "pantry/show", notice: "Ingredient not updated"
     end
+  end
+
+  private
+
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category, :in_pantry, :pantry_id)
   end
 end
