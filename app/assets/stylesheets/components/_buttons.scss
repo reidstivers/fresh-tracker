@@ -1,0 +1,26 @@
+.btn-filter {
+  background-color: $ft-green;
+  font-size: 24px;
+  border-style: none;
+  border-radius: 20px;
+  padding: 0px 8px;
+  min-width: 50px;
+  text-align: center;
+  width: max-content;
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+.btn-filter-selected {
+  background-color: $ft-dark-green;
+  color: $light-gray;
+  font-size: 24px;
+  border-style: none;
+  border-radius: 20px;
+  padding: 0px 8px;
+  min-width: 50px;
+  text-align: center;
+  width: max-content;
+  max-width: 90%;
+  margin-inline: auto;
+}
