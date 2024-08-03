@@ -21,6 +21,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
 
+  .carousel-inner img {
+    margin-top: 10px;
+    width: 200px !important;
+    height: 100px !important;
+    object-fit: cover !important;
+  }
+
   .btn {
     margin: 10px;
   }

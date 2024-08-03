@@ -1,0 +1,23 @@
+
+<div>
+  <%# Select ingredients from user's pantry's ingredients with the correct category %>
+  <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id } %>
+  <%# Hiding category if it contains nothing %>
+  <% if filtered_ingredients.any? %>
+    <h4> <%= category.name %> </h4>
+    <% filtered_ingredients.each do |ingredient| %>
+      <div>
+        <%= ingredient.name %>
+        <p>
+          <%# conditional leans up display, returns whole numbers & decimals %>
+          <% if ingredient.amount % 1 == 0 %>
+            <%= ingredient.amount.to_i %>
+          <% else %>
+            <%= ingredient.amount %>
+          <% end %>
+          <%= ingredient.unit %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

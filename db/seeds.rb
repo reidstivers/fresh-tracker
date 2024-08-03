@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Seed the database with the categories
+categories = [
+  "Fruits",
+  "Vegetables",
+  "Meat",
+  "Fish",
+  "Dairy",
+  "Condiments",
+  "Beverage",
+  "Leftovers",
+  "Oils",
+  "Spices",
+  "Canned",
+  "Miscellaneous"
+]
+
+categories.each do |category_name|
+  Category.find_or_create_by!(name: category_name)
+end
