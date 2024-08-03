@@ -15,15 +15,10 @@ class PantriesController < ApplicationController
     end
   end
 
-  def show
-    # Showing current user's pantry, with collection of ingredients
-    @pantry = current_user.pantry
-    @ingredients = @pantry.ingredients
-  end
-
   private
 
   def pantry_params
     params.require(:pantry).permit(:user_id)
   end
+
 end

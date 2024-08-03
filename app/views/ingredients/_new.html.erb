@@ -1,0 +1,8 @@
+<%= simple_form_for @ingredient do |f| %>
+  <%= f.input :name %>
+  <%= f.input :amount %>
+  <%= f.input :unit %>
+  <%= f.input :category %>
+  <%= f.input :expiration_date %>
+  <%= f.submit "Add ingredient" %>
+<% end %>
