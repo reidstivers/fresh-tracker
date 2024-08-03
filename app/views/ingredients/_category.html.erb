@@ -6,19 +6,6 @@
   <% if filtered_ingredients.any? %>
     <h3> <%= category.name %> </h3>
     <% filtered_ingredients.each do |ingredient| %>
-      <!--<div>
-        <%= ingredient.name %>
-        <p>
-          <%# conditional leans up display, returns whole numbers & decimals %>
-          <% if ingredient.amount % 1 == 0 %>
-            <%= ingredient.amount.to_i %>
-          <% else %>
-            <%= ingredient.amount %>
-          <% end %>
-          <%= ingredient.unit %>
-        </p>
-      </div>
-      -->
       <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
     <% end %>
   <% end %>
