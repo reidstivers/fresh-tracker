@@ -1,7 +1,7 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 <% if user_signed_in? %>
-  <%= link_to "My Pantry", pantry_path(current_user.pantry_id) %>
+  <%= link_to "My Pantry", ingredients_path %>
 <% else %>
   If user is signed out perhaps we can have a big create account button? I feel like it might be a good idea to let them browse recipes or use some other features to entice them to use the app
 <% end %>

@@ -10,7 +10,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # Route for pantries. user only needs to see their own pantry. Ingredients managed through that pantry.
-  resources :pantries, only: [:show] do
-    resources :ingredients
-  end
+  resources :ingredients
 end

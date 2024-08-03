@@ -16,12 +16,13 @@ class IngredientsController < ApplicationController
     end
   end
 
-  def show
-    @ingredient = Ingredient.find(params[:id])
+  def index
+    @ingredients = current_user.pantry.ingredients
+    @ingredient = Ingredient.new
   end
 
-  def index
-    @ingredients = Ingredient.all
+  def show
+    @ingredient = Ingredient.find(params[:id])
   end
 
   def edit
@@ -36,6 +37,11 @@ class IngredientsController < ApplicationController
     else
       render "pantry/show", notice: "Ingredient not updated"
     end
+  end
+
+  def destroy
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.destroy
   end
 
   private
