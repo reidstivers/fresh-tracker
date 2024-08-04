@@ -7,9 +7,9 @@
     </div>
   </div>
   <%# Div for filter buttons %>
-  <div>
+  <div class="buttons-filter">
     <% @categories.each do |category| %>
-      <button> <%= category.name %> </button>
+      <button class="btn-filter"> <%= category.name %> </button>
     <% end %>
   </div>
   <div>
@@ -20,19 +20,7 @@
     <div>
       <i class="fa-solid fa-triangle-exclamation"></i></i> Expiring soon!
       <% expiring.each do |ingredient| %>
-        <div class="card">
-          <p><%= ingredient.name %></p>
-          <p>
-          <%# conditional leans up display, returns whole numbers & decimals %>
-            <% if ingredient.amount % 1 == 0 %>
-              <%= ingredient.amount.to_i %>
-            <% else %>
-              <%= ingredient.amount %>
-            <% end %>
-            <%= ingredient.unit %>
-          </p>
-          <p> In <%= (ingredient.expiration_date - Date.today).to_i %> days </p>
-        </div>
+        <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
       <% end %>
     </div>
   <% end %>
