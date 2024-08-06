@@ -30,11 +30,11 @@
       <% end %>
     </div>
     <div data-controller="toggler">
-      <button class="edit-icon" data-action="toggler#toggle" data-target-name="editForm">
+      <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
         <i class="fa-solid fa-pen"></i></button>
       </button>
-      <div data-toggler-target="editForm" class="d-none">
-        <%= render partial: "edit", locals: { ingredient: ingredient } %>
+      <div data-toggler-target="form" class="d-none">
+        <%= render partial: "form", locals: { ingredient: ingredient } %>
       </div>
     </div>
   </div>
