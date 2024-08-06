@@ -1,0 +1,38 @@
+.styled-form {
+  background-color: $ft-green;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 2 methods below put the form labels and inputs on the same line
+.form-row .form-group {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.form-row .form-group label {
+  margin-right: 8px;
+}
+
+.form-button {
+  color: white;
+  background-color: $ft-pink;
+  border-radius: 8px;
+  border: none;
+}
+
+// Softens edges of input boxes.
+.styled-form input,
+.styled-form select {
+  border-radius: 8px;
+}

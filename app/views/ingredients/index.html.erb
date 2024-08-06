@@ -1,9 +1,9 @@
 <div>
   <h1> <%= current_user.name %>'s Pantry </h1>
   <div data-controller="toggler">
-    <button data-action="toggler#toggle" data-target-name="newForm"> Stock the pantry! </button>
-    <div data-toggler-target="newForm" class="d-none">
-      <%= render partial: "new"%>
+    <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
+    <div data-toggler-target="form" class="d-none">
+      <%= render partial: "form"%>
     </div>
   </div>
   <%# Div for filter buttons %>
@@ -30,19 +30,22 @@
   <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
   <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
   <% if expiring.any? %>
-    <div>
-      <i class="fa-solid fa-triangle-exclamation"></i></i> Expiring soon!
+    <div class="expiring-section">
+      <div class="category-title">
+        <i class="fa-solid fa-triangle-exclamation"></i></i> <h3> Expiring soon! </h3>
+      </div>
       <% expiring.each do |ingredient| %>
         <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
       <% end %>
     </div>
   <% end %>
-</div>
-<div data-controller="filtering">
-  <% @categories.each do |category| %>
-    <%# Using null class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
-    <div data-category="<%= category.name %>" class="category-section">
-      <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
-    </div>
-  <% end %>
+  </div>
+  <div data-controller="filtering">
+    <% @categories.each do |category| %>
+      <%# Using null class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
+      <div data-category="<%= category.name %>" class="category-section">
+        <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+      </div>
+    <% end %>
+  </div>
 </div>
