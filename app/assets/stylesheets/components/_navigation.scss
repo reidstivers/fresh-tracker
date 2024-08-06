@@ -1,0 +1,39 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: $ft-green;
+  position: fixed;
+  bottom: 0;
+}
+
+// icons
+.nav-icon {
+  margin: 10px 0px;
+  text-decoration: none;
+  color: $ft-black;
+}
+
+.nav-font {
+  font-size: 40px;
+}
+
+// s"+" button
+.nav-icon-add {
+  background-color: $ft-light-green;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border-style:solid;
+  border-color: white;
+  border-width: 5px;
+}
+.navigation .nav-icon-add {
+  position:relative;
+  top: -15px;
+}
+
+.nav-font-add {
+  vertical-align: middle;
+  font-size: 40px;
+}
