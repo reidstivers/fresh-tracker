@@ -36,7 +36,7 @@ class IngredientsController < ApplicationController
     if @ingredient.update(ingredient_params)
       redirect_to @ingredients, notice: "Ingredient updated"
     else
-      render "pantry/show", notice: "Ingredient not updated"
+      render "ingredients/ingredient", notice: "Invalid entry"
     end
   end
 

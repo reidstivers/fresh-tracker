@@ -25,8 +25,13 @@
         <%= ingredient.expiration_date %>
       <% end %>
     </div>
-    <div class="edit-icon">
-      <i class="fa-solid fa-pen"></i>
-    <div>
+    <div data-controller="toggler">
+      <button class="edit-icon" data-action="toggler#toggle" data-target-name="editForm">
+        <i class="fa-solid fa-pen"></i></button>
+      </button>
+      <div data-toggler-target="editForm" class="d-none">
+        <%= render partial: "edit", locals: { ingredient: ingredient } %>
+      </div>
+    </div>
   </div>
 </div>
