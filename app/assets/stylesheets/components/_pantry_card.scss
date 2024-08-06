@@ -1,5 +1,9 @@
 .card{
   padding:5px 12px;
+  background-color: white;
+  border: none;
+  margin: 4px;
+  border-radius: 8px;
 }
 
 .card-title{
@@ -14,6 +18,12 @@
 }
 .card-detail{
   margin-right: 20px;
+}
+
+.expiring-section{
+  background-color: #FA9184;
+  padding: 4px;
+  border-radius: 8px;
 }
 
 /*

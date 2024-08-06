@@ -30,7 +30,7 @@
   <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
   <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
   <% if expiring.any? %>
-    <div>
+    <div class="expiring-section">
       <div class="category-title">
         <i class="fa-solid fa-triangle-exclamation"></i></i> <h3> Expiring soon! </h3>
       </div>
