@@ -11,5 +11,4 @@ Rails.application.routes.draw do
   # root "posts#index"
   # Route for pantries. user only needs to see their own pantry. Ingredients managed through that pantry.
   resources :ingredients
-  resources :shopping_lists, path: 'shoppinglist'
 end
