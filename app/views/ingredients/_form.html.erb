@@ -1,14 +1,26 @@
- <% form_ingredient = local_assigns[:ingredient] || @ingredient %>
+<%# Ternary operator checks if this is for a new ingredient or existing one  %>
+<% form_ingredient = local_assigns[:ingredient] || @ingredient %>
 
- <div class="styled-form">
+<div class="styled-form">
   <%= simple_form_for form_ingredient do |f| %>
-    <%= f.input :name %>
-    <%= f.input :amount %>
-    <%= f.input :unit %>
-    <%= f.input :category_id, as: :select,
-                collection: Category.all.pluck(:name, :id),
-                prompt: "Select a category" %>
-    <%= f.input :expiration_date %>
-    <%= f.submit "Add ingredient" %>
+    <div class="form-row">
+      <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" } %>
+    </div>
+    <div class="form-row">
+      <%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" } %>
+      <%= f.input :unit, label: "Unit", wrapper_html: { class: "form-group" } %>
+    </div>
+    <div class="form-row">
+      <%= f.input :category_id, as: :select,
+                  collection: Category.all.pluck(:name, :id),
+                  prompt: "Select a category",
+                  wrapper_html: { class: "form-group" } %>
+    </div>
+    <div class="form-row">
+      <%= f.input :expiration_date,
+      label: "Best by",
+      wrapper_html: { class: "form-group "} %>
+      <%= f.submit "Save", class: "form-button" %>
+    </div>
   <% end %>
 </div>

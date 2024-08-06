@@ -1,41 +1,42 @@
-<div class="card">
-  <div class="card-title">
-    <%= ingredient.name %>
-  </div>
-  <div class="card-content">
-    <div class="card-detail">
-    <%# conditional leans up display, returns whole numbers & decimals %>
-      <% if ingredient.amount % 1 == 0 %>
-        <%= ingredient.amount.to_i %>
-      <% else %>
-        <%= ingredient.amount %>
-      <% end %>
-      <%= ingredient.unit %>
+<div data-controller="toggler">
+  <div class="card">
+    <div class="card-title">
+      <%= ingredient.name %>
     </div>
-    <div class="card-date">
-      <%# Sets variable for days to / since expiration, makes code dry %>
-      <% expires = (ingredient.expiration_date - Date.today).to_i %>
-      <%# Accounts for singular day %>
-      <% day_word = expires.abs == 1 ? "day" : "days" %>
-      <% if expires.positive? && expires <= 3 %>
-        <div class="expiring-notice">
-          <span> Expires in <%= expires %> <%= day_word %> </span>
-        </div>
-      <% elsif expires.negative? %>
-        <div class="expired-notice">
-          <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
-        </div>
-      <% else %>
-        <%= ingredient.expiration_date %>
-      <% end %>
-    </div>
-    <div data-controller="toggler">
+    <div class="card-content">
+      <div class="card-detail">
+      <%# conditional leans up display, returns whole numbers & decimals %>
+        <% if ingredient.amount % 1 == 0 %>
+          <%= ingredient.amount.to_i %>
+        <% else %>
+          <%= ingredient.amount %>
+        <% end %>
+        <%= ingredient.unit %>
+      </div>
+      <div class="card-date">
+        <%# Sets variable for days to / since expiration, makes code dry %>
+        <% expires = (ingredient.expiration_date - Date.today).to_i %>
+        <%# Accounts for singular day %>
+        <% day_word = expires.abs == 1 ? "day" : "days" %>
+        <% if expires.positive? && expires <= 3 %>
+          <div class="expiring-notice">
+            <span> Expires in <%= expires %> <%= day_word %> </span>
+          </div>
+        <% elsif expires.negative? %>
+          <div class="expired-notice">
+            <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
+          </div>
+        <% else %>
+          <%= ingredient.expiration_date %>
+        <% end %>
+      </div>
       <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
         <i class="fa-solid fa-pen"></i></button>
       </button>
-      <div data-toggler-target="form" class="d-none">
-        <%= render partial: "form", locals: { ingredient: ingredient } %>
-      </div>
     </div>
+  </div>
+  <div data-toggler-target="form" class="d-none">
+          <%= render partial: "form", locals: { ingredient: ingredient } %>
+        </div>
   </div>
 </div>
