@@ -1,0 +1,2 @@
+class OpenFoodIngredient < ApplicationRecord
+end
