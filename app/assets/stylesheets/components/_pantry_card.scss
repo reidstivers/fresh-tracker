@@ -24,7 +24,7 @@
 }
 
 .expiring-section{
-  background-color: #FA9184;
+  background-color: $ft-pink;
   padding: 4px;
   border-radius: 8px;
 }
@@ -37,7 +37,24 @@
   background: none;
   border: none;
 }
-/*
+
 .card-date{
+  position: absolute;
+  right: 56px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-*/
+
+.expiring-notice{
+  background: gray;
+  border-radius: 8px;
+  padding: 4px;
+  color: white;
+}
+
+.expired-notice{
+  background: $ft-pink;
+  border-radius: 8px;
+  padding: 4px;
+  color: white;
+}

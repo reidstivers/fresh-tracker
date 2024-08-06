@@ -40,13 +40,12 @@
     </div>
   <% end %>
   </div>
-  <%# This is an extra div, I can't find the first one, but if you get rid of it, it turns the whole page red! Damned if I know. %>
+  <div data-controller="filtering">
+    <% @categories.each do |category| %>
+      <%# Using null class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
+      <div data-category="<%= category.name %>" class="category-section">
+        <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+      </div>
+    <% end %>
   </div>
-<div data-controller="filtering">
-  <% @categories.each do |category| %>
-    <%# Using null class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
-    <div data-category="<%= category.name %>" class="category-section">
-      <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
-    </div>
-  <% end %>
 </div>

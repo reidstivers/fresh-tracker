@@ -18,9 +18,13 @@
       <%# Accounts for singular day %>
       <% day_word = expires.abs == 1 ? "day" : "days" %>
       <% if expires.positive? && expires <= 3 %>
-        <span> Expires in <%= expires %> <%= day_word %> </span>
+        <div class="expiring-notice">
+          <span> Expires in <%= expires %> <%= day_word %> </span>
+        </div>
       <% elsif expires.negative? %>
-        <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
+        <div class="expired-notice">
+          <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
+        </div>
       <% else %>
         <%= ingredient.expiration_date %>
       <% end %>
