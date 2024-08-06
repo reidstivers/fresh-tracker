@@ -39,7 +39,9 @@
       <% end %>
     </div>
   <% end %>
-</div>
+  </div>
+  <%# This is an extra div, I can't find the first one, but if you get rid of it, it turns the whole page red! Damned if I know. %>
+  </div>
 <div data-controller="filtering">
   <% @categories.each do |category| %>
     <%# Using null class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
