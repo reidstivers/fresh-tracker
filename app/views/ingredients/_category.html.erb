@@ -3,10 +3,10 @@
   <%# Select ingredients from user's pantry's ingredients with the correct category %>
   <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id } %>
   <%# Hiding category if it contains nothing %>
-  <% if filtered_ingredients.any? %>
+  <%# <% if filtered_ingredients.any? %>
     <h3> <%= category.name %> </h3>
     <% filtered_ingredients.each do |ingredient| %>
       <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
     <% end %>
-  <% end %>
+  <%# <% end %>
 </div>

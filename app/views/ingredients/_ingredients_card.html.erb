@@ -13,8 +13,14 @@
       <%= ingredient.unit %>
     </div>
     <div class="card-date">
-      <% if ingredient.expiration_date < Date.today + 3 %>
-        <span> In <%= (ingredient.expiration_date - Date.today).to_i %> days </span>
+      <%# Sets variable for days to / since expiration, makes code dry %>
+      <% expires = (ingredient.expiration_date - Date.today).to_i %>
+      <%# Accounts for singular day %>
+      <% day_word = expires.abs == 1 ? "day" : "days" %>
+      <% if expires.positive? && expires <= 3 %>
+        <span> Expires in <%= expires %> <%= day_word %> </span>
+      <% elsif expires.negative? %>
+        <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
       <% else %>
         <%= ingredient.expiration_date %>
       <% end %>
