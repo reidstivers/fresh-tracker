@@ -8,32 +8,67 @@ body {
 }
 
 .homepage {
+  --bs-gutter-x: 0 !important;
+  --bs-gutter-y: 0 !important;
+  background-color: $ft-green;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   text-align: center;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 
-  img {
-    border-radius: 20%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  .logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 0;
+    padding: 0 5%;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  #carouselExampleInterval {
+    height: 70%;
+    position: relative; // For absolute positioning of buttons
+  }
+
+  .carousel-inner {
+    height: 100%;
+    width: 100%;
   }
 
   .carousel-inner img {
-    margin-top: 10px;
-    width: 200px !important;
-    height: 100px !important;
-    object-fit: cover !important;
+    object-fit: cover;
+  }
+
+  .carousel-buttons {
+    position: absolute; // Overlay on carousel
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Adjusts for centering
+    z-index: 10; // Ensures buttons are on top
   }
 
   .btn {
     margin: 10px;
+    width: 100%;
+    flex-direction: column;
+    font-size: 1.5rem;
   }
+}
 
+@media (max-width: 768px) {
+  .homepage {
+    .logo-container {
+      margin: 1vh 0;
+
+      img {
+        max-height: 15vh;
+      }
+    }
+  }
 }
