@@ -1,3 +1,12 @@
+.navigation-form {
+  //width: 100%;
+  //display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 120;
+  margin-bottom: 75px;
+}
+
 .navigation {
   width: 100%;
   display: flex;
@@ -5,11 +14,12 @@
   background-color: $ft-green;
   position: fixed;
   bottom: 0;
+  z-index: 120;
 }
 
 // icons
 .nav-icon {
-  margin: 10px 0px;
+  margin-top: 10px;
   text-decoration: none;
   color: $ft-black;
 }
@@ -36,4 +46,22 @@
 .nav-font-add {
   vertical-align: middle;
   font-size: 40px;
+}
+
+// dropdown
+.dropdown-centered {
+  text-align: center;
+}
+
+.dropdown-item-navigation {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  clear: both;
+  font-weight: 400;
+  color: $ft-black;
+  text-decoration: none;
+  white-space: nowrap;
+  //background-color: $ft-light-green;
+  border: 0;
 }

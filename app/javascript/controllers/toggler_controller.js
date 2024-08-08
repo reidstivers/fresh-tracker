@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["form"]
 
   connect() {
-    console.log("Connected!")
+    console.log("Toggler Connected!")
   }
 
   toggle(event) {

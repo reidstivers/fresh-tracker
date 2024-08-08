@@ -1,17 +1,50 @@
-<div class="navigation">
-  <%= link_to ingredients_path, class: "nav-icon" do %>
-    <span class="material-icons nav-font">kitchen</span>
-  <% end %>
-  <%= link_to "#", class: "nav-icon" do %>
-    <span class="material-icons nav-font">shopping_cart</span>
-  <% end %>
-  <button class="nav-icon-add">
-    <span class="material-icons nav-font-add">add</span>
-  </button>
-  <%= link_to "#", class: "nav-icon" do %>
-    <span class="material-icons nav-font">restaurant_menu</span>
-  <% end %>
-  <%= link_to "#", class: "nav-icon" do %>
-    <span class="material-icons nav-font">list</span>
-  <% end %>
+<div class="navigation-form" data-controller="toggler">
+  <div data-toggler-target="form" class="d-none">
+    <%= render partial: "ingredients/form"%>
+  </div>
+  <div class="navigation" id="naviation">
+    <%# pantry start %>
+    <div class="nav-icon">
+      <%= link_to ingredients_path, class: "nav-icon" do %>
+        <span class="material-icons nav-font">kitchen</span>
+      <% end %>
+    </div>
+    <%# pantry end %>
+    <%# shopping list start %>
+    <div class="nav-icon">
+      <%= link_to shopping_lists_path, class: "nav-icon" do %>
+        <span class="material-icons nav-font">shopping_cart</span>
+      <% end %>
+    </div>
+    <%# shopping list end %>
+    <%# add btn start %>
+    <div class="nav-icon-add dropdown-centered" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="material-icons nav-font-add">add</span>
+    </div>
+      <%# add btn menu %>
+      <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown">
+        <div><%= link_to "Stock from barcode", "#", class: "dropdown-item-navigation" %></div>
+        <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+      </div>
+    <%# add btn end %>
+    <%# recipe start %>
+    <div class="nav-icon">
+      <%= link_to "#", class: "nav-icon" do %>
+        <span class="material-icons nav-font">restaurant_menu</span>
+      <% end %>
+    </div>
+    <%# recipe end %>
+    <%# menu start %>
+    <div class="nav-icon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= link_to "#", class: "nav-icon" do %>
+        <span class="material-icons nav-font">list</span>
+      <% end %>
+    </div>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <%#= link_to "Action", "#", class: "dropdown-item" %>
+      <%#= link_to "Another action", "#", class: "dropdown-item" %>
+      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item-navigation" %>
+    </div>
+    <%# menu end %>
+  </div>
 </div>
