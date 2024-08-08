@@ -33,7 +33,12 @@
     <% if expiring.any? %>
       <div class="expiring-section">
         <div class="category-title">
-          <i class="fa-solid fa-triangle-exclamation"></i> <h3> Expiring soon! </h3>
+        <%# Rotating recycle %>
+          <div class="recycle-container">
+            <div class="pie-chart"></div>
+            <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
+          </div>
+          <h3> Expiring soon! </h3>
         </div>
           <% expiring.each do |ingredient| %>
             <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
