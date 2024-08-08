@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   # Route for pantries. user only needs to see their own pantry. Ingredients managed through that pantry.
   resources :ingredients
   get "barcode", to: "pages#barcode"
+  resources :shopping_lists, path: 'shoppinglist'
 end

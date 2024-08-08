@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_06_043200) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_155243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,14 +45,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_043200) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.bigint "ingredient_id", null: false
-    t.bigint "recipe_id", null: false
+    t.bigint "ingredient_id"
+    t.bigint "recipe_id"
     t.bigint "shopping_list_id", null: false
     t.float "amount"
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
+    t.string "name"
     t.index ["category_id"], name: "index_recipe_ingredients_on_category_id"
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
@@ -70,10 +71,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_043200) do
   end
 
   create_table "shopping_lists", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_shopping_lists_on_user_id"
+    t.bigint "pantry_id"
+    t.index ["pantry_id"], name: "index_shopping_lists_on_pantry_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,6 +99,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_043200) do
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipe_ingredients", "shopping_lists"
   add_foreign_key "recipes", "users"
-  add_foreign_key "shopping_lists", "users"
+  add_foreign_key "shopping_lists", "pantries"
   add_foreign_key "users", "pantries"
 end

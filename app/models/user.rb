@@ -5,6 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :pantry, optional: true
+  belongs_to :pantry
+  has_many :recipes
+
+  def shopping_list
+    pantry.shopping_list
+  end
+
   validates :name, presence: true
 end

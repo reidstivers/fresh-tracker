@@ -1,5 +1,12 @@
+
+
 .card{
   padding:5px 12px;
+  background-color: white;
+  border: none;
+  margin: 4px;
+  border-radius: 16px;
+  position: relative;
 }
 
 .card-title{
@@ -16,7 +23,38 @@
   margin-right: 20px;
 }
 
-/*
-.card-date{
+.expiring-section{
+  background-color: $ft-pink;
+  padding: 4px;
+  border-radius: 8px;
 }
-*/
+
+.edit-icon{
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+}
+
+.card-date{
+  position: absolute;
+  right: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.expiring-notice{
+  background: gray;
+  border-radius: 8px;
+  padding: 4px;
+  color: white;
+}
+
+.expired-notice{
+  background: $ft-pink;
+  border-radius: 8px;
+  padding: 4px;
+  color: white;
+}

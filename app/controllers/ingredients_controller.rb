@@ -1,4 +1,8 @@
 class IngredientsController < ApplicationController
+  before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:new, :edit, :update, :index, :create]
+  before_action :set_ingredients, only: [:index, :create, :update]
+
   def new
     @ingredient = Ingredient.new
   end
@@ -12,40 +16,44 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to ingredients_path, notice: "Ingredient saved"
     else
-      render "ingredients/index", notice: "Ingredient not saved"
+      render :index, status: :unprocessable_entity
     end
   end
 
   def index
-    @ingredients = current_user.pantry.ingredients
     @ingredient = Ingredient.new
-    @categories = Category.all
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
   end
 
   def edit
-    @ingredient = Ingredient.find(params[:id])
   end
 
   def update
-    @ingredient = Ingredient.find(params[:id])
-
     if @ingredient.update(ingredient_params)
-      redirect_to @ingredient
+      redirect_to ingredients_path, notice: "Ingredient updated"
     else
-      render "pantry/show", notice: "Ingredient not updated"
+      render :index, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
-    @ingredient.destroy
   end
 
   private
+
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def set_ingredients
+    @ingredients = current_user.pantry.ingredients
+  end
+
+  def set_categories
+    @categories = Category.all
+  end
 
   def ingredient_params
     params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :pantry_id)
