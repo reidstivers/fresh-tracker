@@ -15,3 +15,4 @@ pin "@zxing/browser", to: "@zxing--browser.js" # @0.1.5
 pin "@zxing/library", to: "@zxing--library.js" # @0.21.2
 pin "ts-custom-error" # @3.3.1
 pin "flatpickr" # @4.6.13
+pin "@ericblade/quagga2", to: "@ericblade--quagga2.js" # @1.8.4
