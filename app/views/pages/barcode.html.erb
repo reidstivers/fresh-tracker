@@ -3,10 +3,8 @@
   code snippets here
 
   <div data-controller="barcode">
-    <input type="file" accept="image/*" capture="camera" id="cats" class="">
-    <button>
-      submit
-    </button>
+    <input type="file" accept="image/*" capture="camera" data-action="change->barcode#onUpload" class="">
+
       <div>hello</div>
   </div>
 
