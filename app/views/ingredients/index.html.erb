@@ -26,20 +26,20 @@
       </button>
     <% end %>
   </div>
-  <div>
-  <%# <%# Filters for items expiring in the next 3 days; may need to expand that range %>
-  <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
-  <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
-  <% if expiring.any? %>
-    <div class="expiring-section">
-      <div class="category-title">
-        <i class="fa-solid fa-triangle-exclamation"></i></i> <h3> Expiring soon! </h3>
+  <div id="expiring">
+    <%# Filters for items expiring in the next 7 days; may need to expand that range %>
+    <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date <= (Date.today + 7) }  %>
+    <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
+    <% if expiring.any? %>
+      <div class="expiring-section">
+        <div class="category-title">
+          <i class="fa-solid fa-triangle-exclamation"></i> <h3> Expiring soon! </h3>
+        </div>
+          <% expiring.each do |ingredient| %>
+            <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
+          <% end %>
       </div>
-      <% expiring.each do |ingredient| %>
-        <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
   </div>
   <div data-controller="filtering">
     <% @categories.each do |category| %>

@@ -18,7 +18,7 @@
         <% expires = (ingredient.expiration_date - Date.today).to_i %>
         <%# Accounts for singular day %>
         <% day_word = expires.abs == 1 ? "day" : "days" %>
-        <% if expires.positive? && expires <= 3 %>
+        <% if expires.positive? && expires <= 7 %>
           <div class="expiring-notice">
             <span> Expires in <%= expires %> <%= day_word %> </span>
           </div>
@@ -38,5 +38,4 @@
     <div data-toggler-target="form" id="editForm-<%= ingredient.id %>" class="<%= ingredient.errors.any? ? '' : 'd-none' %>" >
       <%= render partial: "form", locals: { ingredient: ingredient } %>
     </div>
-  </div>
 </div>
