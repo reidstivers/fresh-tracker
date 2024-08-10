@@ -3,7 +3,7 @@
 .card{
   padding:5px 12px;
   background-color: white;
-  border: none;
+  // border: none;
   margin: 4px;
   border-radius: 16px;
   position: relative;
@@ -25,7 +25,7 @@
 
 .edit-icon{
   position: absolute;
-  right: 16px;
+  right: 5px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
