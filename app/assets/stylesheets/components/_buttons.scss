@@ -32,6 +32,13 @@
   margin-inline: auto;
 }
 
+.login-btns {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
 .btn-homepage {
   background-color: #FF6F61;
   color: white;

@@ -17,12 +17,14 @@
           </div>
         </div>
         <div class="carousel-buttons">
-          <% if user_signed_in? %>
-            <%= link_to 'My Pantry', ingredients_path, class: 'btn-homepage' %>
-          <% else %>
-            <%= link_to 'Login', new_user_session_path, class: 'btn-homepage' %>
-            <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-secondary' %>
-          <% end %>
+          <div class="login-btns">
+            <% if user_signed_in? %>
+              <%= link_to 'My Pantry', ingredients_path, class: 'btn-homepage' %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: 'btn-homepage' %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
