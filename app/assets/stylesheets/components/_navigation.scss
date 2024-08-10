@@ -41,6 +41,7 @@
 .navigation .nav-icon-add {
   position:relative;
   top: -15px;
+  padding-top: 5px;
 }
 
 .nav-font-add {
@@ -64,4 +65,15 @@
   white-space: nowrap;
   //background-color: $ft-light-green;
   border: 0;
+}
+
+// close-button
+.close-icon {
+  text-decoration: none;
+  position: absolute;
+  top: 5;
+  right: 0;
+  border-style: none;
+  margin-bottom: 5px;
+  font-size: 20px;
 }
