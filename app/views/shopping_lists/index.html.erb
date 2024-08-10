@@ -1,7 +1,7 @@
 <h1><%= current_user.name %>'s Shopping List</h1>
 
 <% if @ingredients.any? %>
-  <ul>
+  <div>
     <% @ingredients.each do |ingredient| %>
         <div class="shopping-list-card">
           <div class="circle"></div>
@@ -13,7 +13,7 @@
           <% end %>
         </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <p>No items in your shopping list.</p>
 <% end %>
