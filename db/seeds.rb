@@ -10,20 +10,25 @@
 
 # Seed the database with the categories
 categories = [
-  "Fruits",
-  "Vegetables",
-  "Meat",
-  "Fish",
-  "Dairy",
-  "Condiments",
-  "Beverage",
-  "Leftovers",
-  "Oils",
-  "Spices",
-  "Canned",
-  "Miscellaneous"
+  { name: "Fruits", icon: "fa-solid fa-lemon" },
+  { name: "Vegetables", icon: "fa-solid fa-carrot" },
+  { name: "Meat", icon: "fa-solid fa-drumstick-bite" },
+  { name: "Fish", icon: "fa-solid fa-fish" },
+  { name: "Dairy", icon: "fa-solid fa-cow" },
+  { name: "Condiments", icon: "fa-solid fa-jar" },
+  { name: "Beverages", icon: "fa-solid fa-coffee" },
+  { name: "Leftovers", icon: "fa-solid fa-utensils" },
+  { name: "Oils", icon: "fa-solid fa-bottle-droplet" },
+  { name: "Spices", icon: "fa-solid fa-pepper-hot" },
+  { name: "Canned", icon: "fa-solid fa-box" },
+  { name: "Miscellaneous", icon: "fa-solid fa-question" }
 ]
 
-categories.each do |category_name|
-  Category.find_or_create_by!(name: category_name)
+# This will method will either create a category or update an existing one with the icon in the categories array
+categories.each do |category_data|
+  # Finds the category by name or initializes a new one if it doesn't exist
+  category = Category.find_or_initialize_by(name: category_data[:name])
+  # Saves the icon or overwrites it if it already exists
+  category.icon = category_data[:icon]
+  category.save!
 end
