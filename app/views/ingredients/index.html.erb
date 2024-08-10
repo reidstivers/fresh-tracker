@@ -1,12 +1,12 @@
 <div>
   <h1> <%= current_user.name %>'s Pantry </h1>
-  <div data-controller="toggler">
+  <!--<div data-controller="toggler">
     <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
     <%# Added ternary operate to keep form rendered if there were errors on entry %>
     <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
       <%= render partial: "form"%>
     </div>
-  </div>
+  </div>-->
   <%# Div for filter buttons %>
   <div class="buttons-filter" data-controller="filtering">
     <%# Adding button to render all categories %>
