@@ -5,7 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :pantry
+  # pantry MUST be optional, else it can't create the very first user!!!!! Do not delete
+  belongs_to :pantry, optional: true
   has_many :recipes
 
   def shopping_list

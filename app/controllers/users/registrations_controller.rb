@@ -17,11 +17,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # Checks if user was saved successfully before creating a pantry for them
       if user.persisted?
         pantry ||= Pantry.create
-        unless pantry.persisted?
-          flash[:alert] = "Pantry creation failed. Please try again."
-          redirect_to new_user_registration_path and return
-        end
-        unless user.update(pantry: pantry)
+        if pantry.persisted?
+          unless user.update(pantry: pantry)
+            flash[:alert] = "Pantry creation failed. Please try again."
+            redirect_to new_user_registration_path and return
+          end
+        elsif user.update(pantry: pantry)
           flash[:alert] = "Pantry assignment failed. Please try again."
           redirect_to new_user_registration_path and return
         end
