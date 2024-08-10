@@ -50,7 +50,7 @@ class IngredientsController < ApplicationController
   end
 
   def set_ingredients
-    @ingredients = current_user.pantry.ingredients
+    @ingredients = current_user.pantry.ingredients.in_pantry
   end
 
   def set_categories
