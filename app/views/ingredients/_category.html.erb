@@ -5,6 +5,7 @@
   <%# Hiding category if it contains nothing %>
   <%# <% if filtered_ingredients.any? %>
     <div class="category-title">
+      <i class="<%=category.icon%>"></i>
       <h3> <%= category.name %> </h3>
     </div>
     <% filtered_ingredients.each do |ingredient| %>
