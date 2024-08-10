@@ -26,6 +26,16 @@
       </button>
     <% end %>
   </div>
+  <div class="col-sm-8 my-3">
+    <%= form_with url: ingredients_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <div id="expiring">
     <%# Filters for items expiring in the next 7 days; may need to expand that range %>
     <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date <= (Date.today + 7) }  %>
