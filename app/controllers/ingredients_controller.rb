@@ -39,6 +39,8 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    @ingredient.destroy
+    redirect_to ingredients_path, notice: "Ingredient deleted"
   end
 
   private
@@ -48,7 +50,7 @@ class IngredientsController < ApplicationController
   end
 
   def set_ingredients
-    @ingredients = current_user.pantry.ingredients
+    @ingredients = current_user.pantry.ingredients.in_pantry
   end
 
   def set_categories

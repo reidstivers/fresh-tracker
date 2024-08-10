@@ -2,17 +2,22 @@ class ShoppingListsController < ApplicationController
   before_action :set_shopping_list, only: [:index, :create]
 
   def index
-    @recipe_ingredient = RecipeIngredient.new
+    #@recipe_ingredient = RecipeIngredient.new
+    @ingredient = Ingredient.new
+    @ingredients = current_user.pantry.ingredients.in_cart
   end
 
   def new
-    @recipe_ingredient = RecipeIngredient.new
+    @ingredient = Ingredient.new
   end
 
   def create
-    @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
-    @recipe_ingredient.shopping_list = @shopping_list
-    if @recipe_ingredient.save
+    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.pantry = current_user.pantry
+    @ingredient.in_pantry = true
+    @ingredient.expiration_date = Date.today
+    @ingredient.status = 1
+    if @ingredient.save
       redirect_to shopping_lists_path, notice: "Item added successfully"
     else
       render :index
@@ -25,7 +30,7 @@ class ShoppingListsController < ApplicationController
     @shopping_list = current_user.pantry.shopping_list || current_user.pantry.create_shopping_list
   end
 
-  def recipe_ingredient_params
-    params.require(:recipe_ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :pantry_id)
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :status, :pantry_id)
   end
 end
