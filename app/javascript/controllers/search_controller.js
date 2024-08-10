@@ -5,11 +5,18 @@ export default class extends Controller {
   connect() {
     console.log("Search connected")
   }
+  fire() {
+    console.log("Fire!")
+  }
 }
-const searchMovies = (event) => {
-  event.preventDefault();
-  const name = document.getElementById("ingredient-name").value;
-}
+
+
+
+
+// const searchMovies = (event) => {
+//   event.preventDefault();
+//   const name = document.getElementById("ingredient-name").value;
+// }
 
 // const appendIngredientsToDom = (ingredients) => {
 //   console.log(ingredients)
@@ -35,5 +42,5 @@ const searchMovies = (event) => {
 //   `
 // }
 
-const form = document.getElementById("search-ingredients");
-form.addEventListener("submit", searchIngredients)
+// const form = document.getElementById("search-ingredients");
+// form.addEventListener("submit", searchIngredients)
