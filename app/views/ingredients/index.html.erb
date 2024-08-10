@@ -1,12 +1,12 @@
 <div>
   <h1> <%= current_user.name %>'s Pantry </h1>
-  <div data-controller="toggler">
+  <!--<div data-controller="toggler">
     <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
     <%# Added ternary operate to keep form rendered if there were errors on entry %>
     <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
       <%= render partial: "form"%>
     </div>
-  </div>
+  </div>-->
   <%# Div for filter buttons %>
   <div class="buttons-filter" data-controller="filtering">
     <%# Adding button to render all categories %>
@@ -26,20 +26,25 @@
       </button>
     <% end %>
   </div>
-  <div>
-  <%# <%# Filters for items expiring in the next 3 days; may need to expand that range %>
-  <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date < Date.today + 3 }  %>
-  <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
-  <% if expiring.any? %>
-    <div class="expiring-section">
-      <div class="category-title">
-        <i class="fa-solid fa-triangle-exclamation"></i></i> <h3> Expiring soon! </h3>
+  <div id="expiring">
+    <%# Filters for items expiring in the next 7 days; may need to expand that range %>
+    <% expiring = @ingredients.select { |ingredient| ingredient.expiration_date <= (Date.today + 7) }  %>
+    <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
+    <% if expiring.any? %>
+      <div class="expiring-section">
+        <div class="category-title">
+        <%# Rotating recycle %>
+          <div class="recycle-container">
+            <div class="pie-chart"></div>
+            <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
+          </div>
+          <h3> Expiring soon! </h3>
+        </div>
+          <% expiring.each do |ingredient| %>
+            <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
+          <% end %>
       </div>
-      <% expiring.each do |ingredient| %>
-        <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
   </div>
   <div data-controller="filtering">
     <% @categories.each do |category| %>

@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   resources :ingredients
   get "barcode", to: "pages#barcode"
   resources :shopping_lists, path: 'shoppinglist'
+  resources :shopping_lists, path: 'shoppinglist'do
+    resources :recipe_ingredients, only: [:create, :destroy]
+  end
 end

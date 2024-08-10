@@ -5,4 +5,5 @@ class Ingredient < ApplicationRecord
   validates :name, presence: true
   validates :category_id, presence: true
   validates :in_pantry, presence: true
+  validates :expiration_date, presence: true
 end
