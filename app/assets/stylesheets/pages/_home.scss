@@ -3,6 +3,11 @@ body {
   background-color: $white;
 }
 
+// Make sure the navbar doesn't cover any content
+.yield-content {
+  padding-bottom: 70px;
+}
+
 .container {
   background-color: $ft-green;
 }
