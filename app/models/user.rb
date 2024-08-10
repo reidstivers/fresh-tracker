@@ -5,13 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :pantry, optional: true
-  has_one :shopping_list, dependent: :destroy
-  after_create :create_shopping_list
-  validates :name, presence: true
+  belongs_to :pantry
+  has_many :recipes
 
-private
-  def create_shopping_list
-    self.create_shopping_list!
+  def shopping_list
+    pantry.shopping_list
   end
+
+  validates :name, presence: true
 end

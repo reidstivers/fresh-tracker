@@ -18,8 +18,10 @@
     </div>
     <div class="form-row">
       <%= f.input :expiration_date,
-      label: "Best by",
-      wrapper_html: { class: "form-group "} %>
+                  as: :string,
+                  input_html: { data: { controller: "datepicker" } },
+                  label: "Best by",
+                  wrapper_html: { class: "form-group "} %>
       <%= f.submit "Save", class: "form-button" %>
     </div>
   <% end %>

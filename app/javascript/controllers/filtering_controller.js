@@ -6,6 +6,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Filter connected!");
+    this.currentCategoryValue = null;
   }
 
   showAll() {
@@ -17,7 +18,13 @@ export default class extends Controller {
   fire(event) {
     const button = event.currentTarget;
     const category = button.dataset.category;
-    this.filterCategories(category);
+    if (this.currentCategoryValue === category) {
+      this.showAll();
+      this.currentCategoryValue = null;
+    } else {
+      this.currentCategoryValue = category;
+      this.filterCategories(category);
+    }
   }
 
   filterCategories(category) {
