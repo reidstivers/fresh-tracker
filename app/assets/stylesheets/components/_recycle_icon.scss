@@ -9,17 +9,23 @@
 
 .recycle-container {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border-radius: 4px;
+  background-color: transparent;
+  overflow: hidden;
 }
 
 .pie-chart {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: conic-gradient(green 0deg 120deg, red 120deg 360deg);
+  background: conic-gradient(green 0deg 240deg, red 240deg 360deg);
   animation: rotate 3s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
 }
 
 .recycle-overlay {
@@ -33,6 +39,6 @@
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
-  mix-blend-mode: screen;
-  background-color: white;
+  mix-blend-mode: lighten;
+  background-color: $ft-pink;
 }
