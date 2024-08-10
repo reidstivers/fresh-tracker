@@ -26,12 +26,26 @@
       </button>
     <% end %>
   </div>
+
+  <form id="search-ingredients">
+    <div class="form-group">
+      <div class="d-flex">
+        <input type="text" id="ingredient-name" class="form-control"
+          data-action="search#fire"
+          data-filtering-target="button"
+          placeholder="Type a keyword">
+
+        <input type="submit" value="Search" class="btn btn-primary ms-2">
+      </div>
+    </div>
+  </form>
+
   <div class="col-sm-8 my-3">
     <%= form_with url: ingredients_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Type a keyword"
+            placeholder: "Type a keyword2"
         %>
       <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
