@@ -1,7 +1,7 @@
-<% recipe_ingredient = local_assigns[:recipe_ingredient] || @recipe_ingredient %>
+<% ingredient = local_assigns[:ingredient] || @ingredient %>
 
 <div class="styled-form">
-  <%= simple_form_for recipe_ingredient, url: shopping_lists_path do |f| %>
+  <%= simple_form_for ingredient, url: shopping_lists_path do |f| %>
     <div class="form-row">
       <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" } %>
     </div>
