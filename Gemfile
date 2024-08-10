@@ -75,3 +75,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# manually added gems
+gem "zbar"
+gem 'openfoodfacts'

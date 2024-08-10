@@ -1,0 +1,43 @@
+<div class="p-5">
+
+ ~~~~~~~~~~~~~~~~~~~~ code snippets here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  <div data-controller="barcode">
+    <input type="file" accept="image/*" capture="camera" data-action="change->barcode#onUpload" class="">
+
+      <div>hello</div>
+  </div>
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~js code api example~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+JS here taken from api lecture
+
+  const button = document.querySelector('.btn-warning');
+const paragraph = document.querySelector('#activity');
+const url = 'https://world.openfoodfacts.net/api/v2/product/3017624010701?fields=product_name,nutriscore_data';
+
+const insertActivity = (data) => {
+  paragraph.innerText = data.activity;
+}
+
+button.addEventListener('click', () => {
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    insertActivity(data);
+  })
+})
+
+render button.addEventListener('click', fetchActivity);
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Links ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://openfoodfacts.github.io/openfoodfacts-server/api/ The API website
+
+GET https://world.openfoodfacts.net/api/v2/product/{barcode}
+
+https://world.openfoodfacts.net/api/v2/product/{barcode}?fields=product_name
+
+  </div>
