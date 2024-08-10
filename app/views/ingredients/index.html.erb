@@ -54,7 +54,9 @@
   </div>
   <div id="expiring">
     <%# Filters for items expiring in the next 7 days; may need to expand that range %>
-    <% expiring = @ingredients.select do |ingredient| %> <% ingredient.expiration_date && ingredient.expiration_date <= (Date.today + 7) %> <% end %>
+    <% expiring = @ingredients.select do |ingredient| %>
+      <% ingredient.expiration_date.present? && ingredient.expiration_date <= (Date.today + 7) %>
+    <% end %>
     <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
     <% if expiring.any? %>
       <div class="expiring-section">
