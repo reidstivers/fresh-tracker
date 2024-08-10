@@ -32,13 +32,17 @@
     <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
     <% if expiring.any? %>
       <div class="expiring-section">
-        <div class="category-title">
-        <%# Rotating recycle icon %>
+        <div class="category-title expiring-title">
           <div class="recycle-container">
             <div class="pie-chart"></div>
             <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
           </div>
           <h3> Expiring soon! </h3>
+        <%# Rotating recycle icon %>
+          <div class="recycle-container">
+            <div class="pie-chart"></div>
+            <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
+          </div>
         </div>
           <% expiring.each do |ingredient| %>
             <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
