@@ -2,6 +2,9 @@
 <div class="navigation-form" data-controller="toggler">
   <%# form start %>
   <div data-toggler-target="form" class="d-none">
+  <button class="close-icon" data-action="toggler#toggle" data-target-name="form">
+    <i class="fa-regular fa-circle-xmark"></i>
+  </button>
     <% if (@ingredients) %>
     <%= render partial: "ingredients/form"%>
     <% end %>
