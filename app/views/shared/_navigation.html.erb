@@ -1,7 +1,12 @@
+<%# navigation container start %>
 <div class="navigation-form" data-controller="toggler">
+  <%# form start %>
   <div data-toggler-target="form" class="d-none">
+    <% if (@ingredients) %>
     <%= render partial: "ingredients/form"%>
+    <% end %>
   </div>
+  <%# form end %>
   <div class="navigation" id="naviation">
     <%# pantry start %>
     <div class="nav-icon">
@@ -23,8 +28,13 @@
     </div>
       <%# add btn menu %>
       <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown">
+        <% if (@shopping_list) %>
+        <div><%= link_to 'Add Item to shoppinglist', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
+        <% end %>
+        <% if (@ingredients) %>
         <div><%= link_to "Stock from barcode", "#", class: "dropdown-item-navigation" %></div>
         <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+        <% end %>
       </div>
     <%# add btn end %>
     <%# recipe start %>
@@ -48,3 +58,4 @@
     <%# menu end %>
   </div>
 </div>
+<%# navigation container end %>
