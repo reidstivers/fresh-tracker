@@ -1,4 +1,4 @@
-<div>
+<div  data-controller="search">
   <h1> <%= current_user.name %>'s Pantry </h1>
   <!--<div data-controller="toggler">
     <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
@@ -24,6 +24,32 @@
         data-category="<%= category.name %>">
         <%= category.name %>
       </button>
+    <% end %>
+  </div>
+
+  <%# <form id="search-ingredients">
+    <div class="form-group  m-1">
+      <div class="d-flex">
+        <input type="text" id="ingredient-name" class="form-control"
+          data-action="keyup->search#fire"
+          data-filtering-target="button"
+          placeholder="Type a keyword">
+        <input type="submit" value="Search" class="btn btn-primary ms-2">
+      </div>
+    </div>
+  </form>
+    </div> %>
+
+
+
+  <div class="col-sm-8 my-3 m-1">
+    <%= form_with url: ingredients_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search your Pantry"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
   </div>
   <div id="expiring">
