@@ -13,23 +13,25 @@
         <% end %>
         <%= ingredient.unit %>
       </div>
-      <div class="card-date">
-        <%# Sets variable for days to / since expiration, makes code dry %>
-        <% expires = (ingredient.expiration_date - Date.today).to_i %>
-        <%# Accounts for singular day %>
-        <% day_word = expires.abs == 1 ? "day" : "days" %>
-        <% if expires.positive? && expires <= 7 %>
-          <div class="expiring-notice">
-            <span> Expires in <%= expires %> <%= day_word %> </span>
+        <% if ingredient.expiration_date %>
+          <div class="card-date">
+            <%# Sets variable for days to / since expiration, makes code dry %>
+              <% expires = (ingredient.expiration_date - Date.today).to_i %>
+            <%# Accounts for singular day %>
+            <% day_word = expires.abs == 1 ? "day" : "days" %>
+            <% if expires.positive? && expires <= 7 %>
+              <div class="expiring-notice">
+                <span> Expires in <%= expires %> <%= day_word %> </span>
+              </div>
+            <% elsif expires.negative? %>
+              <div class="expired-notice">
+                <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
+              </div>
+            <% else %>
+              <%= ingredient.expiration_date %>
+            <% end %>
           </div>
-        <% elsif expires.negative? %>
-          <div class="expired-notice">
-            <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
-          </div>
-        <% else %>
-          <%= ingredient.expiration_date %>
-        <% end %>
-      </div>
+          <% end %>
       <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
         <i class="fa-solid fa-pen"></i>
       </button>
