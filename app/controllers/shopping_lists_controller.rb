@@ -2,7 +2,7 @@ class ShoppingListsController < ApplicationController
   before_action :set_shopping_list, only: [:index, :create]
 
   def index
-    #@recipe_ingredient = RecipeIngredient.new
+    # @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
     @ingredients = current_user.pantry.ingredients.in_cart
   end
