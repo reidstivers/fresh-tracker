@@ -15,10 +15,24 @@ class ShoppingListsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.pantry = current_user.pantry
     @ingredient.in_pantry = true
-    @ingredient.expiration_date = Date.today
+    @ingredient.expiration_date = Date.today + 7.days
     @ingredient.status = 1
     if @ingredient.save
       redirect_to shopping_lists_path, notice: "Item added successfully"
+    else
+      render :index
+    end
+  end
+
+  def update
+    @ingredient = Ingredient.find(params[:id])
+
+    if params[:status].present?
+      @ingredient.status = params[:status].to_i
+    end
+
+    if @ingredient.save
+      redirect_to shopping_lists_path, notice: "Item updated successfully"
     else
       render :index
     end

@@ -7,6 +7,13 @@
   border-radius: 25px;
   margin: 8px;
   font-family: Arial, sans-serif;
+  transition: transform 0.5s ease-in-out;
+}
+
+.swipe-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .shopping-list-card .circle {
