@@ -10,18 +10,18 @@
 
 # Seed the database with the categories
 categories = [
-  { name: "Fruits", icon: "fa-solid fa-lemon" },
-  { name: "Vegetables", icon: "fa-solid fa-carrot" },
-  { name: "Meat", icon: "fa-solid fa-drumstick-bite" },
-  { name: "Fish", icon: "fa-solid fa-fish" },
-  { name: "Dairy", icon: "fa-solid fa-cow" },
-  { name: "Condiments", icon: "fa-solid fa-jar" },
-  { name: "Beverages", icon: "fa-solid fa-coffee" },
-  { name: "Leftovers", icon: "fa-solid fa-utensils" },
-  { name: "Oils", icon: "fa-solid fa-bottle-droplet" },
-  { name: "Spices", icon: "fa-solid fa-pepper-hot" },
-  { name: "Canned", icon: "fa-solid fa-box" },
-  { name: "Miscellaneous", icon: "fa-solid fa-question" }
+  { name: "Fruits", icon: "fa-solid fa-lemon fa-xl" },
+  { name: "Vegetables", icon: "fa-solid fa-carrot fa-xl" },
+  { name: "Meat", icon: "fa-solid fa-drumstick-bite fa-xl" },
+  { name: "Fish", icon: "fa-solid fa-fish fa-xl" },
+  { name: "Dairy", icon: "fa-solid fa-cow fa-xl" },
+  { name: "Condiments", icon: "fa-solid fa-jar fa-xl" },
+  { name: "Beverages", icon: "fa-solid fa-coffee fa-xl" },
+  { name: "Leftovers", icon: "fa-solid fa-utensils fa-xl" },
+  { name: "Oils", icon: "fa-solid fa-bottle-droplet fa-xl" },
+  { name: "Spices", icon: "fa-solid fa-pepper-hot fa-xl" },
+  { name: "Canned", icon: "fa-solid fa-box fa-xl" },
+  { name: "Miscellaneous", icon: "fa-solid fa-question fa-lx" }
 ]
 
 # This will method will either create a category or update an existing one with the icon in the categories array
