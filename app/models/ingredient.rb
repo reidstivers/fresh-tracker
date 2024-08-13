@@ -4,6 +4,7 @@ class Ingredient < ApplicationRecord
   has_many :recipe_ingredients
   validates :name, presence: true
   validates :category_id, presence: true
+  validates :amount, presence: true
   validates :in_pantry, presence: true
   # validates :expiration_date, presence: true
   enum status: { in_pantry: 0, in_cart: 1}

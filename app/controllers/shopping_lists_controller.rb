@@ -20,7 +20,7 @@ class ShoppingListsController < ApplicationController
     if @ingredient.save
       redirect_to shopping_lists_path, notice: "Item added successfully"
     else
-      render :index
+      render :new, status: :unprocessable_entity
     end
   end
 
