@@ -1,0 +1,13 @@
+<% recipe = local_assigns[:recipe] || @recipe %>
+
+<div class="styled-form">
+  <%= simple_form_for recipe, url: recipes_path do |f| %>
+    <div class="form-row">
+      <%= f.input :title, label: "Title", wrapper_html: { class: "form-group" } %>
+    </div>
+    <div class="form-row">
+      <%= f.input :description, label: "Description", wrapper_html: { class: "form-group" } %>
+    </div>
+    <%= f.submit "Save", class: "form-button" %>
+  <% end %>
+</div>

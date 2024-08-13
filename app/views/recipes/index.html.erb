@@ -1,0 +1,23 @@
+<h1><%= current_user.name %>'s Saved Recipes</h1>
+<% if @recipes.any? %>
+  <div>
+    <% @recipes.each do |recipe| %>
+        <div class="recipe-card">
+          <div class="info">
+              <div class="title"><%= recipe.title %></div>
+              <div class="subtitle"><%= recipe.description %></div>
+          </div>
+
+          <div class="buttons">
+             <%= link_to recipe_path(recipe) do %><span class="material-symbols-outlined">info</span><% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No items in your recipe list.</p>
+<% end %>
+
+<div class="recipe-btn-container" style="display: none;">
+  <%= link_to 'Add Recipe', new_recipe_path, class: "pink-button" %>
+</div>

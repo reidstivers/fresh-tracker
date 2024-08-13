@@ -21,7 +21,7 @@
     <%# shopping list start %>
     <div class="nav-icon">
       <%= link_to shopping_lists_path, class: "nav-icon" do %>
-        <span class="material-icons nav-font">shopping_cart</span>
+        <span class="material-symbols-outlined nav-font">shopping_cart</span>
       <% end %>
     </div>
     <%# shopping list end %>
@@ -32,17 +32,20 @@
       <%# add btn menu %>
       <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown">
         <% if (@shopping_list) %>
-        <div><%= link_to 'Add Item to shoppinglist', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
+          <div><%= link_to 'Add Item to shoppinglist', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
         <% end %>
-        <% if (@ingredients) %>
-        <div><%= link_to "Stock from barcode", "#", class: "dropdown-item-navigation" %></div>
-        <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+        <% if (@ingredients && !@shopping_list) %>
+          <div><%= link_to "Stock from barcode", "#", class: "dropdown-item-navigation" %></div>
+          <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+        <% end %>
+        <% if (@recipes) %>
+          <div><%= link_to 'Add recipes', new_recipe_path, class: "dropdown-item-navigation" %></div>
         <% end %>
       </div>
     <%# add btn end %>
     <%# recipe start %>
     <div class="nav-icon">
-      <%= link_to "#", class: "nav-icon" do %>
+      <%= link_to recipes_path, class: "nav-icon" do %>
         <span class="material-icons nav-font">restaurant_menu</span>
       <% end %>
     </div>
