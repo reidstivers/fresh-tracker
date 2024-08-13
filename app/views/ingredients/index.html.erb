@@ -27,18 +27,18 @@
     <% end %>
   </div>
 
-  <%# <form id="search-ingredients">
-    <div class="form-group  m-1">
+  <form id="search-ingredients">
+    <div class="form-group  m-1" data-controller="search">
       <div class="d-flex">
         <input type="text" id="ingredient-name" class="form-control"
           data-action="keyup->search#fire"
-          data-filtering-target="button"
-          placeholder="Type a keyword">
+          data-search-target="input"
+          placeholder="stimulus search">
         <input type="submit" value="Search" class="btn btn-primary ms-2">
       </div>
     </div>
   </form>
-    </div> %>
+    </div>
 
 
 
