@@ -6,9 +6,7 @@
     <div class="card-content">
       <div class="card-detail">
       <%# conditional leans up display, returns whole numbers & decimals %>
-        <% if ingredient.amount.nil? %>
-          <% ingredient.amount = 1 %>
-        <% elsif ingredient.amount % 1 == 0 %>
+        <% if ingredient.amount % 1 == 0 %>
           <%= ingredient.amount.to_i %>
         <% else %>
           <%= ingredient.amount %>
