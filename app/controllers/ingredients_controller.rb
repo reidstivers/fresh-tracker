@@ -2,6 +2,7 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit, :update, :index, :create]
   before_action :set_ingredients, only: [:index, :create, :update]
+  before_action :set_expiring, only: [:expiring, :index]
 
   def new
     @ingredient = Ingredient.new
@@ -29,10 +30,6 @@ class IngredientsController < ApplicationController
 
   # Method to display expiring ingredients
   def expiring
-    filter_expiring = current_user.pantry.ingredients.select do |ingredient|
-      ingredient.expiration_date.present? && ingredient.expiration_date <= (Date.today + 7)
-    end
-    @expiring = filter_expiring.sort_by { |ingredient| ingredient.expiration_date }
   end
 
   def show
@@ -55,6 +52,13 @@ class IngredientsController < ApplicationController
   end
 
   private
+
+  def set_expiring
+    filter_expiring = current_user.pantry.ingredients.select do |ingredient|
+      ingredient.expiration_date.present? && ingredient.expiration_date <= (Date.today + 7)
+    end
+    @expiring = filter_expiring.sort_by { |ingredient| ingredient.expiration_date }
+  end
 
   def set_ingredient
     @ingredient = Ingredient.find(params[:id])
