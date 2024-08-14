@@ -27,6 +27,14 @@ class IngredientsController < ApplicationController
     end
   end
 
+  # Method to display expiring ingredients
+  def expiring
+    filter_expiring = current_user.pantry.ingredients.select do |ingredient|
+      ingredient.expiration_date.present? && ingredient.expiration_date <= (Date.today + 7)
+    end
+    @expiring = filter_expiring.sort_by { |ingredient| ingredient.expiration_date }
+  end
+
   def show
   end
 
