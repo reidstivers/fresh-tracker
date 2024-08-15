@@ -1,0 +1,10 @@
+<div class="image-recognition-form">
+  <h4>Upload Image for Recognition</h4>
+  <%= form_with url: images_recognize_path, method: :post, local: true, multipart: true, class: "form" do |form| %>
+    <div class="form-group">
+      <%= form.label :image, "Choose Image", class: "form-label" %>
+      <%= form.file_field :image, class: "form-control" %>
+    </div>
+    <%= form.submit 'Recognize Image', class: "btn" %>
+  <% end %>
+</div>
