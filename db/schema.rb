@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_144620) do
-
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_124553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,8 +32,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_144620) do
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
     t.integer "status", default: 0, null: false
+    t.bigint "recipe_id"
     t.index ["category_id"], name: "index_ingredients_on_category_id"
     t.index ["pantry_id"], name: "index_ingredients_on_pantry_id"
+    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
   create_table "pantries", force: :cascade do |t|
@@ -51,9 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_144620) do
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id", null: false
     t.string "name"
-    t.index ["category_id"], name: "index_recipe_ingredients_on_category_id"
+    t.integer "category_id"
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
     t.index ["shopping_list_id"], name: "index_recipe_ingredients_on_shopping_list_id"
@@ -93,7 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_144620) do
 
   add_foreign_key "ingredients", "categories"
   add_foreign_key "ingredients", "pantries"
-  add_foreign_key "recipe_ingredients", "categories"
+  add_foreign_key "ingredients", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipe_ingredients", "shopping_lists"

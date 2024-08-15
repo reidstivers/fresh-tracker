@@ -23,6 +23,19 @@ class RecipesController < ApplicationController
     end
   end
 
+  def add_ingredients
+    @recipe_ingredient = Ingredient.new(ingredient_params)
+    # @ingredient.pantry = current_user.pantry
+    @recipe_ingredient.in_pantry = false
+    @recipe_ingredient.status = 2
+    if @recipe_ingredient.save
+      redirect_to recipe_path(@recipe), notice: "Item added successfully"
+    else
+      render :add_ingredients, status: :unprocessable_entity
+    end
+
+  end
+
   def update
   end
 
@@ -37,7 +50,12 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:title, :description)
   end
 
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :amount, :unit, :category_id, :status)
+  end
+
   def set_recipe
     @recipe = Recipe.find(params[:id])
+    @recipe_ingredients = Ingredient.find_by(recipe_id: current_user.recipe_ids)
   end
 end
