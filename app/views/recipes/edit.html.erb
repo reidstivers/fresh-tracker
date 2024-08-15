@@ -1,25 +1,12 @@
-<% recipe = local_assigns[:recipe] || @recipe %>
-<% recipe_ingredients = local_assigns[:recipe_ingredients] || @recipe_ingredients %>
+<%= @recipe.title %>
+<%= @recipe.description %>
 
-<%= recipe.title %>
-<%= recipe.description %>
-
-<% recipe_ingredients.each do |recipe_ingredient| %>
-
-<div class="styled-form">
-  <%= simple_form_for recipe_ingredient, url: edit_recipe_path(params[:id]) do |f| %>
-    <div class="form-row">
-      <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" } %>
-      <%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" } %>
-      <%= f.input :unit, label: "Unit", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row">
-      <%= f.input :category_id, as: :select,
-                  collection: Category.all.pluck(:name, :id),
-                  prompt: "Select a category",
-                  wrapper_html: { class: "form-group" } %>
-    </div>
-    <%= f.submit "Save", class: "form-button" %>
-  <% end %>
+<% @recipe_ingredients.each do |recipe_ingredient| %>
+<div>
+  <%= recipe_ingredient.name %>
+  <%= recipe_ingredient.amount %>
+  <%= recipe_ingredient.unit %>
+  <%= recipe_ingredient.category.name %>
 </div>
+
 <% end %>

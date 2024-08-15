@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :destroy]
+  before_action :set_new_ingredient, only: [:edit]
 
   def index
     @recipes = Recipe.all
@@ -59,5 +60,9 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.find(params[:id])
     @recipe_ingredients = Ingredient.where(recipe_id: params[:id])
+  end
+
+  def set_new_ingredient
+    @new_ingredient = Ingredient.new
   end
 end
