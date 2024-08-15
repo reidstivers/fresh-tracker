@@ -42,6 +42,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search
+    @test = "TEST"
+  end
+
   def destroy
     @recipe.destroy
     redirect_to recipes_path, notice: "Recipe deleted"

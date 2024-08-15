@@ -38,8 +38,9 @@
           <div><%= link_to "Stock from barcode", "#", class: "dropdown-item-navigation" %></div>
           <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
-        <% if (@recipes) %>
-          <div><%= link_to 'Add recipes', new_recipe_path, class: "dropdown-item-navigation" %></div>
+        <% if (@recipes || @recipe) %>
+          <div><%= link_to 'Add recipes manually', new_recipe_path, class: "dropdown-item-navigation" %></div>
+          <div><%= link_to 'Search recipe ideas', search_recipes_path, class: "dropdown-item-navigation" %></div>
         <% end %>
       </div>
     <%# add btn end %>
