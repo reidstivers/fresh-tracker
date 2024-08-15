@@ -1,17 +1,18 @@
 <div class="recipe-container">
-  <div class="recipe-card-content">
+  <div class="recipe-content">
     <div class="title">
       <h1><%= @recipe.title %></h1>
     </div>
-    <%= image_tag 'home_logo.jpeg', alt: 'logo', class: "recipe-card-img" %>
+    <%= image_tag 'home_logo.jpeg', alt: 'logo', class: "recipe-img" %>
   </div>
-  <div class="recipe-card-ingredient">
+  <div class="recipe-ingredient">
     <h2>Ingredients</h2>
-    <%= @recipe_ingredients.name %>
-    <%= @recipe_ingredients.amount %>
-    <%= @recipe_ingredients.category.name %>
+    <% @recipe_ingredients.each do |recipe_ingredient| %>
+    <%= recipe_ingredient.name %>
+    <% end %>
+  <div><%= link_to 'Edit the ingredients', edit_recipe_path(params[:id]) %></div>
   </div>
-  <div class="recipe-card-detail">
+  <div class="recipe-detail">
     <h2>Instructions</h2>
     <%= @recipe.description %>
   </div>

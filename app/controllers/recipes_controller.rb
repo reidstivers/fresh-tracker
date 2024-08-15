@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :destroy]
 
   def index
     @recipes = Recipe.all
@@ -23,6 +23,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def add_ingredients
     @recipe_ingredient = Ingredient.new(ingredient_params)
     # @ingredient.pantry = current_user.pantry
@@ -33,10 +39,6 @@ class RecipesController < ApplicationController
     else
       render :add_ingredients, status: :unprocessable_entity
     end
-
-  end
-
-  def update
   end
 
   def destroy
@@ -56,6 +58,6 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
-    @recipe_ingredients = Ingredient.find_by(recipe_id: current_user.recipe_ids)
+    @recipe_ingredients = Ingredient.where(recipe_id: params[:id])
   end
 end

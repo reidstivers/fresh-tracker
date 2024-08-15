@@ -13,29 +13,29 @@
   justify-content: space-between;
 }
 
-.recipe-card-content{
+.recipe-content{
   margin:0px;
   display:flex;
   font-size: 20px;
   align-items: center;
 }
 
-.recipe-card-content .title {
+.recipe-content .title {
   width: 60%;
 }
 
-.recipe-card-img {
+.recipe-img {
   width: 100px;
   height: 100px;
   object-fit: cover;
   padding: 10px;
 }
 
-.recipe-card-detail{
+.recipe-detail{
   margin-right: 20px;
 }
 
-.recipe-card-ingredient {
+.recipe-ingredient {
   font-size: 20px;
 }
 

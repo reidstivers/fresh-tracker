@@ -1,6 +1,7 @@
 class Ingredient < ApplicationRecord
   belongs_to :pantry
   belongs_to :category
+  belongs_to :recipe
   has_many :recipe_ingredients
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :category_id, presence: true
