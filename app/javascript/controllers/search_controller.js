@@ -2,13 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  static targets = ["button", "link"];
+  static targets = ["input", "submit"];
 
   connect() {
     console.log("Search connected")
   }
-  fire() {
-    console.log("Fire!")
+  fire(event) {
+    console.log("search!");
+    event.preventDefault();
   }
 }
 
