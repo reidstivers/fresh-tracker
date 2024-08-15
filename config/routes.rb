@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # Route for pantries. user only needs to see their own pantry. Ingredients managed through that pantry.
-  resources :ingredients
+  resources :ingredients do
+    collection do
+      get 'expiring', to: 'ingredients#expiring'
+    end
+  end
+
   resources :shopping_lists, path: 'shoppinglist'
   post 'images/recognize', to: 'images#recognize'
 end
