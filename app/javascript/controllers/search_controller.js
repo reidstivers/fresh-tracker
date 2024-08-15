@@ -2,16 +2,39 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  static targets = ["input", "submit"];
+  static targets = ["input", "submit", "results"];
 
   connect() {
-    console.log("Search connected")
+    this.inputTarget.addEventListener('keyup', (event) => {
+      this.fire(event);
+    });
   }
+
   fire(event) {
     console.log("search!");
     event.preventDefault();
+    const searchResults = this.inputTarget;
+    searchResults.submit();
   }
-}
+
+    // const searchInput = event.target.value.toLowerCase();
+    //   this.submit
+    // this.ingredientCardTargets.forEach((ingredientCard) => {
+    //   const itemName = ingredientCard.querySelector(".item-name").textContent.toLowerCase();
+    // });
+    ingredientList(ingredient) {
+      this.resultsTarget.innerHTML = "testing"
+      // const ingredientCard =
+      // <% @categories.each do |category| %>
+      // <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
+      // <% if category_ingredients.any? %>
+      //   <div data-category="<%= category.name %>" class="category-section">
+      //     <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %></div>
+
+      //     this.resultsTarget.insertAdjacentHTML("beforeend", ingredientCard)
+
+    }
+  }
 
 
 
