@@ -55,6 +55,10 @@
       <% end %>
     </div>
 
+<turbo-frame id="search-results">
+  <!-- Search results will be injected here -->
+</turbo-frame>
+
   <div id="expiring">
 
     <%# Filters for items expiring in the next 7 days; may need to expand that range %>
@@ -82,7 +86,9 @@
       </div>
     <% end %>
   </div>
-  <ul data-search-target="results">is this working</ul>
+
+  <%# <ul data-search-target="results">is this working</ul> %>
+
   <div data-controller="filtering">
     <% @categories.each do |category| %>
       <%# Isolates ingredients of that category belonging to the current pantry / user %>

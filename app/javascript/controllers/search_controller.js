@@ -13,17 +13,28 @@ export default class extends Controller {
   fire(event) {
     console.log("search!");
     event.preventDefault();
-    const searchResults = this.inputTarget;
-    searchResults.submit();
+    const query = this.inputTarget.value;
+    const url = new URL(this.inputTarget.closest('form').action);
+    url.searchParams.set('query', query);
+
+    fetch(url, {
+      headers: { 'Accept': 'text/vnd.turbo-stream.html' }
+    })
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('search-results').innerHTML = html;
+    })
+    .catch(error => console.error('Error:', error));
   }
+}
 
     // const searchInput = event.target.value.toLowerCase();
     //   this.submit
     // this.ingredientCardTargets.forEach((ingredientCard) => {
     //   const itemName = ingredientCard.querySelector(".item-name").textContent.toLowerCase();
     // });
-    ingredientList(ingredient) {
-      this.resultsTarget.innerHTML = "testing"
+    // ingredientList(ingredient) {
+    //   this.resultsTarget.innerHTML = "testing"
       // const ingredientCard =
       // <% @categories.each do |category| %>
       // <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
@@ -33,8 +44,6 @@ export default class extends Controller {
 
       //     this.resultsTarget.insertAdjacentHTML("beforeend", ingredientCard)
 
-    }
-  }
 
 
 
