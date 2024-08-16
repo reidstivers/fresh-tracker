@@ -42,7 +42,8 @@ export default class extends Controller {
     if (list.style.maxHeight && list.style.maxHeight !== "0px") {
       list.style.maxHeight = "0px"
     } else {
-      list.style.maxHeight = list.scrollHeight + "px"
+      list.style.maxHeight = (list.scrollHeight + 512) + "px"
+      //list.style.maxHeight = list.scrollHeight + "px"
     }
   }
 }
