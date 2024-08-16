@@ -39,7 +39,7 @@
     </div>
       <%# add btn menu %>
       <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown">
-        <% if (@ingredients) %>
+        <% if (@ingredients && !@shopping_list) %>
           <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
           <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
