@@ -1,19 +1,29 @@
 <div class="recipe-container">
   <div class="recipe-content">
+    <%= image_tag 'pasta.jpg', alt: 'logo', class: "recipe-img" %>
     <div class="title">
       <h1><%= @recipe.title %></h1>
     </div>
-    <%= image_tag 'home_logo.jpeg', alt: 'logo', class: "recipe-img" %>
-  </div>
-  <div class="recipe-ingredient">
-    <h2>Ingredients</h2>
-    <% @recipe_ingredients.each do |recipe_ingredient| %>
-    <%= recipe_ingredient.name %>
-    <% end %>
-  <div><%= link_to 'Edit the ingredients', edit_recipe_path(params[:id]) %></div>
   </div>
   <div class="recipe-detail">
+    <ul class="recipe-ingredient">
+      <h2>Ingredients</h2>
+      <% @recipe_ingredients.each do |recipe_ingredient| %>
+        <li class="recipe-ingredient-card">
+          <%= recipe_ingredient.name %>
+          <%= recipe_ingredient.amount %>
+          <%= recipe_ingredient.unit %>
+        </div>
+      <% end %>
+    </ul>
     <h2>Instructions</h2>
     <%= @recipe.description %>
+
+    <div class="recipe-footer">
+      <span class="button-edit-recipe"><%= link_to 'Edit the ingredients', edit_recipe_path(params[:id]) %></span>
+      <span class="button-edit-recipe"> | </span>
+      <span class="button-edit-recipe"><%= link_to 'Edit the recipe', edit_recipe_path(params[:id]), locals: { recipe: @recipe } %></span>
+    </div>
+
   </div>
 </div>

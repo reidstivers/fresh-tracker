@@ -1,0 +1,24 @@
+<div data-controller="toggler">
+  <div class="card">
+    <div class="card-title">
+      <%= recipe_ingredient.name %>
+    </div>
+    <div class="card-content">
+      <div class="card-detail">
+      <%# conditional leans up display, returns whole numbers & decimals %>
+        <% if recipe_ingredient.amount % 1 == 0 %>
+          <%= recipe_ingredient.amount.to_i %>
+        <% else %>
+          <%= recipe_ingredient.amount %>
+        <% end %>
+        <%= recipe_ingredient.unit %>
+      </div>
+      <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+    </div>
+  </div>
+    <div data-toggler-target="form" id="editForm-<%= recipe_ingredient.id %>" class="<%= recipe_ingredient.errors.any? ? '' : 'd-none' %>" >
+      <%= render partial: "form", locals: { recipe_ingredient: recipe_ingredient } %>
+    </div>
+</div>

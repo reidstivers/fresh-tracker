@@ -1,1 +1,8 @@
-<%= @test %>
+Search Result
+<%= render partial: "recipes/searchform" %>
+<%= @result %>
+<div id="search_result">
+  <% if @result.present? %>
+    <%= render 'search', search_book: @search_book %>
+  <% end %>
+</div>

@@ -1,12 +1,12 @@
-<%= @recipe.title %>
-<%= @recipe.description %>
+<!--<% @recipe_ingredients.each do |recipe_ingredient| %>
+  <div>
+    <%= recipe_ingredient.name %>
+    <%= recipe_ingredient.amount %>
+    <%= recipe_ingredient.unit %>
+    <%= recipe_ingredient.category.name %>
+  </div>
 
-<% @recipe_ingredients.each do |recipe_ingredient| %>
-<div>
-  <%= recipe_ingredient.name %>
-  <%= recipe_ingredient.amount %>
-  <%= recipe_ingredient.unit %>
-  <%= recipe_ingredient.category.name %>
-</div>
+  <%= render partial: "ingredients_card", locals: { recipe_ingredient: recipe_ingredient } %>
+<% end %>-->
 
-<% end %>
+<%= render "recipeform", locals: { recipe: @recipe } %>

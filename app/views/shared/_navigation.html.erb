@@ -40,7 +40,7 @@
         <% end %>
         <% if (@recipes || @recipe) %>
           <div><%= link_to 'Add recipes manually', new_recipe_path, class: "dropdown-item-navigation" %></div>
-          <div><%= link_to 'Search recipe ideas', search_recipes_path, class: "dropdown-item-navigation" %></div>
+          <%#= link_to 'Search recipe ideas', search_recipes_path, class: "dropdown-item-navigation" %>
         <% end %>
       </div>
     <%# add btn end %>
