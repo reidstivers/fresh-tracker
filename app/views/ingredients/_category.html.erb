@@ -1,15 +1,16 @@
 
-<div>
+<div class="category-card" data-controller="rotate">
   <%# Select ingredients from user's pantry's ingredients with the correct category %>
+  <%# No need to check if present, already done in the index %>
   <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id } %>
-  <%# Hiding category if it contains nothing %>
-  <%# <% if filtered_ingredients.any? %>
-    <div class="category-title">
-      <i class="<%=category.icon%>"></i>
-      <h3> <%= category.name %> </h3>
-    </div>
+  <div class="category-title">
+    <i class="<%=category.icon%>"></i>
+    <h3> <%= category.name %> </h3>
+    <i data-action="click->rotate#fire" data-rotate-target="arrow" class="fa-solid fa-chevron-right"></i>
+  </div>
+  <div data-rotate-target="list">
     <% filtered_ingredients.each do |ingredient| %>
       <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
     <% end %>
-  <%# <% end %>
+  </div>
 </div>

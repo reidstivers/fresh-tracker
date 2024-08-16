@@ -12,7 +12,10 @@
 
 .card-title{
   margin:0px;
-  font-size: 24px;
+  font-size: 20px;
+  overflow: visible;
+  white-space: normal;
+  max-width: calc(100% - 150px);
 }
 
 .card-content{
@@ -26,7 +29,7 @@
 
 .edit-icon{
   position: absolute;
-  right: 5px;
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -35,16 +38,11 @@
 
 .card-date{
   position: absolute;
-  right: 56px;
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.expiring-section{
-  background-color: $ft-pink;
-  padding: 4px;
-  border-radius: 8px;
-}
 .expiring-notice{
   background: gray;
   border-radius: 8px;
