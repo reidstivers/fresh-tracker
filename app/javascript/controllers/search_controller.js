@@ -2,32 +2,34 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  static targets = ["input", "submit", "results"];
-
-  connect() {
-    this.inputTarget.addEventListener('keyup', (event) => {
-      this.fire(event);
-    });
-  }
+  static targets = ["input", "results", "form"];
 
   fire(event) {
-    console.log("search!");
     event.preventDefault();
-    const query = this.inputTarget.value;
-    const url = new URL(this.inputTarget.closest('form').action);
-    url.searchParams.set('query', query);
 
+    // Ensure inputTarget is defined
+    // if (!this.hasFormTarget) {
+    //   console.error("Input target not found.");
+    //   return;
+    // }
+console.log(this.formTarget)
+const query = this.inputTarget.value
+const url = this.formTarget.action + "?query=" + query
+console.log(url)
     fetch(url, {
-      headers: { 'Accept': 'text/vnd.turbo-stream.html' }
+      method: "GET",
+      headers: { "Accept": "text/plain" },
+      // body: new FormData(this.inputTarget)
     })
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('search-results').innerHTML = html;
-    })
-    .catch(error => console.error('Error:', error));
-  }
+      .then(response => response.text())
+      .then((data) => {
+        console.log("got a result")
+        console.log(data)
+        console.log(this.resultsTarget)
+        this.resultsTarget.innerHTML = data
+      })
 }
-
+}
     // const searchInput = event.target.value.toLowerCase();
     //   this.submit
     // this.ingredientCardTargets.forEach((ingredientCard) => {

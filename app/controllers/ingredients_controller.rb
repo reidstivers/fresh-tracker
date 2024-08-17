@@ -25,12 +25,14 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new
     if params[:query].present?
       @ingredients = @ingredients.where("name ILIKE ?", "%#{params[:query]}%")
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('search-results', partial: 'ingredients/category', locals: { ingredients: @ingredients })
-        end
-        format.html
+    else
+      @ingredients = current_user.pantry.ingredients.in_pantry
+    end
+    respond_to do |format|
+      format.text do
+        render partial: 'ingredients/search_results', locals: { ingredients: @ingredients }, formats: [:html]
       end
+      format.html
     end
   end
 

@@ -1,4 +1,4 @@
-<div  data-controller="search" id="start">
+<div  data-controller="search">
   <h1> <%= current_user.name %>'s Pantry </h1>
   <div class="expiring-alert" data-controller="alert" data-alert-target="container">
     <% if @expiring.present? && @expiring.any? %>
@@ -40,23 +40,38 @@
     <% end %>
   </div>
 
-<%# search %>
-  <div class="col-sm-8 my-3 m-1">
-    <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
-      <%= f.input :query,
-                  input_html: {
-                    placeholder: "Search your Pantry",
-                    data: { action: "keyup->search#fire",
-                    search_target: "input" }
-                  },
-                  label: false %>
-      <%= f.button :submit, "Search", class: "btn btn-primary", data: { search_target: "submit" } %>
-    <% end %>
-  </div>
+<%# ajax search %>
+  <%# <form id="search-ingredients" data-controller="search">
+    <div class="form-group  m-1">
+      <div class="d-flex">
+        <input type="text" id="ingredient-name" class="form-control"
+          data-action="keyup->search#fire"
+          data-search-target="input"
+          placeholder="stimulus search">
+        <input type="submit" data-search-target="submit->search#fire" value="Search" class="btn btn-primary ms-2">
+      </div>
+    </div>
+  </form> %>
+    <%# </div> %>
 
 
-  <!-- Search Results -->
-<div id="search-results" data-search-target="results">
+<%# Plain simple search %>
+    <div class="col-sm-8 my-3 m-1" data-controller="search">
+      <%= form_with url: ingredients_path, method: :get, data: { search_target: "input" }, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search your Pantry",
+          data: { action: "keyup->search#fire" }
+        %>
+<<<<<<< HEAD
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+<turbo-frame id="search-results">
+  <!-- Search results will be injected here -->
+</turbo-frame>
 
   <div id="expiring">
 
@@ -88,6 +103,11 @@
 
   <%# <ul data-search-target="results">is this working</ul> %>
 
+=======
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+>>>>>>> master
   <div data-controller="filtering">
     <% @categories.each do |category| %>
       <%# Isolates ingredients of that category belonging to the current pantry / user %>
@@ -101,6 +121,4 @@
         <% end %>
     <% end %>
   </div>
-</div>
-
 </div>
