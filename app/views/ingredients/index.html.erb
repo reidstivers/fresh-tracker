@@ -40,42 +40,35 @@
     <% end %>
   </div>
 
-  <%# <form id="search-ingredients">
-    <div class="form-group  m-1">
-      <div class="d-flex">
-        <input type="text" id="ingredient-name" class="form-control"
-          data-action="keyup->search#fire"
-          data-filtering-target="button"
-          placeholder="Type a keyword">
-        <input type="submit" value="Search" class="btn btn-primary ms-2">
-      </div>
-    </div>
-  </form>
-    </div> %>
-
-
-
+  <%# search %>
   <div class="col-sm-8 my-3 m-1">
-    <%= form_with url: ingredients_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Search your Pantry"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
+      <%= f.input :query,
+                  input_html: {
+                    placeholder: "Search your Pantry",
+                    data: { action: "keyup->search#fire",
+                    search_target: "input" }
+                  },
+                  label: false %>
+      <%= f.button :submit, "Search", class: "btn btn-primary", data: { search_target: "submit" } %>
     <% end %>
   </div>
-  <div data-controller="filtering">
-    <% @categories.each do |category| %>
-      <%# Isolates ingredients of that category belonging to the current pantry / user %>
-      <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
-      <%# Hides categories if nothing has been added to it yet %>
-      <% if category_ingredients.any? %>
-        <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
-        <div data-category="<%= category.name %>" class="category-section">
-          <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
-        </div>
-        <% end %>
-    <% end %>
+
+    <!-- Search Results -->
+  <div id="search-results" data-search-target="results">
+
+    <div data-controller="filtering">
+      <% @categories.each do |category| %>
+        <%# Isolates ingredients of that category belonging to the current pantry / user %>
+        <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
+        <%# Hides categories if nothing has been added to it yet %>
+        <% if category_ingredients.any? %>
+          <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
+          <div data-category="<%= category.name %>" class="category-section">
+            <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+          </div>
+          <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

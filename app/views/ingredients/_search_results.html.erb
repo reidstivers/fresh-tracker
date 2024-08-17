@@ -1,0 +1,12 @@
+<% if ingredients.any? %>
+  <% @categories.each do |category| %>
+    <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category == category } %>
+    <% if filtered_ingredients.any? %>
+      <div class="category-section">
+        <%= render partial: "category", locals: { category: category, ingredients: filtered_ingredients } %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>No ingredients found matching your search criteria.</p>
+<% end %>
