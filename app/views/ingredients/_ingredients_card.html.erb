@@ -35,6 +35,8 @@
       <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
         <i class="fa-solid fa-pen"></i>
       </button>
+          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-icon circle-button fa-regular fa-circle-xmark'} do %>
+          <% end %>
     </div>
   </div>
     <div data-toggler-target="form" id="editForm-<%= ingredient.id %>" class="<%= ingredient.errors.any? ? '' : 'd-none' %>" >
