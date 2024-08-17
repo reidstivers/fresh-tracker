@@ -18,4 +18,8 @@ Rails.application.routes.draw do
 
   resources :shopping_lists, path: 'shoppinglist'
   post 'images/recognize', to: 'images#recognize'
+
+  resources :recipes do
+    resources :recipe_ingredients
+  end
 end
