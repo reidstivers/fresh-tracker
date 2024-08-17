@@ -1,0 +1,6 @@
+ # config/meta.yml
+ meta_product_name: "Fresh Tracker"
+ meta_title: "Fresh Tracker - Save your wallet, save the planet"
+ meta_description: "An app that allows you to easily track your inventory, encourages conscious consumption, and fits into everyone's busy schedules."
+ meta_image: "home_logo.jpeg" # should exist in `app/assets/images/`
+ twitter_account: "@product_twitter_account" # required for Twitter Cards
