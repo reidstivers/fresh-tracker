@@ -41,6 +41,7 @@ class ShoppingListsController < ApplicationController
   private
 
   def set_shopping_list
+    @pantry = current_user.pantry || current_user.create_pantry!
     @shopping_list = current_user.pantry.shopping_list || current_user.pantry.create_shopping_list
   end
 
