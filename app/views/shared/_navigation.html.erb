@@ -46,11 +46,14 @@
         <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
         <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
+        <% if (@recipes) %>
+        <div><%= link_to 'Add Recipe', new_recipe_path, class: "dropdown-item-navigation" %></div>
+        <% end %>
       </div>
     <%# add btn end %>
     <%# recipe start %>
     <div class="nav-icon">
-      <%= link_to "#", class: "nav-icon" do %>
+      <%= link_to recipes_path, class: "nav-icon" do %>
         <span class="material-icons nav-font">restaurant_menu</span>
       <% end %>
     </div>
