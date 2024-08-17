@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   post 'images/recognize', to: 'images#recognize'
 
   resources :recipes do
+    collection do
+      get 'search', to: 'recipe_searches#search'
+    end
     resources :recipe_ingredients
   end
 end
