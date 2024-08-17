@@ -18,9 +18,7 @@ class RecipeSearchesController < ApplicationController
   private
 
   def call_recipe_api(searchtext)
-    # working url
-    # https://api.spoonacular.com/recipes/findByIngredients?apiKey=366c677f86864f2d9572525677095612&ingredients=apples,+flour,+sugar&number=10
-    api_key = "366c677f86864f2d9572525677095612"
+    api_key = "#{ENV['SPOONACULAR']}"
     uri = URI.parse("https://api.spoonacular.com/recipes/findByIngredients?apiKey=#{api_key}&ingredients=#{searchtext}&number=10")
     Net::HTTP.get_response(uri)
   end
