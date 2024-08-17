@@ -1,25 +1,46 @@
 <div  data-controller="search">
   <h1> <%= current_user.name %>'s Pantry </h1>
-  <div class="expiring-alert" data-controller="alert" data-alert-target="container">
-    <% if @expiring.present? && @expiring.any? %>
-        <i class="fa-solid fa-circle-exclamation fa-xl"
-            style="color: #FA9185;"
-            data-alert-target="icon"
-            data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage"></i>
-      <div class="expiring-message" data-alert-target="message">
-        <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
-          <%= @expiring.length %> items expiring soon!
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <!--<div data-controller="toggler">
-    <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
-    <%# Added ternary operate to keep form rendered if there were errors on entry %>
-    <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
-      <%= render partial: "form"%>
+  <div class="expire-and-search d-flex justify-content-between">
+    <div class="expiring-alert" data-controller="alert" data-alert-target="container">
+      <% if @expiring.present? && @expiring.any? %>
+          <i class="fa-solid fa-circle-exclamation fa-xl"
+              style="color: #FA9185;"
+              data-alert-target="icon"
+              data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage"></i>
+        <div class="expiring-message" data-alert-target="message">
+          <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
+            <%= @expiring.length %> items expiring soon!
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  </div>-->
+    <!--<div data-controller="toggler">
+      <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
+      <%# Added ternary operate to keep form rendered if there were errors on entry %>
+      <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
+        <%= render partial: "form"%>
+      </div>
+    </div>-->
+
+    <%# search %>
+    <div class="search-bar">
+      <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
+        <%= f.input :query,
+                    input_html: {
+                      placeholder: "Search your Pantry",
+                      data: { action: "keyup->search#fire",
+                      search_target: "input" }
+                    },
+                    label: false %>
+      <% end %>
+    </div>
+                      <%# <div class="d-flex">
+                            <i class="fa-solid fa-magnifying-glass fa-xl"
+                                style="color: #0096FF;">
+                            </i> %>
+  </div>
+    </div>
+
   <%# Div for filter buttons %>
   <div class="buttons-filter" data-controller="filtering">
     <%# Adding button to render all categories %>
@@ -40,42 +61,22 @@
     <% end %>
   </div>
 
-  <%# <form id="search-ingredients">
-    <div class="form-group  m-1">
-      <div class="d-flex">
-        <input type="text" id="ingredient-name" class="form-control"
-          data-action="keyup->search#fire"
-          data-filtering-target="button"
-          placeholder="Type a keyword">
-        <input type="submit" value="Search" class="btn btn-primary ms-2">
-      </div>
+
+    <!-- Search Results -->
+  <div id="search-results" data-search-target="results">
+
+    <div data-controller="filtering">
+      <% @categories.each do |category| %>
+        <%# Isolates ingredients of that category belonging to the current pantry / user %>
+        <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
+        <%# Hides categories if nothing has been added to it yet %>
+        <% if category_ingredients.any? %>
+          <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
+          <div data-category="<%= category.name %>" class="category-section">
+            <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+          </div>
+          <% end %>
+      <% end %>
     </div>
-  </form>
-    </div> %>
-
-
-
-  <div class="col-sm-8 my-3 m-1">
-    <%= form_with url: ingredients_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Search your Pantry"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <div data-controller="filtering">
-    <% @categories.each do |category| %>
-      <%# Isolates ingredients of that category belonging to the current pantry / user %>
-      <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
-      <%# Hides categories if nothing has been added to it yet %>
-      <% if category_ingredients.any? %>
-        <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
-        <div data-category="<%= category.name %>" class="category-section">
-          <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
-        </div>
-        <% end %>
-    <% end %>
   </div>
 </div>
