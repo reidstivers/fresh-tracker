@@ -27,36 +27,44 @@
   margin: 0 10px;
 }
 
-.circle-button {
+.delete-button {
   border: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-left: 0px;
-  border-right: 0px;
   background-color: white;
   font-size: 32px;
-  color: red;
+  color: grey;
+}
+
+.add-button {
+  border: 0px;
+  background-color: white;
+  font-size: 32px;
+  color: green;
+  margin-right: 10px; /* Adds space between add and delete buttons */
 }
 
 .shopping-list-card .info {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Aligns text to the left */
+  margin-left: 40px;
 }
 
 .shopping-list-card .info .title {
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .shopping-list-card .info .subtitle {
-  font-size: 12px;
+  font-size: 16px;
   color: gray;
 }
+
 .shopping-btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .pink-button {
   background-color: #FF6F61;
   color: white;
