@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_17_085115) do
     t.index ["category_id"], name: "index_ingredients_on_category_id"
     t.index ["pantry_id"], name: "index_ingredients_on_pantry_id"
   end
+
   create_table "pantries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
