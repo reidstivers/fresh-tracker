@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_16_135506) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_17_085115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,11 +34,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_135506) do
     t.integer "status", default: 0, null: false
     t.index ["category_id"], name: "index_ingredients_on_category_id"
     t.index ["pantry_id"], name: "index_ingredients_on_pantry_id"
-  end
-
-  create_table "open_food_ingredients", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "pantries", force: :cascade do |t|
