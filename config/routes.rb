@@ -21,8 +21,5 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :recipe_ingredients
-    # get 'index', to: 'recipe_ingredients#index'
-    # get 'edit', to: 'recipe_ingredients#edit'
-    # patch 'update', to: 'recipe_ingredients#update'
   end
 end
