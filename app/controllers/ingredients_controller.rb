@@ -65,6 +65,7 @@ class IngredientsController < ApplicationController
   end
 
   def set_ingredients
+    @pantry = current_user.pantry || current_user.create_pantry!
     @ingredients = current_user.pantry.ingredients.in_pantry
   end
 
