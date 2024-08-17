@@ -1,0 +1,25 @@
+<div class="recipe-container">
+  <div class="recipe-detail">
+    <ul class="recipe-ingredient">
+      <h2>Ingredients</h2>
+      <% @recipe_ingredients.each do |recipe_ingredient| %>
+        <li class="recipe-ingredient-card">
+          <%= recipe_ingredient.id %>
+          <%= recipe_ingredient.recipe_id %>
+          <%= recipe_ingredient.name %>
+          <%= recipe_ingredient.amount %>
+          <%= recipe_ingredient.unit %>
+          <%= link_to edit_recipe_recipe_ingredient_path(recipe_ingredient.recipe_id, recipe_ingredient.id), class: "nav-icon" do %>
+            <i class="fa-solid fa-pen"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to new_recipe_recipe_ingredient_path(@recipe.id) do %>
+      <span><i class="material-symbols-outlined">add_circle</i></span>
+    <% end %>
+  </div>
+  <div class="link-back">
+    <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+  </div>
+</div>

@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   post 'images/recognize', to: 'images#recognize'
 
   resources :recipes do
-    get 'recipe_ingredients', to: 'recipe_ingredients#edit'
-    patch 'recipe_ingredients', to: 'recipe_ingredients#update'
+    resources :recipe_ingredients
+    # get 'index', to: 'recipe_ingredients#index'
+    # get 'edit', to: 'recipe_ingredients#edit'
+    # patch 'update', to: 'recipe_ingredients#update'
   end
 end

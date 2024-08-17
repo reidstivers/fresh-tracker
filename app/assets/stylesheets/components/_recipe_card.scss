@@ -1,3 +1,13 @@
+.link-back {
+  width: 100%;
+  text-align: end;
+}
+
+.link-back > a {
+  color: $ft-black;
+  text-decoration: none;
+}
+
 .recipes-container{
   margin: 0;
   padding: 0;
@@ -105,8 +115,8 @@
 }
 
 .recipe-container > a {
-  padding: 5px;
-  background-color: $ft-pink;
+  // padding: 5px;
+  // background-color: $ft-pink;
   color: $ft-black;
   text-decoration: none;
 }

@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipes_path, notice: "Recipe added successfully"
     else
-      render :index
+      render :new, status: :unprocessable_entity
     end
   end
 
