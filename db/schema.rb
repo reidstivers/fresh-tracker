@@ -47,8 +47,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_135506) do
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
     t.string "name"
-    t.integer "category_id"
+    t.index ["category_id"], name: "index_recipe_ingredients_on_category_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
@@ -86,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_135506) do
 
   add_foreign_key "ingredients", "categories"
   add_foreign_key "ingredients", "pantries"
+  add_foreign_key "recipe_ingredients", "categories"
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "shopping_lists", "pantries"
