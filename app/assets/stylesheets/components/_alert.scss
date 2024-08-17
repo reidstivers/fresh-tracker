@@ -1,6 +1,24 @@
-.alert {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1000;
+.custom-notice {
+  background: linear-gradient(135deg, #cce7ff 0%, #0056b3 100%);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  animation: slideIn 0.5s ease-out;
+}
+
+.custom-alert {
+  background: linear-gradient(135deg, #fff3cd 0%, #ff6f00 100%);
+  color: #6f4e37;
+  font-family: 'Montserrat', sans-serif;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
