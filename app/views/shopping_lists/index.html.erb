@@ -6,12 +6,12 @@
   <div>
     <% @ingredients.each do |ingredient| %>
         <div class="shopping-list-card">
-          <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'circle-button fa-solid fa-check-to-slot', style: 'color: green;'} do %><% end %>
+          <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'add-button fa-solid fa-check-to-slot'} do %><% end %>
           <div class="info">
               <div class="title"><%= ingredient.name %></div>
               <div class="subtitle"><%= ingredient.amount %> <%= ingredient.unit %></div>
           </div>
-          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'circle-button fa-regular fa-circle-xmark'} do %>
+          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button fa-solid fa-trash-can'} do %>
           <% end %>
         </div>
     <% end %>
