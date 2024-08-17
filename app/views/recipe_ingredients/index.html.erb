@@ -4,8 +4,6 @@
       <h2>Ingredients</h2>
       <% @recipe_ingredients.each do |recipe_ingredient| %>
         <li class="recipe-ingredient-card">
-          <%= recipe_ingredient.id %>
-          <%= recipe_ingredient.recipe_id %>
           <%= recipe_ingredient.name %>
           <%= recipe_ingredient.amount %>
           <%= recipe_ingredient.unit %>
