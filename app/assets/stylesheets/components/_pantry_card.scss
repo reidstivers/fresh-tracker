@@ -1,33 +1,41 @@
-
-
-.card{
-  padding:5px 12px;
+.card {
+  padding: 5px 12px;
   background-color: white;
   border: none;
   margin: 8px;
   border-radius: 16px;
   position: relative;
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
-.card-title{
-  margin:0px;
+.card-title {
+  margin: 0px;
   font-size: 20px;
   overflow: visible;
   white-space: normal;
   max-width: calc(100% - 150px);
 }
 
-.card-content{
-  margin:0px;
-  display:flex;
+.card-content {
+  margin: 0px;
+  display: flex;
   font-size: 20px;
 }
-.card-detail{
+
+.card-detail {
   margin-right: 20px;
 }
 
-.edit-icon{
+.edit-icon {
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+}
+
+.delete-icon {
   position: absolute;
   right: 4px;
   top: 50%;
@@ -36,21 +44,21 @@
   border: none;
 }
 
-.card-date{
+.card-date {
   position: absolute;
-  right: 40px;
+  right: 80px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.expiring-notice{
+.expiring-notice {
   background: gray;
   border-radius: 8px;
   padding: 4px;
   color: white;
 }
 
-.expired-notice{
+.expired-notice {
   background: $ft-pink;
   border-radius: 8px;
   padding: 4px;

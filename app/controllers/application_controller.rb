@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     # For additional fields in registrations/edit
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :password, :password_confirmation])
   end
+
+  def default_url_options
+    { host: ENV['DOMAIN'] || 'localhost:3000' }
+  end
 end
