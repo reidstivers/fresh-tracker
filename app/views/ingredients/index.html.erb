@@ -1,4 +1,4 @@
-<div  data-controller="search">
+<div  data-controller="search" class="search-controller">
   <h1> <%= current_user.name %>'s Pantry </h1>
   <div class="expire-and-search d-flex justify-content-between">
     <div class="expiring-alert" data-controller="alert" data-alert-target="container">
@@ -39,7 +39,6 @@
                                 style="color: #0096FF;">
                             </i> %>
   </div>
-    </div>
 
   <%# Div for filter buttons %>
   <div class="buttons-filter" data-controller="filtering">
