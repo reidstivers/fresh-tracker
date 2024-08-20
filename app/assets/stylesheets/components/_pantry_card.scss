@@ -73,8 +73,16 @@
   color: white;
 }
 
-.card-picture {
+.card-picture-box {
   display: flex;
   overflow: hidden;
   justify-content: start;
+  width: 100px;
+  height: 100px;
+}
+
+.card-image {
+  height: 100%;
+  width: 100%;
+
 }
