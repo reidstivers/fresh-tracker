@@ -72,3 +72,9 @@
   padding: 4px;
   color: white;
 }
+
+.card-picture {
+  display: flex;
+  overflow: hidden;
+  justify-content: start;
+}
