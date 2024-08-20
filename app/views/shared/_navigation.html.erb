@@ -47,6 +47,7 @@
         <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
         <% if (@recipes) %>
+        <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
         <div><%= link_to 'Add Recipe', new_recipe_path, class: "dropdown-item-navigation" %></div>
         <% end %>
       </div>
@@ -67,7 +68,8 @@
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
       <%#= link_to "Action", "#", class: "dropdown-item" %>
       <%#= link_to "Another action", "#", class: "dropdown-item" %>
-      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item-navigation" %>
+      <div><%= link_to 'Back to Home', root_path, class: "dropdown-item-navigation" %></div>
+      <div><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item-navigation" %></div>
     </div>
     <%# menu end %>
   </div>

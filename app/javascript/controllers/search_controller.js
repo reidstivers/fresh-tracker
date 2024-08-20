@@ -24,7 +24,7 @@ console.log(url)
       .then(response => response.text())
       .then((data) => {
         console.log("got a result")
-        console.log(data)
+        // console.log(data)
         console.log(this.resultsTarget)
         this.resultsTarget.innerHTML = data
       })

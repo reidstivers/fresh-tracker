@@ -63,7 +63,9 @@ class IngredientsController < ApplicationController
 
   def set_expiring
     filter_expiring = current_user.pantry.ingredients.select do |ingredient|
-      ingredient.expiration_date.present? && ingredient.expiration_date <= (Date.today + 7)
+      ingredient.expiration_date.present? &&
+      ingredient.expiration_date <= (Date.today + 7) &&
+      ingredient.status == "in_pantry"
     end
     @expiring = filter_expiring.sort_by { |ingredient| ingredient.expiration_date }
   end
@@ -73,6 +75,7 @@ class IngredientsController < ApplicationController
   end
 
   def set_ingredients
+    @pantry = current_user.pantry || current_user.create_pantry!
     @ingredients = current_user.pantry.ingredients.in_pantry
   end
 
