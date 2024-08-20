@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :recipes do
     collection do
       get 'search', to: 'recipe_searches#search'
+      get 'result', to: 'recipe_searches#result'
     end
     resources :recipe_ingredients
   end

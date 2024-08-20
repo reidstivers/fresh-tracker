@@ -50,6 +50,9 @@
         <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
         <div><%= link_to 'Add Recipe', new_recipe_path, class: "dropdown-item-navigation" %></div>
         <% end %>
+        <% if (@result) %>
+        <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
+        <% end %>
       </div>
     <%# add btn end %>
     <%# recipe start %>
