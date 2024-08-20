@@ -1,6 +1,20 @@
 .expire-and-search {
-vertical-align: middle;}
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 
 .search-bar {
-  margin-right: 5px;
+  margin-right: 8px;
+  height: 32px;
+}
+
+.search-bar input {
+  vertical-align: middle;
+  border-radius: 16px;
+  padding: 4px;
+  font-size: 16px;
+  text-align: center;
+  height: auto;
 }
