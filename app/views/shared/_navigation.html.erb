@@ -38,13 +38,13 @@
       <span class="material-icons nav-font-add">add</span>
     </div>
       <%# add btn menu %>
-      <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown">
+      <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
         <% if (@shopping_list) %>
-        <div><%= link_to 'Add Item to shoppinglist', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
+        <div class="button"><%= link_to 'Add Item to shopping list', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
         <% end %>
         <% if (@ingredients) %>
-        <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
-        <button class="dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+        <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
+        <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
         <% if (@recipes) %>
         <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
@@ -65,11 +65,11 @@
         <span class="material-icons nav-font">list</span>
       <% end %>
     </div>
-    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="border: none; background: none; text-align: center">
       <%#= link_to "Action", "#", class: "dropdown-item" %>
       <%#= link_to "Another action", "#", class: "dropdown-item" %>
-      <div><%= link_to 'Back to Home', root_path, class: "dropdown-item-navigation" %></div>
-      <div><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item-navigation" %></div>
+      <div><%= link_to 'Back to Home', root_path, class: "button dropdown-item-navigation" %></div>
+      <div><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "button dropdown-item-navigation" %></div>
     </div>
     <%# menu end %>
   </div>
