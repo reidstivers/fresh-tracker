@@ -1,6 +1,6 @@
 <div  data-controller="search" class="search-controller">
   <h1> <%= current_user.name %>'s Pantry </h1>
-  <div class="expire-and-search d-flex justify-content-between">
+  <div class="expire-and-search">
     <div class="expiring-alert" data-controller="alert" data-alert-target="container">
       <% if @expiring.present? && @expiring.any? %>
           <i class="fa-solid fa-circle-exclamation fa-xl"

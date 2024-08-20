@@ -1,5 +1,9 @@
 .expire-and-search {
-vertical-align: middle;}
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
 
 .search-bar {
   margin-right: 5px;
