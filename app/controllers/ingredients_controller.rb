@@ -86,4 +86,20 @@ class IngredientsController < ApplicationController
   def ingredient_params
     params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :pantry_id)
   end
+
+  def ingredient_api(ingredient_name)
+    api_key = "#{ENV['SPOONACULAR']}"
+    uri = URI.parse("https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=#{api_key}&query=#{ingredient_name}&number=1")
+    Rails.logger.debug uri
+    Net::HTTP.get_response(uri)
+  end
+
+  def get_image
+    @ingredient_for_image = set_ingredient
+    ingredient_name = @ingredient_for_image.name
+    Rails.logger.debug "Ingredient Name: #{ingredient_name}"
+    spoon_image = ingredient_api(ingredient_name)
+    @image = JSON.parse(spoon_image.body)
+    Rails.logger.debug @image
+  end
 end

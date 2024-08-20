@@ -1,6 +1,12 @@
 <div data-controller="toggler">
   <div class="card">
-    <div class="card-picture-box"><%= image_tag 'meal-food-icon.png', class: 'card-image' %></div>
+    <div class="card-picture-box">
+      <% if @image %>
+        <% ingredient_pic = "https://img.spoonacular.com/ingredients_100x100/#{@image.first["image"]}" %>
+      <% else %>
+        <% ingredient_pic = "meal-food-icon.png" %>
+      <% end %>
+      <%= image_tag ingredient_pic, class: 'card-image' %></div>
 
     <div class="card-title">
       <%= ingredient.name %>
