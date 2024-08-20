@@ -1,19 +1,19 @@
 <div>
   <body>
     <div class="homepage">
-      <div class="logo-container">
-        <%= image_tag 'home_logo.jpeg', alt: 'logo'%>
+      <div class="logo-container p-2">
+        <%= image_tag 'logo_horizontal.png', alt: 'logo'%>
       </div>
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <%= image_tag 'strawberries_but_bigger.jpeg', class: 'd-block w-100', alt: '...' %>
+            <%= image_tag 'strawberries_but_bigger.jpeg', class: 'd-block w-100', alt: '...', style: 'filter: blur(1px);' %>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <%= image_tag 'pasta.jpg', class: 'd-block w-100', alt: '...' %>
+            <%= image_tag 'pasta.jpg', class: 'd-block w-100', alt: '...', style: 'filter: blur(4px);' %>
           </div>
           <div class="carousel-item">
-            <%= image_tag 'fresh.jpg', class: 'd-block w-100', alt: '...' %>
+            <%= image_tag 'fresh.jpg', class: 'd-block w-100', alt: '...', style: 'filter: blur(4px);' %>
           </div>
         </div>
         <div class="carousel-buttons">
@@ -34,6 +34,26 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+      </div>
+      <div class="container">
+        <div class="app-description my-1 mt-5">
+          <h1>Groceries ❤️ Pantries</h1>
+          <p>A pantry management app that simplifies your groceries and adapts to the busiest lifestyles.</p>
+        </div>
+        <div class="phone-container">
+          <div class="phone-feature left-feature">
+            <p>Speed up grocery shopping</p>
+            <span class="arrow">→</span>
+          </div>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <%= image_tag 'demo.gif', alt: 'App Demo', class: 'phone-screen' %>
+          </div>
+          <div class="phone-feature right-feature">
+            <span class="arrow">←</span>
+            <p>Get tailored recipes</p>
+          </div>
+        </div>
       </div>
     </div>
   </body>

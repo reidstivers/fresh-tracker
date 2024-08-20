@@ -33,12 +33,17 @@
   </head>
 
   <body>
-    <div class="yield-content">
-      <%= render "shared/flashes" %>
-      <%= yield %>
-    </div>
     <% if render_navbar? %>
+      <div class="yield-content">
+        <%= render "shared/flashes" %>
+        <%= yield %>
+      </div>
       <%= render "shared/navigation" %>
+    <% else %>
+      <div>
+        <%= render "shared/flashes" %>
+        <%= yield %>
+      </div>
     <% end %>
   </body>
 </html>
