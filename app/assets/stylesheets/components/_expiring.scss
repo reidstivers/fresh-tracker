@@ -10,13 +10,13 @@
   border-radius: 16px;
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
   background-color: $ft-pink;
-  position: relative;
+  height: 32px;
 }
 
 .expiring-message {
   padding: 4px;
   font-size: 16px;
-  margin-left: -20px;
+  margin-left: -22px;
   font-weight: bold;
   color: white;
   z-index: 2;
