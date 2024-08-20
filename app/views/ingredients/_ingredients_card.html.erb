@@ -1,4 +1,4 @@
-<div data-controller="toggler">
+<div id="ingredient-card" data-controller="toggler edit" data-url="<%= ingredient_path(ingredient) %>">
   <div class="card">
     <div class="card-picture"><%= image_tag 'meal-food-icon.png', class: '' %></div>
 
@@ -9,10 +9,14 @@
       <div class="card-detail">
       <%# conditional leans up display, returns whole numbers & decimals %>
         <% if ingredient.amount % 1 == 0 %>
-          <%= ingredient.amount.to_i %>
+          <% amount = ingredient.amount.to_i %>
         <% else %>
-          <%= ingredient.amount %>
+          <% amount = ingredient.amount %>
         <% end %>
+        <div id="amount" data-action="click->edit#edit">
+          <span data-edit-target="content"><%= amount %> </span>
+          <input type="number" data-edit-target="input" value="<%= amount %>" class="edit-field d-none">
+        </div>
         <%= ingredient.unit %>
       </div>
         <% if ingredient.expiration_date %>
