@@ -5,7 +5,7 @@ class RecipeSearchesController < ApplicationController
 
   def search
     if params[:query].present?
-      searchtext = params[:query].tr("", ",+")
+      searchtext = params[:query].gsub(" ", ",+")
       result = call_recipe_api(searchtext)
       @results = JSON.parse(result.body)
     end
