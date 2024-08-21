@@ -49,12 +49,12 @@ class IngredientsController < ApplicationController
   def update
     if @ingredient.update(ingredient_params)
       respond_to do |format|
-        format.json { render json: { status: "success"}, status: :ok }
+        format.json { render json: { status: "success", ingredient: @ingredient }, status: :ok }
         format.html { redirect_to ingredients_path, notice: "Ingredient updated" }
       end
     else
       respond_to do |format|
-        format.json { render json: { status: "error"}, status: :unprocessable_entity }
+        format.json { render json: { status: "error", errors: @ingredient.errors.full_messages }, status: :unprocessable_entity }
         format.html { render :index, status: :unprocessable_entity }
       end
     end
