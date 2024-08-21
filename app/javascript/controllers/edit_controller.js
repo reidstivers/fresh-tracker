@@ -47,6 +47,16 @@ export default class extends Controller {
           fp.destroy();
         }
       });
+
+      // Prevents backspace from cleadring the entire input
+      inputTarget.addEventListener("keydown", (event) => {
+        if (event.key === "Backspace" && inputTarget.value.length === 0) {
+          event.preventDefault();
+          fp.destroy();
+          this.toggleEditing(contentTarget, inputTarget, field);
+        }
+      });
+
     } else {
       this.moveCursorToEnd(inputTarget);
       inputTarget.addEventListener("blur", () => {

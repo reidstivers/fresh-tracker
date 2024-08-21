@@ -5,7 +5,6 @@
     <div class="card-title"  data-field="name" data-action="click->edit#edit">
       <span  data-edit-target="nameContent"><%= ingredient.name %> </span>
       <input type="text" data-edit-target="nameInput" value="<%= ingredient.name %>" class="edit-field d-none">
-      <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
     </div>
     <div class="card-content">
       <div class="card-detail">
@@ -18,13 +17,12 @@
         <div id="amount" data-action="click->edit#edit" data-field="amount">
           <span data-edit-target="amountContent"><%= amount %> </span>
           <input type="number" data-edit-target="amountInput" value="<%= amount %>" class="edit-field d-none">
-          <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
         </div>
         <div id="unit" data-action="click->edit#edit" data-field="unit">
           <span data-edit-target="unitContent"><%= ingredient.unit %> </span>
           <input type="text" data-edit-target="unitInput" value="<%= ingredient.unit %>" class="edit-field d-none">
-          <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
         </div>
+        <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
       </div>
         <% if ingredient.expiration_date %>
           <div class="card-date">
