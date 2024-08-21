@@ -1,8 +1,8 @@
 <div data-controller="toggler">
   <div class="card">
     <div class="card-picture-box">
-      <% if @image %>
-        <% ingredient_pic = "https://img.spoonacular.com/ingredients_100x100/#{@image.first["image"]}" %>
+      <% if ingredient.image_url %>
+        <% ingredient_pic = ingredient.image_url %>
       <% else %>
         <% ingredient_pic = "meal-food-icon.png" %>
       <% end %>
