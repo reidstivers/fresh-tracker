@@ -88,11 +88,12 @@
 }
 
 .recipe-card .info{
-  width: 100%;
+  width: 200px;
 }
 
 .recipe-card .info .title {
   font-size: 20px;
+  color: $ft-black;
 }
 
 .recipe-card .info .subtitle {
@@ -123,7 +124,8 @@
 .recipe-footer{
   width:100%;
   text-align: center;
-  margin-top: 40px;
+  margin: 40px 0px;
+  font-size: 20px;
 }
 
 .button-edit-recipe{

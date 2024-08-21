@@ -1,0 +1,35 @@
+<% title = @result["title"] %>
+<% image = @result["image"] || 'no_recipe_image.png' %>
+<% servings = @result["servings"] %>
+<% readyInMinutes = @result["readyInMinutes"] %>
+<% summary = @result["summary"] %>
+<% extendedIngredients = @result["extendedIngredients"] %>
+
+<div class="recipe-container">
+  <div class="recipe-content">
+    <%= image_tag image, alt: 'logo', class: "recipe-img" %>
+    <div class="title">
+      <h1><%= title %></h1>
+    </div>
+  </div>
+  <div class="recipe-detail">
+      <span><%= servings %> servings / Ready in <%= readyInMinutes %> minutes</span>
+    <ul class="recipe-ingredient">
+      <h2>Ingredients</h2>
+      <% extendedIngredients.each do |ingredient| %>
+        <li class="recipe-ingredient-card">
+          <span style="font-weight:bold; margin-right: 8px;"><%= ingredient["name"] %></span>
+          <%= ingredient["measures"]["metric"]["amount"] %>
+          <%= ingredient["measures"]["metric"]["unitLong"] %>
+        </li>
+      <% end %>
+    </ul>
+
+    <h2>Descriptions</h2>
+      <%= simple_format(summary) %>
+
+  </div>
+
+  <div class="recipe-footer">
+  <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+  </div>

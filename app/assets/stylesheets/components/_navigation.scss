@@ -7,7 +7,6 @@
   margin-bottom: 75px;
 }
 
-//This makes the form appear centered on the page
 .form-popup-wrapper {
   position: fixed;
   top: 50%;
@@ -22,6 +21,7 @@
   z-index: 130;
 }
 
+// Navigation bar styles
 .navigation {
   width: 100%;
   display: flex;
@@ -30,33 +30,41 @@
   position: fixed;
   bottom: 0;
   z-index: 120;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); // Subtle shadow for depth
 }
 
-// icons
+// Icon styles
 .nav-icon {
   margin-top: 10px;
   text-decoration: none;
   color: $ft-black;
+  transition: transform 0.2s; // Smooth hover effect
+  &:hover {
+    transform: scale(1.1); // Slightly increase size on hover
+  }
 }
 
 .nav-font {
   font-size: 40px;
 }
 
-// s"+" button
+// "+" button styling
 .nav-icon-add {
   background-color: $ft-light-green;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border-style:solid;
+  border-style: solid;
   border-color: white;
   border-width: 5px;
-}
-.navigation .nav-icon-add {
-  position:relative;
+  position: relative;
   top: -15px;
   padding-top: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  &:hover {
+    background-color: darken($ft-light-green, 10%); // Darken on hover
+    transform: rotate(90deg); // Rotate on hover
+  }
 }
 
 .nav-font-add {
@@ -64,7 +72,7 @@
   font-size: 40px;
 }
 
-// dropdown
+// Dropdown menu
 .dropdown-centered {
   text-align: center;
 }
@@ -72,23 +80,40 @@
 .dropdown-item-navigation {
   display: block;
   width: 100%;
-  padding: 10px;
   clear: both;
   font-weight: 400;
   color: $ft-black;
   text-decoration: none;
   white-space: nowrap;
-  //background-color: $ft-light-green;
-  border: 0;
+  transition: background-color 0.3s; // Smooth background change on hover
+  &:hover {
+    background-color: $ft-light-green; // Background color on hover
+  }
 }
 
-// close-button
+.button {
+  border-width: 2.5px;
+  border-color: black;
+  border-style: outset;
+  border-image: initial;
+  border-radius: 32px;
+  padding: 8px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
 .close-icon {
   text-decoration: none;
   position: absolute;
-  top: 5;
+  top: 5px;
   right: 0;
   border-style: none;
   margin-bottom: 5px;
   font-size: 20px;
+  cursor: pointer; // Change cursor to pointer on hover
+  color: $ft-black;
+  transition: color 0.3s; // Smooth color change on hover
+  &:hover {
+    color: darken($ft-black, 20%); // Darken color on hover
+  }
 }
