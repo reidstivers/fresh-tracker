@@ -17,14 +17,17 @@
       <% image = value["image"] %>
       <% missedCount = value["missedIngredientCount"] %>
       <% usedCount = value["usedIngredientCount"] %>
+      <% recipeid = value["id"] %>
 
-      <li class="recipe-card">
-          <%= image_tag image, class:"recipe-card-img", alt: '...' %>
-        <div class="info">
-            <div class="title"><%= title %></div>
-            <div class="subtitle"><%= "#{missedCount}/#{missedCount+usedCount} ingredients missing" %></div>
-        </div>
-      </li>
+      <%= link_to result_recipes_path(recipe: recipeid), class: "recipe-card" do%>
+        <li>
+            <%= image_tag image, class:"recipe-card-img", alt: '...' %>
+          <div class="info">
+              <div class="title"><%= title %></div>
+              <div class="subtitle"><%= "#{missedCount}/#{missedCount+usedCount} ingredients missing" %></div>
+          </div>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% else %>

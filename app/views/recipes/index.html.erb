@@ -3,16 +3,15 @@
 <% if @recipes.any? %>
   <ul class="recipes-container">
     <% @recipes.each do |recipe| %>
-        <li class="recipe-card">
-            <%= image_tag 'pasta.jpg', class:"recipe-card-img", alt: '...' %>
+      <%= link_to recipe_path(recipe),  class: "recipe-card" do %>
+        <li>
+            <%= image_tag 'no_recipe_image.png', class:"recipe-card-img", alt: '...' %>
           <div class="info">
               <div class="title"><%= recipe.title %></div>
               <!--<div class="subtitle"><%= recipe.description %></div>-->
           </div>
-          <div class="buttons">
-             <%= link_to recipe_path(recipe) do %><span class="material-symbols-outlined">info</span><% end %>
-          </div>
         </li>
+      <% end %>
     <% end %>
   </ul>
 <% else %>
