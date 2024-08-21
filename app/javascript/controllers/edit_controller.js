@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit"
 export default class extends Controller {
-  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput"]
+  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput", "expirationContent", "expirationInput"]
 
   connect() {
     console.log("Edit connected");
@@ -23,6 +23,9 @@ export default class extends Controller {
       case "unit":
         this.toggleEditing(this.unitContentTarget, this.unitInputTarget, field);
         break;
+      case "expiration_date":
+        this.toggleEditing(this.expirationContentTarget, this.expirationInputTarget, field);
+        break;
     }
   }
 
@@ -30,15 +33,34 @@ export default class extends Controller {
     contentTarget.classList.add("d-none");
     inputTarget.classList.remove("d-none");
     inputTarget.focus();
-    this.moveCursorToEnd(inputTarget);
-    // Binds data when user clicks outside of the input field
-    inputTarget.addEventListener("blur", () => this.update(contentTarget, inputTarget, field));
-    // Binds data when user presses enter
-    inputTarget.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
+
+    if (field === "expiration_date") {
+      const fp = flatpickr(inputTarget, {
+        onClose: () => {
+          console.log("Flatpickr closed for", inputTarget);
+          this.update(contentTarget, inputTarget, field);
+          fp.destroy();
+        },
+        onChange: () => {
+          console.log("Date changed for", inputTarget);
+          this.update(contentTarget, inputTarget, field);
+          fp.destroy();
+        }
+      });
+    } else {
+      this.moveCursorToEnd(inputTarget);
+      inputTarget.addEventListener("blur", () => {
+        console.log("Blur event triggered for", inputTarget);
         this.update(contentTarget, inputTarget, field);
-      }
-    });
+      });
+        // Binds data when user presses enter
+      inputTarget.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          console.log("Enter key pressed for", inputTarget);
+          this.update(contentTarget, inputTarget, field);
+        }
+      });
+    }
   }
 
   // Moves cursor to the end of the input field to improve UX
@@ -50,6 +72,7 @@ export default class extends Controller {
   }
 
   update(contentTarget, inputTarget, field) {
+    console.log("Update called for", field);
     // saves value in the input field
     const newValue = inputTarget.value.trim();
     // resets the content to match the input
@@ -57,6 +80,7 @@ export default class extends Controller {
     // Sends the new value to the DB
     return this.save(field, newValue)
       .then(response => {
+        console.log("Response:", response);
         if (response.status === "success") {
           contentTarget.textContent = response.ingredient[field];
           inputTarget.classList.add("d-none");

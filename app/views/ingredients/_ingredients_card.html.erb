@@ -32,24 +32,25 @@
               <% expires = (ingredient.expiration_date - Date.today).to_i %>
             <%# Accounts for singular day %>
             <% day_word = expires.abs == 1 ? "day" : "days" %>
-            <% if expires.positive? && expires <= 7 %>
-              <div class="expiring-notice">
-                <span> Expires in <%= expires %> <%= day_word %> </span>
-              </div>
-            <% elsif expires.negative? %>
-              <div class="expired-notice">
-                <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
-              </div>
-            <% else %>
-              <%= ingredient.expiration_date %>
-            <% end %>
+            <span data-edit-target="expirationContent" data-field="expiration_date" data-action="click->edit#edit">
+              <% if expires.positive? && expires <= 7 %>
+                <div class="expiring-notice">
+                  <span> Expires in <%= expires %> <%= day_word %> </span>
+                </div>
+              <% elsif expires.negative? %>
+                <div class="expired-notice">
+                  <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
+                </div>
+              <% else %>
+                <%= ingredient.expiration_date %>
+              <% end %>
+            </span>
+            <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none" value="<%= ingredient.expiration_date %>">
+            <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
           </div>
         <% end %>
-      <button class="edit-icon" data-action="toggler#toggle" data-target-name="form">
-        <i class="fa-solid fa-pen"></i>
-      </button>
-          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-icon fa-solid fa-trash-can'} do %>
-          <% end %>
+      <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-icon fa-solid fa-trash-can'} do %>
+      <% end %>
     </div>
   </div>
     <div data-toggler-target="form" id="editForm-<%= ingredient.id %>" class="<%= ingredient.errors.any? ? '' : 'd-none' %>" >
