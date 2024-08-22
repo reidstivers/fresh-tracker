@@ -18,7 +18,11 @@ class Ingredient < ApplicationRecord
 
     spoon_image = ingredient_api(name)
     parsed = JSON.parse(spoon_image.body)
-    self.image_url = "https://img.spoonacular.com/ingredients_100x100/#{parsed.first['image']}"
+    if parsed.length == 1
+      self.image_url = "https://img.spoonacular.com/ingredients_100x100/#{parsed.first['image']}"
+    else
+      self.image_url = ""
+    end
   end
 
   def ingredient_api(ingredient_name)

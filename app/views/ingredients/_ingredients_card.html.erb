@@ -1,10 +1,10 @@
 <div id="ingredient-card" data-controller="toggler edit" data-url="<%= ingredient_path(ingredient) %>">
   <div class="card">
     <div class="card-picture-box">
-      <% if ingredient.image_url %>
-        <% ingredient_pic = ingredient.image_url %>
-      <% else %>
+      <% if ingredient.image_url == "" %>
         <% ingredient_pic = "meal-food-icon.png" %>
+      <% else %>
+        <% ingredient_pic = ingredient.image_url %>
       <% end %>
       <%= image_tag ingredient_pic, class: 'card-image' %></div>
 
