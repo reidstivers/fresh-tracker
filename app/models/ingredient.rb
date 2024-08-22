@@ -11,7 +11,7 @@ class Ingredient < ApplicationRecord
   before_save :update_image_url, if: :name_changed?
 
   private
-
+  # These methods add the image_url and are present in the model so they will apply to create, update, and creation via image
   def update_image_url
     return unless name.present?
 

@@ -3,7 +3,6 @@ class IngredientsController < ApplicationController
   before_action :set_categories, only: [:new, :edit, :update, :index, :create]
   before_action :set_ingredients, only: [:index, :create, :update]
   before_action :set_expiring, only: [:expiring, :index]
-  # before_save update.@ingredient.image_url :make_image_url
 
   def new
     @ingredient = Ingredient.new
@@ -14,7 +13,6 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.pantry = @pantry
     @ingredient.in_pantry = true
-    # @ingredient.image_url = make_image_url
     if @ingredient.save
       redirect_to ingredients_path, notice: "Ingredient saved"
     else
@@ -87,21 +85,4 @@ class IngredientsController < ApplicationController
   def ingredient_params
     params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :image_url, :pantry_id)
   end
-
-  # def ingredient_api(ingredient_name)
-  #   api_key = "#{ENV['SPOONACULAR']}"
-  #   uri = URI.parse("https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=#{api_key}&query=#{ingredient_name}&number=1")
-  #   # Rails.logger.debug uri
-  #   Net::HTTP.get_response(uri)
-  # end
-
-  # def make_image_url
-  #   @ingredient_for_image = @ingredient
-  #   ingredient_name = @ingredient_for_image.name
-  #   # Rails.logger.debug "Ingredient Name: #{ingredient_name}"
-  #   spoon_image = ingredient_api(ingredient_name)
-  #   parsed = JSON.parse(spoon_image.body)
-  #   @ingredient.image_url = "https://img.spoonacular.com/ingredients_100x100/#{parsed.first["image"]}"
-  #   # Rails.logger.debug "The Final image #{@ingredient.image_url}"
-  # end
 end
