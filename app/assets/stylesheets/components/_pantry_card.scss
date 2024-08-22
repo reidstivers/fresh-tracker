@@ -54,7 +54,7 @@
 
 .card-date {
   position: absolute;
-  right: 80px;
+  right: 60px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -77,4 +77,17 @@
   display: flex;
   overflow: hidden;
   justify-content: start;
+}
+
+.edit-field {
+  border-radius: 16px;
+  outline: none;
+  background-color: var(--bs-body-bg);
+
+}
+
+.edit-field:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Adjust color and size as needed */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: var(--bs-border-width) solid var(--bs-border-color);
 }
