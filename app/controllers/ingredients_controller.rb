@@ -13,7 +13,6 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.pantry = @pantry
     @ingredient.in_pantry = true
-
     if @ingredient.save
       redirect_to ingredients_path, notice: "Ingredient saved"
     else
@@ -48,9 +47,15 @@ class IngredientsController < ApplicationController
 
   def update
     if @ingredient.update(ingredient_params)
-      redirect_to ingredients_path, notice: "Ingredient updated"
+      respond_to do |format|
+        format.json { render json: { status: "success", ingredient: @ingredient }, status: :ok }
+        format.html { redirect_to ingredients_path, notice: "Ingredient updated" }
+      end
     else
-      render :index, status: :unprocessable_entity
+      respond_to do |format|
+        format.json { render json: { status: "error", errors: @ingredient.errors.full_messages }, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -84,6 +89,6 @@ class IngredientsController < ApplicationController
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :pantry_id)
+    params.require(:ingredient).permit(:name, :amount, :unit, :expiration_date, :category_id, :in_pantry, :image_url, :pantry_id)
   end
 end
