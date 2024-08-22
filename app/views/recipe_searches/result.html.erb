@@ -9,8 +9,8 @@
 <%= form_with(model: @recipe, url: recipes_path, local: true) do |f| %>
   <%= f.hidden_field :title, value: title %>
   <%= f.hidden_field :description, value: summary %>
-  <!-- 他のフォーム要素をここに追加 -->
-  <%= f.submit "Submit" %>
+  <%= f.hidden_field :image_url, value: image %>
+  <%= f.submit "Save this recipe", class: "pink-button" %>
 <% end %>
 <%# post %>
 
@@ -31,7 +31,7 @@
           <%= ingredient["measures"]["metric"]["amount"] %>
           <%= ingredient["measures"]["metric"]["unitLong"] %>
           <% category_name = Category::CATEGORY_MAPPING[ingredient["aisle"]] %>
-          <%= categoryid = Category.find_by(name:"#{category_name}").id %>
+          <% categoryid = Category.find_by(name:"#{category_name}").id %>
         </li>
       <% end %>
     </ul>

@@ -27,6 +27,12 @@ class RecipesController < ApplicationController
 
   def update
     recipe = Recipe.find(params[:id])
+    # if recipe.favorited == 0
+    #   recipe.favorited = false
+    # else
+    #   recipe.favorited = true
+    # end
+
     if recipe.update(recipe_params)
       redirect_to recipe_path(recipe.id), notice: "Recipe updated"
     else
@@ -46,6 +52,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description)
+    params.require(:recipe).permit(:title, :description, :image_url)
+    # params.require(:recipe).permit(:title, :description, :image_url, :favorited)
   end
 end
