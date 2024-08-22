@@ -25,6 +25,7 @@
 
       <%# search %>
       <div class="search-bar">
+        <i class="search-icon fa-solid fa-magnifying-glass"></i>
         <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
           <%= f.input :query,
                       input_html: {
@@ -35,10 +36,7 @@
                       label: false %>
         <% end %>
       </div>
-                        <%# <div class="d-flex">
-                              <i class="fa-solid fa-magnifying-glass fa-xl"
-                                  style="color: #0096FF;">
-                              </i> %>
+
     </div>
 
     <%# Div for filter buttons %>

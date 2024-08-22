@@ -9,13 +9,24 @@
 .search-bar {
   margin-right: 16px;
   height: 34px;
+  position: relative;
+  display: flex;
 }
 
 .search-bar input {
   vertical-align: middle;
   border-radius: 16px;
   padding: 4px;
+  padding-left: 16px;
   font-size: 16px;
   text-align: center;
   height: auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
