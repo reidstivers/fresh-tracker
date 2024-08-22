@@ -2,12 +2,12 @@
   <div class="pantry-navbar">
     <h1> <%= current_user.name %>'s Pantry </h1>
     <div class="expire-and-search">
-      <div class="expiring-alert" data-controller="alert" data-alert-target="container">
+      <div class="expiring-alert"
+        data-controller="alert"
+        data-alert-target="container"
+        data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage">
         <% if @expiring.present? && @expiring.any? %>
-            <i class="fa-solid fa-circle-exclamation fa-xl"
-                style="color: #FA9185;"
-                data-alert-target="icon"
-                data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage"></i>
+            <div class="alert-icon fa-solid fa-circle-exclamation fa-2xl" data-alert-target="icon"></div>
           <div class="expiring-message" data-alert-target="message">
             <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
               <%= @expiring.length %> items expiring soon!
