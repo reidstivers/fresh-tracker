@@ -1,5 +1,10 @@
 <div id="ingredient-card" data-controller="toggler edit" data-url="<%= ingredient_path(ingredient) %>">
+
+  <%# has all the cards content should be able to evenly space them %>
   <div class="card">
+    <div class="d-flex justify-content-between">
+
+<% # just the picture %>
     <div class="card-picture-box">
       <% if ingredient.image_url == "" %>
         <% ingredient_pic = "meal-food-icon.png" %>
@@ -8,12 +13,15 @@
       <% end %>
       <%= image_tag ingredient_pic, class: 'card-image' %></div>
 
-    <div class="card-title"  data-field="name" data-action="click->edit#edit">
-      <span  data-edit-target="nameContent"><%= ingredient.name %> </span>
-      <input type="text" data-edit-target="nameInput" value="<%= ingredient.name %>" class="edit-field d-none">
-    </div>
+<% # has the title amount counter and expiration date %>
     <div class="card-content">
-      <div class="card-detail">
+
+      <div class="card-title"  data-field="name" data-action="click->edit#edit">
+        <span  data-edit-target="nameContent"><%= ingredient.name %> </span>
+        <input type="text" data-edit-target="nameInput" value="<%= ingredient.name %>" class="edit-field d-none">
+      </div>
+
+      <div class="card-detail amount-and-unit">
       <%# conditional leans up display, returns whole numbers & decimals %>
         <% if ingredient.amount % 1 == 0 %>
           <% amount = ingredient.amount.to_i %>
@@ -30,6 +38,7 @@
         </div>
         <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
       </div>
+
         <% if ingredient.expiration_date %>
           <div class="card-date">
             <%# Sets variable for days to / since expiration, makes code dry %>
@@ -53,11 +62,14 @@
             <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
           </div>
         <% end %>
+
+    </div>
+
+<% # just the trash icon %>
       <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-icon fa-solid fa-trash-can'} do %>
       <% end %>
+
     </div>
+
   </div>
-    <div data-toggler-target="form" id="editForm-<%= ingredient.id %>" class="<%= ingredient.errors.any? ? '' : 'd-none' %>" >
-      <%= render partial: "form", locals: { ingredient: ingredient } %>
-    </div>
 </div>
