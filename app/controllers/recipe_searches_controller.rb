@@ -12,6 +12,7 @@ class RecipeSearchesController < ApplicationController
   end
 
   def result
+    @recipe = Recipe.new
     if params[:recipe].present?
       searchid = params[:recipe]
       result = call_recipe_detail_api(searchid)

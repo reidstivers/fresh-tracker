@@ -4,6 +4,15 @@
 <% readyInMinutes = @result["readyInMinutes"] %>
 <% summary = @result["summary"] %>
 <% extendedIngredients = @result["extendedIngredients"] %>
+<%# post %>
+
+<%= form_with(model: @recipe, url: recipes_path, local: true) do |f| %>
+  <%= f.hidden_field :title, value: title %>
+  <%= f.hidden_field :description, value: summary %>
+  <!-- 他のフォーム要素をここに追加 -->
+  <%= f.submit "Submit" %>
+<% end %>
+<%# post %>
 
 <div class="recipe-container">
   <div class="recipe-content">
@@ -21,6 +30,8 @@
           <span style="font-weight:bold; margin-right: 8px;"><%= ingredient["name"] %></span>
           <%= ingredient["measures"]["metric"]["amount"] %>
           <%= ingredient["measures"]["metric"]["unitLong"] %>
+          <% category_name = Category::CATEGORY_MAPPING[ingredient["aisle"]] %>
+          <%= categoryid = Category.find_by(name:"#{category_name}").id %>
         </li>
       <% end %>
     </ul>
