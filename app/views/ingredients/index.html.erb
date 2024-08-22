@@ -1,66 +1,66 @@
 <div  data-controller="search" class="search-controller">
-  <h1> <%= current_user.name %>'s Pantry </h1>
-  <div class="expire-and-search">
-    <div class="expiring-alert" data-controller="alert" data-alert-target="container">
-      <% if @expiring.present? && @expiring.any? %>
-          <i class="fa-solid fa-circle-exclamation fa-xl"
-              style="color: #FA9185;"
-              data-alert-target="icon"
-              data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage"></i>
-        <div class="expiring-message" data-alert-target="message">
-          <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
-            <%= @expiring.length %> items expiring soon!
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <!--<div data-controller="toggler">
-      <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
-      <%# Added ternary operate to keep form rendered if there were errors on entry %>
-      <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
-        <%= render partial: "form"%>
+  <div class="pantry-navbar">
+    <h1> <%= current_user.name %>'s Pantry </h1>
+    <div class="expire-and-search">
+      <div class="expiring-alert" data-controller="alert" data-alert-target="container">
+        <% if @expiring.present? && @expiring.any? %>
+            <i class="fa-solid fa-circle-exclamation fa-xl"
+                style="color: #FA9185;"
+                data-alert-target="icon"
+                data-action="mouseenter->alert#reopenMessage click->alert#reopenMessage"></i>
+          <div class="expiring-message" data-alert-target="message">
+            <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
+              <%= @expiring.length %> items expiring soon!
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>-->
+      <!--<div data-controller="toggler">
+        <button data-action="toggler#toggle" data-target-name="form"> Stock the pantry! </button>
+        <%# Added ternary operate to keep form rendered if there were errors on entry %>
+        <div data-toggler-target="form" class="<%= @ingredient.errors.any? ? '' : 'd-none' %>">
+          <%= render partial: "form"%>
+        </div>
+      </div>-->
 
-    <%# search %>
-    <div class="search-bar">
-      <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
-        <%= f.input :query,
-                    input_html: {
-                      placeholder: "Search your Pantry",
-                      data: { action: "keyup->search#fire",
-                      search_target: "input" }
-                    },
-                    label: false %>
-      <% end %>
+      <%# search %>
+      <div class="search-bar">
+        <%= simple_form_for :search, url: ingredients_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
+          <%= f.input :query,
+                      input_html: {
+                        placeholder: "Search your Pantry",
+                        data: { action: "keyup->search#fire",
+                        search_target: "input" }
+                      },
+                      label: false %>
+        <% end %>
+      </div>
+                        <%# <div class="d-flex">
+                              <i class="fa-solid fa-magnifying-glass fa-xl"
+                                  style="color: #0096FF;">
+                              </i> %>
     </div>
-                      <%# <div class="d-flex">
-                            <i class="fa-solid fa-magnifying-glass fa-xl"
-                                style="color: #0096FF;">
-                            </i> %>
-  </div>
 
-  <%# Div for filter buttons %>
-  <div class="buttons-filter" data-controller="filtering">
-    <%# Adding button to render all categories %>
-    <button
-      class="btn-filter"
-      data-action="filtering#showAll"
-      data-filtering-target="button">
-      All
-      </button>
-    <% @categories.each do |category| %>
+    <%# Div for filter buttons %>
+    <div class="buttons-filter" data-controller="filtering">
+      <%# Adding button to render all categories %>
       <button
         class="btn-filter"
-        data-action="filtering#fire"
-        data-filtering-target="button"
-        data-category="<%= category.name %>">
-        <%= category.name %>
-      </button>
-    <% end %>
+        data-action="filtering#showAll"
+        data-filtering-target="button">
+        All
+        </button>
+      <% @categories.each do |category| %>
+        <button
+          class="btn-filter"
+          data-action="filtering#fire"
+          data-filtering-target="button"
+          data-category="<%= category.name %>">
+          <%= category.name %>
+        </button>
+      <% end %>
+    </div>
   </div>
-
-
     <!-- Search Results -->
   <div id="search-results" data-search-target="results">
 
