@@ -8,4 +8,21 @@ class Ingredient < ApplicationRecord
   validates :in_pantry, presence: true
   # validates :expiration_date, presence: true
   enum status: { in_pantry: 0, in_cart: 1 }
+  before_save :update_image_url, if: :name_changed?
+
+  private
+
+  def update_image_url
+    return unless name.present?
+
+    spoon_image = ingredient_api(name)
+    parsed = JSON.parse(spoon_image.body)
+    self.image_url = "https://img.spoonacular.com/ingredients_100x100/#{parsed.first['image']}"
+  end
+
+  def ingredient_api(ingredient_name)
+    api_key = ENV['SPOONACULAR']
+    uri = URI.parse("https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=#{api_key}&query=#{ingredient_name}&number=1")
+    Net::HTTP.get_response(uri)
+  end
 end
