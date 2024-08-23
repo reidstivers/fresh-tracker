@@ -35,6 +35,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: -40px;
+  width: 50%;
 }
 
 .card-title {
@@ -43,7 +45,8 @@
   font-weight: bold;
   overflow: visible;
   white-space: normal;
-  // max-width: calc(100% - 150px);
+  word-wrap: break-word;
+  text-align: center;
 }
 
 .amount-and-unit {

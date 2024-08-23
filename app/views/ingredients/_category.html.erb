@@ -2,7 +2,7 @@
 <div class="category-card" data-controller="rotate">
   <%# Select ingredients from user's pantry's ingredients with the correct category %>
   <%# No need to check if present, already done in the index %>
-  <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id } %>
+  <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id }.sort_by { |ingredient| ingredient.expiration_date }.reverse %>
   <div class="category-title">
     <i class="<%=category.icon%>"></i>
     <h3> <%= category.name %> </h3>
