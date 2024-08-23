@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit"
 export default class extends Controller {
-  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput", "expirationContent", "expirationInput"]
+  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput", "expirationContent", "expirationInput", "errorMessages"]
 
   connect() {
     console.log("Edit connected");
@@ -35,28 +35,48 @@ export default class extends Controller {
     inputTarget.focus();
 
     if (field === "expiration_date") {
-      const fp = flatpickr(inputTarget, {
+
+      let fp;
+
+      fp = flatpickr(inputTarget, {
         onClose: () => {
           console.log("Flatpickr closed for", inputTarget);
+          document.removeEventListener('mousedown', this.handleClickOutside);
           this.update(contentTarget, inputTarget, field);
           fp.destroy();
         },
         onChange: () => {
           console.log("Date changed for", inputTarget);
+          document.removeEventListener('mousedown', this.handleClickOutside);
           this.update(contentTarget, inputTarget, field);
           fp.destroy();
-        }
-      });
-
-      // Prevents backspace from cleadring the entire input
-      inputTarget.addEventListener("keydown", (event) => {
-        if (event.key === "Backspace" && inputTarget.value.length === 0) {
-          event.preventDefault();
-          fp.destroy();
-          this.toggleEditing(contentTarget, inputTarget, field);
-        }
-      });
-
+        },
+        onReady: () => {
+          setTimeout(() => {
+            this.handleClickOutside = (event) => {
+              const calendar = document.querySelector('.flatpickr-calendar');
+              console.log("Calendar:", calendar);
+              if (!inputTarget.contains(event.target) && !calendar.contains(event.target)) {
+                console.log("Clicked outside input field");
+                document.removeEventListener('mousedown', this.handleClickOutside);
+                fp.close();
+                this.update(contentTarget, inputTarget, field);
+                fp.destroy();
+              }
+            };
+            document.addEventListener('mousedown', this.handleClickOutside);
+          }, 500);
+      },
+      positionElement: inputTarget
+    });
+      // Prevents backspace from clearing the entire input
+    inputTarget.addEventListener("keydown", (event) => {
+      if (event.key === "Backspace" && inputTarget.value.length === 0) {
+        event.preventDefault();
+        fp.destroy();
+        this.toggleEditing(contentTarget, inputTarget, field);
+      }
+    });
     } else {
       this.moveCursorToEnd(inputTarget);
       inputTarget.addEventListener("blur", () => {
@@ -90,19 +110,19 @@ export default class extends Controller {
     // Sends the new value to the DB
     return this.save(field, newValue)
       .then(response => {
-        console.log("Response:", response);
+        console.log("Response:", response,);
         if (response.status === "success") {
           contentTarget.textContent = response.ingredient[field];
           inputTarget.classList.add("d-none");
           contentTarget.classList.remove("d-none");
-          this.clearErrorMessages();
+          this.clearErrorMessages(inputTarget);
         } else {
-          this.showErrorMessages(response.errors);
+          this.showErrorMessages(response.errors, inputTarget);
         }
       })
       .catch(error => {
         console.error("Error:", error);
-        this.showErrorMessages(["An error occurred. Please try again."]);
+        this.showErrorMessages(["An error occurred. Please try again."], inputTarget);
       });
   }
 
@@ -128,15 +148,18 @@ export default class extends Controller {
     });
   }
 
-  showErrorMessages(errors) {
-    const errorContainer = document.getElementById('error-messages');
-    errorContainer.style.display = 'block';
-    errorContainer.innerHTML = errors.join('<br>');
+  showErrorMessages(errors, inputTarget) {
+    this.errorMessagesTarget.style.display = 'block';
+    this.errorMessagesTarget.innerHTML = errors.map(error => `<div>${error}</div>`).join('');
+    inputTarget.style.border = '1px solid red';
+    inputTarget.style.boxShadow = '0 0 0 0.2rem rgba(255, 0, 0, 0.25)';
   }
 
-  clearErrorMessages() {
-    const errorContainer = document.getElementById('error-messages');
-    errorContainer.style.display = 'none';
-    errorContainer.innerHTML = '';
+  clearErrorMessages(inputTarget) {
+    console.log("clearing:", inputTarget);
+    this.errorMessagesTarget.style.display = 'none';
+    this.errorMessagesTarget.innerHTML = '';
+    inputTarget.style.border = 'none';
+    inputTarget.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.5)';
   }
 }

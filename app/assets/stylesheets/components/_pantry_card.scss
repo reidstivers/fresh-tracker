@@ -5,7 +5,7 @@
   background-color: white;
 }
 
-.card {
+.ingredient-card {
   padding: 5px 12px;
   background-color: white;
   border: none;
@@ -13,7 +13,30 @@
   border-radius: 16px;
   position: relative;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
-//   // flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-picture-box {
+  display: flex;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  margin-top: 8px;
+}
+
+.card-image {
+  height: 100%;
+  width: 100%;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -40px;
+  width: 50%;
 }
 
 .card-title {
@@ -22,62 +45,48 @@
   font-weight: bold;
   overflow: visible;
   white-space: normal;
-  // max-width: calc(100% - 150px);
+  word-wrap: break-word;
+  text-align: center;
 }
 
-.card-content {
-  // margin: 0px;
-//   display: flex;
-  font-size: 20px;
-//   // flex-direction: column;
-text-align: center;
-align-items: center;
+.amount-and-unit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
 }
 
-.card-detail {
-//   margin-right: 20px;
-display: flex;
-// text-align: center;
-align-items: center;
-justify-content: center;
+.ingredient-card-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
-#amount {
-  margin-right: 5px;
+.ingredient-card-icons button {
+  border: none;
+  background: none;
+  padding: 0;
 }
 
-// .edit-icon {
-//   position: absolute;
-//   right: 45px;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   background: none;
-//   border: none;
-// }
+.expire-icon, .delete-icon {
+  display: block;
+  text-align: center;
+}
+
+.expire-icon {
+  color: $ft-pink;
+  font-size: 1.5em;
+}
 
 .delete-icon {
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  border: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  background-color: white;
-  font-size: 32px;
   color: grey;
 }
 
-// .card-date {
-//   position: absolute;
-//   right: 60px;
-//   top: 50%;
-//   transform: translateY(-50%);
-// }
+.delete-icon:hover {
+  color: black;
+}
 
 .expiring-notice {
   background: gray;
@@ -93,20 +102,6 @@ justify-content: center;
   color: white;
 }
 
-.card-picture-box {
-  display: flex;
-  overflow: hidden;
-  width: 80px;
-  height: 80px;
-  margin-top: 8px;
-}
-
-.card-image {
-  height: 100%;
-  width: 100%;
-
-}
-
 .edit-field {
   border-radius: 16px;
   outline: none;
@@ -118,4 +113,16 @@ justify-content: center;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Adjust color and size as needed */
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border: var(--bs-border-width) solid var(--bs-border-color);
+  text-align: center;
+}
+
+.error-messages {
+  display: none;
+  color: white;
+  font-size: 16px;
+  background: $ft-pink;
+  padding: 4px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0px 4px 12px 2px rgba(0,0,0,0.2);
 }
