@@ -10,7 +10,7 @@
             <div class="alert-icon fa-solid fa-circle-exclamation fa-2xl" data-alert-target="icon"></div>
           <div class="expiring-message" data-alert-target="message">
             <%= link_to expiring_ingredients_path, style: "text-decoration: none; color: white;" do %>
-              <%= @expiring.length %> items expiring soon!
+              <%= @expiring.length %> <%= "item".pluralize(@expiring.size) %> expiring soon!
             <% end %>
           </div>
         <% end %>

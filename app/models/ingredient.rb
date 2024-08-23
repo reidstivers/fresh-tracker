@@ -7,7 +7,6 @@ class Ingredient < ApplicationRecord
   validates :amount, presence: true
   validates :expiration_date, presence: true
   validates :in_pantry, presence: true
-  # validates :expiration_date, presence: true
   enum status: { in_pantry: 0, in_cart: 1 }
   before_save :update_image_url, if: :name_changed?
 

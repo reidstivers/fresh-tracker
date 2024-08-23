@@ -8,9 +8,9 @@
 
 .search-bar {
   margin-right: 16px;
-  height: 34px;
   position: relative;
   display: flex;
+  height: 36px;
 }
 
 .search-bar input {
@@ -21,6 +21,7 @@
   font-size: 16px;
   text-align: center;
   height: auto;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
 .search-icon {
