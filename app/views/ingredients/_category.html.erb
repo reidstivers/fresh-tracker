@@ -1,6 +1,6 @@
 
 <div class="category-card" data-controller="rotate">
-  <%# Select ingredients from user's pantry's ingredients with the correct category %>
+  <%# Select ingredients from user's pantry's ingredients with the correct category, and then sorts by expiration %>
   <%# No need to check if present, already done in the index %>
   <% filtered_ingredients = ingredients.select { |ingredient| ingredient.category_id == category.id }.sort_by { |ingredient| ingredient.expiration_date }.reverse %>
   <div class="category-title">

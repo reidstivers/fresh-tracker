@@ -40,7 +40,7 @@
         <span data-edit-target="expirationContent" data-field="expiration_date" data-action="click->edit#edit">
           <%= ingredient.expiration_date %>
         </span>
-        <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none" value="<%= ingredient.expiration_date %>">
+        <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none edit-field" value="<%= ingredient.expiration_date %>">
         <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
       </div>
     <% end %>
