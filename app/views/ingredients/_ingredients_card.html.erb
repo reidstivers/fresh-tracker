@@ -17,48 +17,33 @@
       <input type="text" data-edit-target="nameInput" value="<%= ingredient.name %>" class="edit-field d-none">
     </div>
 
-      <div class="amount-and-unit">
-      <%# conditional leans up display, returns whole numbers & decimals %>
-        <% if ingredient.amount % 1 == 0 %>
-          <% amount = ingredient.amount.to_i %>
-        <% else %>
-          <% amount = ingredient.amount %>
-        <% end %>
-        <div id="amount" data-action="click->edit#edit" data-field="amount">
-          <span data-edit-target="amountContent"><%= amount %> </span>
-          <input type="number" data-edit-target="amountInput" value="<%= amount %>" class="edit-field d-none">
-        </div>
-        <div id="unit" data-action="click->edit#edit" data-field="unit">
-          <span data-edit-target="unitContent"><%= ingredient.unit %> </span>
-          <input type="text" data-edit-target="unitInput" value="<%= ingredient.unit %>" class="edit-field d-none">
-        </div>
+    <div class="amount-and-unit">
+    <%# conditional leans up display, returns whole numbers & decimals %>
+      <% if ingredient.amount % 1 == 0 %>
+        <% amount = ingredient.amount.to_i %>
+      <% else %>
+        <% amount = ingredient.amount %>
+      <% end %>
+      <div id="amount" data-action="click->edit#edit" data-field="amount">
+        <span data-edit-target="amountContent"><%= amount %> </span>
+        <input type="number" data-edit-target="amountInput" value="<%= amount %>" class="edit-field d-none">
+      </div>
+      <div id="unit" data-action="click->edit#edit" data-field="unit">
+        <span data-edit-target="unitContent"><%= ingredient.unit %> </span>
+        <input type="text" data-edit-target="unitInput" value="<%= ingredient.unit %>" class="edit-field d-none">
+      </div>
+      <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
+    </div>
+
+    <% if ingredient.expiration_date %>
+      <div class="card-date">
+        <span data-edit-target="expirationContent" data-field="expiration_date" data-action="click->edit#edit">
+          <%= ingredient.expiration_date %>
+        </span>
+        <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none" value="<%= ingredient.expiration_date %>">
         <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
       </div>
-
-      <% if ingredient.expiration_date %>
-        <div class="card-date">
-          <%# Sets variable for days to / since expiration, makes code dry %>
-            <% expires = (ingredient.expiration_date - Date.today).to_i %>
-          <%# Accounts for singular day %>
-          <% day_word = expires.abs == 1 ? "day" : "days" %>
-          <span data-edit-target="expirationContent" data-field="expiration_date" data-action="click->edit#edit">
-            <% if expires.positive? && expires <= 7 %>
-              <div class="expiring-notice">
-                <span> Expires in <%= expires %> <%= day_word %> </span>
-              </div>
-            <% elsif expires.negative? %>
-              <div class="expired-notice">
-                <span> Expired <%= expires.abs %> <%= day_word %> ago! </span>
-              </div>
-            <% else %>
-              <%= ingredient.expiration_date %>
-            <% end %>
-          </span>
-          <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none" value="<%= ingredient.expiration_date %>">
-          <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
-        </div>
-      <% end %>
-      <%# just the trash icon %>
+    <% end %>
   </div>
   <div class="ingredient-card-icons">
     <% expires = (ingredient.expiration_date - Date.today).to_i %>
