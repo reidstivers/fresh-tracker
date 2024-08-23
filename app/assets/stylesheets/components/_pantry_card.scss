@@ -1,3 +1,10 @@
+.pantry-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
 .card {
   padding: 5px 12px;
   background-color: white;
@@ -6,34 +13,47 @@
   border-radius: 16px;
   position: relative;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+//   // flex-direction: row;
 }
 
 .card-title {
   margin: 0px;
   font-size: 20px;
+  font-weight: bold;
   overflow: visible;
   white-space: normal;
-  max-width: calc(100% - 150px);
+  // max-width: calc(100% - 150px);
 }
 
 .card-content {
-  margin: 0px;
-  display: flex;
+  // margin: 0px;
+//   display: flex;
   font-size: 20px;
+//   // flex-direction: column;
+text-align: center;
+align-items: center;
 }
 
 .card-detail {
-  margin-right: 20px;
+//   margin-right: 20px;
+display: flex;
+// text-align: center;
+align-items: center;
+justify-content: center;
 }
 
-.edit-icon {
-  position: absolute;
-  right: 45px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
+#amount {
+  margin-right: 5px;
 }
+
+// .edit-icon {
+//   position: absolute;
+//   right: 45px;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   background: none;
+//   border: none;
+// }
 
 .delete-icon {
   position: absolute;
@@ -52,12 +72,12 @@
   color: grey;
 }
 
-.card-date {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+// .card-date {
+//   position: absolute;
+//   right: 60px;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
 
 .expiring-notice {
   background: gray;
@@ -76,9 +96,9 @@
 .card-picture-box {
   display: flex;
   overflow: hidden;
-  justify-content: start;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin-top: 8px;
 }
 
 .card-image {
