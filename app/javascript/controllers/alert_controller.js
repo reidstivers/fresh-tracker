@@ -53,7 +53,7 @@ export default class extends Controller {
   }
 
   startRotation() {
-    this.iconTarget.style.animation = "pulseRotate 3s infinite";
+    this.iconTarget.style.animation = "pulseRotate 3s infinite linear";
   }
 
   reopenMessage() {
