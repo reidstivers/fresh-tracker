@@ -1,7 +1,6 @@
 class RecipeIngredientsController < ApplicationController
-  before_action :set_recipe_ingredients, only: [:index]
-  before_action :set_recipe_ingredient, only: [:show, :edit]
-  before_action :set_recipe, only: [:index, :show, :new, :create, :edit, :update]
+  before_action :set_recipe, only: [:index, :show, :new, :create, :edit, :update, :to_ingredients]
+  before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -40,6 +39,21 @@ class RecipeIngredientsController < ApplicationController
     @recipe_ingredient = RecipeIngredient.find(params[:id])
     @recipe_ingredient.destroy
     redirect_to recipes_path, notice: 'Ingredient was successfully removed.'
+  end
+
+  def to_ingredients
+    Rails.logger.info "to_ingredients action triggered for recipe_id: #{@recipe.id}"
+    @ingredients = RecipeIngredient.where(recipe_id: @recipe.id).to_ingredients(current_user)
+
+    @ingredients.each do |ingredient|
+      if ingredient.save
+        Rails.logger.info "Ingredient #{ingredient.name} saved successfully."
+      else
+        Rails.logger.error "Failed to save ingredient #{ingredient.name}: #{ingredient.errors.full_messages.join(", ")}"
+      end
+    end
+
+    redirect_to recipe_path(@recipe), notice: "Added items to shopping list!"
   end
 
   private

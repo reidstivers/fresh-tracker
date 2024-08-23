@@ -13,6 +13,7 @@ class Ingredient < ApplicationRecord
 
   private
   # These methods add the image_url and are present in the model so they will apply to create, update, and creation via image
+
   def update_image_url
     return unless name.present?
 
