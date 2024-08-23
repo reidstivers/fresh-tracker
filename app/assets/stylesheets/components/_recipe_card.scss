@@ -12,18 +12,18 @@
   margin: 20px 0px;
   padding: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap : wrap;
   text-align: left;
 }
 .recipe-container{
-  margin: 0px 10px;
+  margin: 0;
 }
 .recipe-card{
   list-style: none;
-  // width: 100px;
-  padding:5px 12px;
+  width: 45%;
+  padding:5px 5px;
   background-color: white;
   border: none;
   margin: 8px;
@@ -88,11 +88,11 @@
 }
 
 .recipe-card .info{
-  width: 200px;
+  width: 100%;
 }
 
 .recipe-card .info .title {
-  font-size: 20px;
+  font-size: 18px;
   color: $ft-black;
 }
 
