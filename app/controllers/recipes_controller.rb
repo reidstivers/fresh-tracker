@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.favorited = true
     @recipe.user = current_user
+
     if @recipe.save
       redirect_to recipes_path, notice: "Recipe added successfully"
     else

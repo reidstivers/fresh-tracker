@@ -35,6 +35,7 @@ class Category < ApplicationRecord
     "Dried Fruits" => "Fruits",
     "Online" => "Miscellaneous",
     "Grilling Supplies" => "Miscellaneous",
-    "Bread" => "Miscellaneous"
+    "Bread" => "Miscellaneous",
+    nil => "Miscellaneous"
   }
 end
