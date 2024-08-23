@@ -1,10 +1,12 @@
 class RecipesController < ApplicationController
   before_action :set_recipes, only: [:index]
-  before_action :set_recipe, only: [:show, :edit]
+  before_action :set_recipe, only: [:show, :edit, :update]
+
   def index
   end
 
   def show
+    @recipe_ingredients = @recipe.recipe_ingredients
   end
 
   def new
@@ -23,14 +25,14 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe.recipe_ingredients.build if @recipe.recipe_ingredients.empty?
   end
 
   def update
-    recipe = Recipe.find(params[:id])
-    if recipe.update(recipe_params)
-      redirect_to recipe_path(recipe.id), notice: "Recipe updated"
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
@@ -42,10 +44,21 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id])
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description)
+    params.require(:recipe).permit(:title, :description,
+      recipe_ingredients_attributes: [:id, :name, :amount, :unit, :category_id, :_destroy])
+  end
+
+  def update_recipe_ingredients
+    params[:recipe_ingredients].each do |id, ingredient_params|
+      ingredient = RecipeIngredient.find_or_initialize_by(id: id, recipe: @recipe)
+      if ingredient_params[:_destroy] == '1'
+        ingredient.destroy
+      else
+        ingredient.update(ingredient_params.except(:_destroy))
+      end
+    end
   end
 end

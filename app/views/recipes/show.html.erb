@@ -8,24 +8,31 @@
   <div class="recipe-detail">
     <ul class="recipe-ingredient">
       <h2>Ingredients</h2>
-      <% @recipe_ingredients.each do |recipe_ingredient| %>
-        <li class="recipe-ingredient-card">
-          <%= recipe_ingredient.name %>
-          <%= recipe_ingredient.amount %>
-          <%= recipe_ingredient.unit %>
-        </li>
+      <% if @recipe_ingredients.present? %>
+        <% @recipe_ingredients.each do |recipe_ingredient| %>
+          <li class="recipe-ingredient-card">
+            <%= recipe_ingredient.name %>
+            <%= recipe_ingredient.amount %>
+            <%= recipe_ingredient.unit %>
+            <%= link_to edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient), class: "nav-icon" do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+        <p>No ingredients.</p>
       <% end %>
+      <%= link_to new_recipe_recipe_ingredient_path(@recipe.id) do %>
+      <span><i class="material-symbols-outlined">add_circle</i></span>
+    <% end %>
     </ul>
     <h2>Instructions</h2>
       <%= simple_format(@recipe.description) %>
 
     <div class="recipe-footer">
-      <span class="button-edit-recipe"><%= link_to 'Edit the ingredients', recipe_recipe_ingredients_path(params[:id]), locals: { recipe_ingredients: @recipe_ingredients } %></span>
-      <span class="button-edit-recipe"> | </span>
-      <span class="button-edit-recipe"><%= link_to 'Edit the recipe', edit_recipe_path(params[:id]), locals: { recipe: @recipe } %></span>
+      <span class="button-edit-recipe"><%= button_to "Create Shopping List", to_ingredients_recipe_recipe_ingredients_path(@recipe), method: :post, class: "button-class" %></span>
+      <span class="button-edit-recipe"><%= button_to 'Edit the recipe', edit_recipe_path(@recipe), method: :get, class: "button-class" %></span>
     </div>
 
   </div>
 </div>
-
-<%= button_to "Create Shopping List", to_ingredients_recipe_recipe_ingredients_path(@recipe), method: :post, class: "button-class" %>

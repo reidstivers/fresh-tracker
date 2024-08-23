@@ -61,7 +61,11 @@ class IngredientsController < ApplicationController
 
   def destroy
     @ingredient.destroy
-    redirect_to ingredients_path, notice: "Ingredient deleted"
+    if @ingredient.status == 0
+      redirect_to ingredients_path, notice: "Ingredient removed"
+    else
+      redirect_to shopping_list_path, notice: "Ingredient removed"
+    end
   end
 
   private

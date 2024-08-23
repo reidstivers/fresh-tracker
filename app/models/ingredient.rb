@@ -30,4 +30,8 @@ class Ingredient < ApplicationRecord
     uri = URI.parse("https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=#{api_key}&query=#{ingredient_name}&number=1")
     Net::HTTP.get_response(uri)
   end
+
+  def in_pantry?
+    status == 0  # Assuming 0 is the status for pantry items
+  end
 end

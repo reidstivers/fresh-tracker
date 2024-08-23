@@ -3,6 +3,7 @@ class RecipeIngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
+    @recipe_ingredients = @recipe.recipe_ingredients
   end
 
   def show
@@ -43,17 +44,31 @@ class RecipeIngredientsController < ApplicationController
 
   def to_ingredients
     Rails.logger.info "to_ingredients action triggered for recipe_id: #{@recipe.id}"
-    @ingredients = RecipeIngredient.where(recipe_id: @recipe.id).to_ingredients(current_user)
+    ingredient_attributes = @recipe.recipe_ingredients.to_ingredients
 
-    @ingredients.each do |ingredient|
-      if ingredient.save
-        Rails.logger.info "Ingredient #{ingredient.name} saved successfully."
-      else
-        Rails.logger.error "Failed to save ingredient #{ingredient.name}: #{ingredient.errors.full_messages.join(", ")}"
-      end
+    new_ingredients = ingredient_attributes.reject do |attr|
+      current_user.pantry.ingredients.where(status: [0, 1], name: attr[:name]).exists?
     end
 
-    redirect_to recipe_path(@recipe), notice: "Added items to shopping list!"
+    if new_ingredients.empty?
+      redirect_to recipe_path(@recipe), notice: "Everything is already in your shopping list or pantry!"
+    else
+      new_ingredients.each do |attr|
+        ingredient = current_user.pantry.ingredients.new(
+          attr.merge(
+            status: 1,
+            expiration_date: 1.month.from_now,
+            in_pantry: true
+          )
+        )
+        if ingredient.save
+          Rails.logger.info "Ingredient #{ingredient.name} added to shopping list."
+        else
+          Rails.logger.error "Failed to add ingredient #{ingredient.name} to shopping list: #{ingredient.errors.full_messages.join(", ")}"
+        end
+      end
+      redirect_to recipe_path(@recipe), notice: "Added missing items to shopping list!"
+    end
   end
 
   private
