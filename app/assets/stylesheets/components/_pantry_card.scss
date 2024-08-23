@@ -50,27 +50,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
 }
 
-#amount {
-  margin-right: 5px;
+.ingredient-card-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.ingredient-card-icons button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.expire-icon, .delete-icon {
+  display: block;
+  text-align: center;
+}
+
+.expire-icon {
+  color: $ft-pink;
+  font-size: 1.5em;
 }
 
 .delete-icon {
-  // position: absolute;
-  // right: 4px;
-  // top: 50%;
-  // transform: translateY(-50%);
-  background: none;
-  border: none;
-  border: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  background-color: white;
-  font-size: 32px;
   color: grey;
+}
+
+.delete-icon:hover {
+  color: black;
 }
 
 .expiring-notice {
