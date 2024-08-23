@@ -1,3 +1,10 @@
+.pantry-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
 .card {
   padding: 5px 12px;
   background-color: white;
