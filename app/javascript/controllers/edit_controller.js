@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit"
 export default class extends Controller {
-  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput", "expirationContent", "expirationInput"]
+  static targets = ["nameContent", "nameInput", "amountContent", "amountInput", "unitContent", "unitInput", "expirationContent", "expirationInput", "errorMessages"]
 
   connect() {
     console.log("Edit connected");
@@ -110,19 +110,19 @@ export default class extends Controller {
     // Sends the new value to the DB
     return this.save(field, newValue)
       .then(response => {
-        console.log("Response:", response);
+        console.log("Response:", response,);
         if (response.status === "success") {
           contentTarget.textContent = response.ingredient[field];
           inputTarget.classList.add("d-none");
           contentTarget.classList.remove("d-none");
-          this.clearErrorMessages();
+          this.clearErrorMessages(inputTarget);
         } else {
-          this.showErrorMessages(response.errors);
+          this.showErrorMessages(response.errors, inputTarget);
         }
       })
       .catch(error => {
         console.error("Error:", error);
-        this.showErrorMessages(["An error occurred. Please try again."]);
+        this.showErrorMessages(["An error occurred. Please try again."], inputTarget);
       });
   }
 
@@ -148,15 +148,18 @@ export default class extends Controller {
     });
   }
 
-  showErrorMessages(errors) {
-    const errorContainer = document.getElementById('error-messages');
-    errorContainer.style.display = 'block';
-    errorContainer.innerHTML = errors.join('<br>');
+  showErrorMessages(errors, inputTarget) {
+    this.errorMessagesTarget.style.display = 'block';
+    this.errorMessagesTarget.innerHTML = errors.map(error => `<div>${error}</div>`).join('');
+    inputTarget.style.border = '1px solid red';
+    inputTarget.style.boxShadow = '0 0 0 0.2rem rgba(255, 0, 0, 0.25)';
   }
 
-  clearErrorMessages() {
-    const errorContainer = document.getElementById('error-messages');
-    errorContainer.style.display = 'none';
-    errorContainer.innerHTML = '';
+  clearErrorMessages(inputTarget) {
+    console.log("clearing:", inputTarget);
+    this.errorMessagesTarget.style.display = 'none';
+    this.errorMessagesTarget.innerHTML = '';
+    inputTarget.style.border = 'none';
+    inputTarget.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.5)';
   }
 }

@@ -32,7 +32,6 @@
         <span data-edit-target="unitContent"><%= ingredient.unit %> </span>
         <input type="text" data-edit-target="unitInput" value="<%= ingredient.unit %>" class="edit-field d-none">
       </div>
-      <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
     </div>
 
     <% if ingredient.expiration_date %>
@@ -41,15 +40,15 @@
           <%= ingredient.expiration_date %>
         </span>
         <input type="text" data-controller="datepicker" data-datepicker-target="expirationInput" data-edit-target="expirationInput" class="d-none edit-field" value="<%= ingredient.expiration_date %>">
-        <div id="error-messages" class="error-messages" style="display: none; color: red;"></div>
       </div>
     <% end %>
+    <div class="error-messages" data-edit-target="errorMessages"></div>
   </div>
   <div class="ingredient-card-icons">
     <% expires = (ingredient.expiration_date - Date.today).to_i %>
     <% if expires >= 0 && expires <= 7 %>
       <div class="expire-icon fa-solid fa-circle-exclamation"></div>
-      <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }} do %>
+      <%= button_to ingredient_path(ingredient), {metshod: :delete, data: { confirm: 'Are you sure?' }} do %>
         <div class="delete-icon fa-solid fa-trash-can" style="font-size: 1.5em;"></div>
       <% end %>
     <% elsif expires.negative? %>
