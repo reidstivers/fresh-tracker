@@ -15,8 +15,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.favorited = true
     @recipe.user = current_user
+    @recipe_ingredients = recipe_params[:recipe_ingredients_attributes]
 
     if @recipe.save
+      if @recipe_ingredients
+        @recipe_ingredients.each do |ingredient|
+          recipe_ingredient = RecipeIngredient.new(ingredient)
+          recipe_ingredient.recipe_id = @recipe
+          recipe_ingredient.save
+        end
+      end
       redirect_to recipes_path, notice: "Recipe added successfully"
     else
       render :new, status: :unprocessable_entity
@@ -53,7 +61,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :image_url)
-    # params.require(:recipe).permit(:title, :description, :image_url, :favorited)
+    params.require(:recipe).permit(:title, :description, :image_url, recipe_ingredients_attributes: [:name, :amount, :unit, :category_id])
   end
 end

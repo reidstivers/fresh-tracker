@@ -18,7 +18,7 @@
   text-align: left;
 }
 .recipe-container{
-  margin: 0;
+  margin: 0px 10px;
 }
 .recipe-card{
   list-style: none;
@@ -55,7 +55,7 @@
 .recipe-img {
   width: 50%;
   object-fit: cover;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .recipe-detail{
@@ -133,4 +133,8 @@
 }
 .button-edit-recipe > a{
   text-decoration: none;
+}
+
+.btn_recipe_save {
+  text-align: center;
 }

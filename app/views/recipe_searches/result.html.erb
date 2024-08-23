@@ -1,59 +1,54 @@
+<h1>Search Result</h1>
+<%# Params %>
 <% title = @result["title"] %>
 <% image = @result["image"] || 'no_recipe_image.png' %>
 <% servings = @result["servings"] %>
 <% readyInMinutes = @result["readyInMinutes"] %>
 <% summary = @result["summary"] %>
 <% extendedIngredients = @result["extendedIngredients"] %>
-<%# post %>
 
+<%# hidden form to pass recipe/recipe ingredient params %>
 <%= form_with(model: @recipe, url: recipes_path, local: true) do |f| %>
   <%= f.hidden_field :title, value: title %>
   <%= f.hidden_field :description, value: summary %>
   <%= f.hidden_field :image_url, value: image %>
 
-
-
-
-
-<div class="recipe-container">
-  <div class="recipe-content">
-    <%= image_tag image, alt: 'logo', class: "recipe-img" %>
-    <div class="title">
-      <h1><%= title %></h1>
+  <div class="recipe-container">
+    <div class="recipe-content">
+      <%= image_tag image, alt: 'logo', class: "recipe-img" %>
+      <div class="title">
+        <h1><%= title %></h1>
+      </div>
     </div>
-  </div>
-  <div class="recipe-detail">
+    <div class="recipe-detail">
       <span><%= servings %> servings / Ready in <%= readyInMinutes %> minutes</span>
-    <ul class="recipe-ingredient">
       <h2>Ingredients</h2>
-<%# fields_forで複数レコード登録できるようにする。 %>
-<%= f.fields_for :recipe_ingredients do |fields| %>
-      <% extendedIngredients.each do |ingredient| %>
-        <li class="recipe-ingredient-card">
-          <span style="font-weight:bold; margin-right: 8px;"><%= name = ingredient["name"] %></span>
-          <%= amount = ingredient["measures"]["metric"]["amount"] %>
-          <%= unit = ingredient["measures"]["metric"]["unitLong"] %>
-          <% category_name = Category::CATEGORY_MAPPING[ingredient["aisle"]] %>
-          <% categoryid = Category.find_by(name:"#{category_name}").id %>
-        </li>
-<%# 中間テーブルの親IDを登録するフォーム。事前にid番号をvalueに格納する ※ 一旦無しで実施してみる%>
-<%# form %>
-<%= fields.hidden_field :amount, value: amount, name:"amount_#{name.gsub(' ','_')}", id:"amount_#{name.gsub(' ','_')}" %>
-<%= fields.hidden_field :unit, value: unit, name:"unit_#{name.gsub(' ','_')}", id:"unit_#{name.gsub(' ','_')}" %>
-<%= fields.hidden_field :category_id, value: categoryid, name:"categoryid_#{name.gsub(' ','_')}", id:"categoryid_#{name.gsub(' ','_')}"  %>
-      <% end %>
+      <ul class="recipe-ingredient">
+          <%# fields to pass multile recipe ingredients as "recipe_ingredients_attributes" %>
+          <%= f.fields_for 'recipe_ingredients_attributes[]', RecipeIngredient.new do |fields| %>
+            <% extendedIngredients.each do |ingredient| %>
+              <li class="recipe-ingredient-card">
+                <span style="font-weight:bold; margin-right: 8px;"><%= name = ingredient["name"] %></span>
+                <%= amount = ingredient["measures"]["metric"]["amount"] %>
+                <%= unit = ingredient["measures"]["metric"]["unitLong"] %>
+                <% category_name = Category::CATEGORY_MAPPING[ingredient["aisle"]] %>
+                <% categoryid = Category.find_by(name:"#{category_name}").id %>
+              </li>
+              <%= fields.hidden_field :name, value: name %>
+              <%= fields.hidden_field :amount, value: amount %>
+              <%= fields.hidden_field :unit, value: unit %>
+              <%= fields.hidden_field :category_id, value: categoryid  %>
+            <% end %>
+          <% end %>
+      </ul>
+      <h2>Descriptions</h2>
+        <%= simple_format(summary) %>
+    </div>
+    <div class="btn_recipe_save">
+      <%= f.submit "Save this recipe", class: "pink-button" %>
+    </div>
 <% end %>
-<%# END fields_forで複数レコード登録できるようにる。 %>
-    </ul>
 
-    <h2>Descriptions</h2>
-      <%= simple_format(summary) %>
-
-  </div>
-<%# form %>
-  <%= f.submit "Save this recipe", class: "pink-button" %>
-<% end %>
-<%# form %>
-  <div class="recipe-footer">
-  <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
-  </div>
+<div class="recipe-footer">
+<%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+</div>
