@@ -57,7 +57,7 @@ puts "Creating Ingredients..."
 ingredients = [
   { name: 'Tomato', amount: 3, unit: 'tomatoes', category_id: Category.find_by(name: 'Vegetables').id, expiration_date: Date.today + 7.days },
   { name: 'Milk', amount: 2, unit: 'liters', category_id: Category.find_by(name: 'Dairy').id, expiration_date: Date.today + 10.days },
-  { name: 'Chicken Breast', amount: 5, unit: 'pcs', category_id: Category.find_by(name: 'Meat').id, expiration_date: Date.today + 5.days },
+  { name: 'Chicken Breasts', amount: 5, unit: 'pcs', category_id: Category.find_by(name: 'Meat').id, expiration_date: Date.today + 5.days },
   { name: 'Olive Oil', amount: 1, unit: 'bottle', category_id: Category.find_by(name: 'Oils').id, expiration_date: Date.today + 365.days },
   { name: 'Banana', amount: 12, unit: 'pcs', category_id: Category.find_by(name: 'Fruits').id, expiration_date: Date.today + 3.days }
 ]
