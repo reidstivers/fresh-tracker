@@ -14,15 +14,15 @@
   <div class="recipe-detail">
     <div class="btn-recipe-shoppinglist">
       <h2>Ingredients</h2>
-      <span class="button-edit-recipe"><%= button_to "Create Shopping List", to_ingredients_recipe_recipe_ingredients_path(@recipe), method: :post, class: "btn-new-search" %></span>
+      <span class="button-edit-recipe"><%= button_to "Add to Shopping List", to_ingredients_recipe_recipe_ingredients_path(@recipe), method: :post, class: "btn-new-search" %></span>
     </div>
     <ul class="recipe-ingredient">
       <% if @recipe_ingredients.present? %>
         <% @recipe_ingredients.each do |recipe_ingredient| %>
           <li class="recipe-ingredient-card">
-            <%= recipe_ingredient.name %>
-            <%= recipe_ingredient.amount %>
-            <%= recipe_ingredient.unit %>
+            <span style="font-weight:bold; margin-right: 8px;"><%= recipe_ingredient.name.titleize %></span>
+            <%= (recipe_ingredient.amount - recipe_ingredient.amount.to_i) > 0 ? recipe_ingredient.amount : recipe_ingredient.amount.to_i %>
+            <%= recipe_ingredient.unit.titleize %>
             <%= link_to edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient), class: "icon-recipe-edit" do %>
               <i class="fa-solid fa-pen"></i>
             <% end %>
@@ -36,11 +36,13 @@
     <% end %>
     </ul>
     <h2>Descriptions</h2>
+    <div class="recipe-ingredient-info">
       <%= simple_format(@recipe.description) %>
+    </div>
 
     <div class="recipe-footer">
-            <span class="button-edit-recipe"><%= button_to 'Edit the recipe', edit_recipe_path(@recipe), method: :get, class: "btn-new-search" %></span>
-            <span class="button-edit-recipe"><%= link_to 'Delete the recipe', recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></span>
+            <span class="button-edit-recipe"><%= button_to 'Edit this recipe', edit_recipe_path(@recipe), method: :get, class: "btn-new-search" %></span>
+            <span class="link-delete-recipe"><%= link_to 'Delete this recipe', recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></span>
     </div>
 
   </div>

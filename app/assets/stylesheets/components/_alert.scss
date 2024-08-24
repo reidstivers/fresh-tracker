@@ -3,6 +3,8 @@
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   animation: slideIn 0.5s ease-out;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+  border-radius: 10px;
 }
 
 .custom-alert {
@@ -10,6 +12,8 @@
   color: #6f4e37;
   font-family: 'Montserrat', sans-serif;
   animation: slideIn 0.5s ease-out;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+  border-radius: 10px;
 }
 
 @keyframes slideIn {
@@ -21,4 +25,9 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.fade-out {
+  opacity: 0;
+  visibility: hidden;
 }
