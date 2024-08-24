@@ -41,42 +41,34 @@ export default class extends Controller {
       fp = flatpickr(inputTarget, {
         onClose: () => {
           console.log("Flatpickr closed for", inputTarget);
-          document.removeEventListener('mousedown', this.handleClickOutside);
           this.update(contentTarget, inputTarget, field);
           fp.destroy();
-        },
-        onChange: () => {
-          console.log("Date changed for", inputTarget);
           document.removeEventListener('mousedown', this.handleClickOutside);
-          this.update(contentTarget, inputTarget, field);
-          fp.destroy();
         },
         onReady: () => {
+          this.handleClickOutside = (event) => {
+            const calendar = document.querySelector('.flatpickr-calendar');
+            console.log("Calendar:", calendar);
+            if (!inputTarget.contains(event.target) && (!calendar || !calendar.contains(event.target))) {
+              console.log("Clicked outside input field");
+              document.removeEventListener('mousedown', this.handleClickOutside);
+              fp.close();
+            }
+          };
+          // Gives flatpickr time to load, necessary for mobile
           setTimeout(() => {
-            this.handleClickOutside = (event) => {
-              const calendar = document.querySelector('.flatpickr-calendar');
-              console.log("Calendar:", calendar);
-              if (!inputTarget.contains(event.target) && !calendar.contains(event.target)) {
-                console.log("Clicked outside input field");
-                document.removeEventListener('mousedown', this.handleClickOutside);
-                fp.close();
-                this.update(contentTarget, inputTarget, field);
-                fp.destroy();
-              }
-            };
             document.addEventListener('mousedown', this.handleClickOutside);
-          }, 500);
-      },
-      positionElement: inputTarget
-    });
+          }, 1000);
+        },
+      });
       // Prevents backspace from clearing the entire input
-    inputTarget.addEventListener("keydown", (event) => {
-      if (event.key === "Backspace" && inputTarget.value.length === 0) {
-        event.preventDefault();
-        fp.destroy();
-        this.toggleEditing(contentTarget, inputTarget, field);
-      }
-    });
+      inputTarget.addEventListener("keydown", (event) => {
+        if (event.key === "Backspace" && inputTarget.value.length === 0) {
+          event.preventDefault();
+          fp.destroy();
+          this.toggleEditing(contentTarget, inputTarget, field);
+        }
+      });
     } else {
       this.moveCursorToEnd(inputTarget);
       inputTarget.addEventListener("blur", () => {
