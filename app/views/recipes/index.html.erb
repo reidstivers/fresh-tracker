@@ -1,7 +1,7 @@
 <h1><%= current_user.name %>'s Saved Recipes</h1>
 
 <div class="recipe-btn-container">
-  <%= link_to 'Search New Recipe', search_recipes_path, class: "pink-button" %>
+  <%= link_to 'Search New Recipe', search_recipes_path, class: "btn-new-search" %>
 </div>
 <% if @recipes.any? %>
   <ul class="recipes-container">

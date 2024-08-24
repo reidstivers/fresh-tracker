@@ -62,3 +62,32 @@ align-items: center;
 .btn-homepage:hover {
   background-color: #FF8A80;
 }
+
+.btn-recipe-search {
+  background-color: $ft-dark-green;
+  color: white;
+  border: none;
+  text-align: center;
+}
+
+.btn-recipe-search:hover {
+  background-color: #4a6147;
+}
+
+.btn-new-search {
+  background-color: $ft-dark-green;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-new-search:hover {
+  background-color: #4a6147;
+}
