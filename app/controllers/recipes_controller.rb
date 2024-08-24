@@ -17,7 +17,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.favorited = true
     @recipe.user = current_user
+    @recipe_ingredients = recipe_params[:recipe_ingredients_attributes]
+
     if @recipe.save
+      if @recipe_ingredients
+        @recipe_ingredients.each do |ingredient|
+          recipe_ingredient = RecipeIngredient.new(ingredient)
+          recipe_ingredient.recipe_id = @recipe
+          recipe_ingredient.save
+        end
+      end
       redirect_to recipes_path, notice: "Recipe added successfully"
     else
       render :new, status: :unprocessable_entity
@@ -29,8 +38,15 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
+    recipe = Recipe.find(params[:id])
+    # if recipe.favorited == 0
+    #   recipe.favorited = false
+    # else
+    #   recipe.favorited = true
+    # end
+
+    if recipe.update(recipe_params)
+      redirect_to recipe_path(recipe.id), notice: "Recipe updated"
     else
       render :edit
     end

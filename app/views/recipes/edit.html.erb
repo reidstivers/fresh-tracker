@@ -10,6 +10,9 @@
     <div class="form-row">
       <%= f.input :description, label: "Instructions", wrapper_html: { class: "form-group" } %>
     </div>
+    <div class="form-row" class="d-none">
+      <%#= f.input :favorited, label: "Favorite", wrapper_html: { class: "form-group" } %>
+    </div>
     <%= f.submit "Save", class: "form-button" %>
   <% end %>
 </div>

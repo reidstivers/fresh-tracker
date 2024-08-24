@@ -2,11 +2,15 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-puts "Destroy all users and pantries"
+puts "Destroy all users, recipes and pantries"
+Recipe.destroy_all
+RecipeIngredient.destroy_all
 Pantry.destroy_all
 User.destroy_all
 Ingredient.destroy_all
 ShoppingList.destroy_all
+Recipe.destroy_all
+RecipeIngredient.destroy_all
 
 puts "Creating User and Pantry..."
 

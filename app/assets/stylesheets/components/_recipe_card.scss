@@ -9,10 +9,10 @@
 }
 
 .recipes-container{
-  margin: 0;
+  margin: 20px 0px;
   padding: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap : wrap;
   text-align: left;
@@ -22,8 +22,8 @@
 }
 .recipe-card{
   list-style: none;
-  // width: 100px;
-  padding:5px 12px;
+  width: 45%;
+  padding:5px 5px;
   background-color: white;
   border: none;
   margin: 8px;
@@ -55,7 +55,7 @@
 .recipe-img {
   width: 50%;
   object-fit: cover;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .recipe-detail{
@@ -88,11 +88,11 @@
 }
 
 .recipe-card .info{
-  width: 200px;
+  width: 100%;
 }
 
 .recipe-card .info .title {
-  font-size: 20px;
+  font-size: 18px;
   color: $ft-black;
 }
 
@@ -133,4 +133,8 @@
 }
 .button-edit-recipe > a{
   text-decoration: none;
+}
+
+.btn_recipe_save {
+  text-align: center;
 }

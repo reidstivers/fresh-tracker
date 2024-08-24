@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   # pantry MUST be optional, else it can't create the very first user!!!!! Do not delete
   belongs_to :pantry, optional: true
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
 
   def shopping_list
     pantry.shopping_list

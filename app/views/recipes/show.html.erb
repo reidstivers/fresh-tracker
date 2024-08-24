@@ -1,6 +1,12 @@
+<h1><%= current_user.name %>'s Saved Recipe</h1>
+
 <div class="recipe-container">
   <div class="recipe-content">
-    <%= image_tag 'no_recipe_image.png', alt: 'logo', class: "recipe-img" %>
+    <% if @recipe.image_url? %>
+      <%= image_tag @recipe.image_url, class:"recipe-img", alt: '...' %>
+    <% else %>
+      <%= image_tag 'no_recipe_image.png', class:"recipe-img", alt: '...' %>
+    <% end %>
     <div class="title">
       <h1><%= @recipe.title %></h1>
     </div>
@@ -26,7 +32,7 @@
       <span><i class="material-symbols-outlined">add_circle</i></span>
     <% end %>
     </ul>
-    <h2>Instructions</h2>
+    <h2>Descriptions</h2>
       <%= simple_format(@recipe.description) %>
 
     <div class="recipe-footer">
