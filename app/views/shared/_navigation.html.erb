@@ -21,14 +21,14 @@
   <div class="navigation" id="naviation">
     <%# pantry start %>
     <div class="nav-icon">
-      <%= link_to ingredients_path, class: "nav-icon" do %>
+      <%= link_to ingredients_path, class: "nav-icon #{'active' if current_page?(ingredients_path)}" do %>
         <span class="material-icons nav-font">kitchen</span>
       <% end %>
     </div>
     <%# pantry end %>
     <%# shopping list start %>
     <div class="nav-icon">
-      <%= link_to shopping_lists_path, class: "nav-icon" do %>
+      <%= link_to shopping_lists_path, class: "nav-icon #{'active' if current_page?(shopping_lists_path)}" do %>
         <span class="material-icons nav-font">shopping_cart</span>
       <% end %>
     </div>
@@ -57,7 +57,7 @@
     <%# add btn end %>
     <%# recipe start %>
     <div class="nav-icon">
-      <%= link_to recipes_path, class: "nav-icon" do %>
+      <%= link_to recipes_path, class: "nav-icon #{'active' if current_page?(recipes_path)}" do %>
         <span class="material-icons nav-font">restaurant_menu</span>
       <% end %>
     </div>

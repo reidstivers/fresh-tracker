@@ -13,24 +13,31 @@ function setupSwipe() {
       if (card) {
           touchendX = e.changedTouches[0].screenX;
           if (touchstartX > touchendX + 50) {
-              handleClickEvent(card);
+              handleLeftSwipe(card);
+          }
+          else if (touchstartX < touchendX - 50) {
+              handleRightSwipe(card);
           }
       }
   }, false);
 
-  function handleClickEvent(card) {
+  function handleLeftSwipe(card) {
+      card.classList.add('swipe-left');
+      setTimeout(() => {
+          card.style.display = 'none';
+      }, 1000);
       const checkButton = card.querySelector('.fa-check-to-slot');
-      handleSwipeLeft(card);
       if (checkButton) {
           checkButton.click();
       }
   }
 
-  function handleSwipeLeft(card) {
-      card.classList.add('swipe-left');
-      setTimeout(() => {
-          card.style.display = 'none';
-      }, 1000);
+  function handleRightSwipe(card) {
+      card.classList.add('swipe-right');
+      const deleteButton = card.querySelector('.delete-button');
+      if (deleteButton) {
+          deleteButton.click();
+      }
   }
 }
 
