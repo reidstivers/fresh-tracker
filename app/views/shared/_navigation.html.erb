@@ -47,11 +47,11 @@
         <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
         <% if (@recipes) %>
-        <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
-        <div><%= link_to 'Add Recipe', new_recipe_path, class: "dropdown-item-navigation" %></div>
+        <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
+        <div><%= link_to 'Add Recipe Manually', new_recipe_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
         <% if (@result) %>
-        <div><%= link_to 'Search Recipe', search_recipes_path, class: "dropdown-item-navigation" %></div>
+        <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
       </div>
     <%# add btn end %>
