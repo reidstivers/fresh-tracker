@@ -1,12 +1,13 @@
 <h1>Search Results</h1>
-  <div class="col-sm-8 my-3 m-1">
+  <div class="search-bar-recipe">
+        <i class="search-icon fa-solid fa-magnifying-glass"></i>
     <%= form_with url: search_recipes_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
             placeholder: "Enter Ingredients (put a space between items)"
         %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <%= submit_tag "Search", name: "", class: "btn-recipe-search" %>
     <% end %>
   </div>
 

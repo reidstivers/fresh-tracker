@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipes, only: [:index]
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -52,6 +52,14 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    if @recipe.destroy
+      redirect_to recipes_path, notice: "Recipe removed"
+    else
+      redirect_to recipe_path(@recipe), notice: "Try again"
+    end
+  end
+
   private
 
   def set_recipes
@@ -63,7 +71,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description,
+    params.require(:recipe).permit(:title, :description, :image_url,
       recipe_ingredients_attributes: [:id, :name, :amount, :unit, :category_id, :_destroy])
   end
 

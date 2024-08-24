@@ -7,7 +7,7 @@ class Category < ApplicationRecord
   CATEGORY_MAPPING = {
     "Baking" => "Miscellaneous",
     "Health Foods" => "Miscellaneous",
-    "Spices and Seasonings" => "Condiments",
+    "Spices and Seasonings" => "Spices",
     "Pasta and Rice" => "Miscellaneous",
     "Bakery/Bread" => "Miscellaneous",
     "Refrigerated" => "Miscellaneous",
