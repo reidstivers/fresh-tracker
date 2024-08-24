@@ -15,6 +15,7 @@ Turbo.setConfirmMethod((message, element) => {
 
   return new Promise((resolve, reject) => {
     dialog.addEventListener("close", () => {
+      console.log(dialog.returnValue)
       resolve(dialog.returnValue === "confirm")
     }, { once: true })
   })

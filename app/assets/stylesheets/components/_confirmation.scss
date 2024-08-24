@@ -1,35 +1,19 @@
 .confirmation-window {
   border: 1px;
   border-radius: 16px;
-  background-color: $ft-green;
+  background-color: $ft-gray;
   box-shadow: 6px 1px 12px 2px rgba(0, 0, 0, 0.1);
-  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .confirmation-message {
-  color: white;
   font-weight: bold;
+  color: white;
 }
 
 .confirmation-buttons-container {
   display: flex;
   justify-content: center;
   gap: 8px;
-}
-
-.confirmation-buttons {
-  border-radius: 16px;
-  color: white;
-  box-shadow: 6px 1px 12px 2px rgba(0, 0, 0, 0.1);
-  background-color: $ft-pink;
-}
-
-.confirmation-cancel {
-
-}
-
-.confirmation-confirm {
-
 }
