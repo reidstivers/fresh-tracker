@@ -46,14 +46,14 @@
       <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }} do %>
         <div class="delete-icon fa-solid fa-trash-can" style="font-size: 1.5em;"></div>
       <% end %>
-      <%= link_to search_recipes_path(query: ingredient.name) do %>
+      <%= link_to search_recipes_path(query: ingredient.name), data: { turbo_method: :get, turbo_confirm: "Search for recipes using #{ingredient.name}?" } do %>
         <div class="expire-icon fa-solid fa-circle-exclamation"></div>
       <% end %>
     <% elsif expires.negative? %>
       <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }} do %>
         <div class="delete-icon fa-solid fa-trash-can" style="font-size: 1.5em;"></div>
       <% end %>
-      <%= link_to search_recipes_path(query: ingredient.name) do %>
+      <%= link_to search_recipes_path(query: ingredient.name), data: { turbo_method: :get, turbo_confirm: "Search for recipes using #{ingredient.name}?"} do %>
         <div class="expire-icon fa-solid fa-skull-crossbones"></div>
       <% end %>
     <% else %>
