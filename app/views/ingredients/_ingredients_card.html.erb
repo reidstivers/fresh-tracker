@@ -44,7 +44,7 @@
     <% expires = (ingredient.expiration_date - Date.today).to_i %>
     <% if expires >= 0 && expires <= 7 %>
       <div class="expire-icon fa-solid fa-circle-exclamation"></div>
-      <%= button_to ingredient_path(ingredient), {metshod: :delete, data: { confirm: 'Are you sure?' }} do %>
+      <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }} do %>
         <div class="delete-icon fa-solid fa-trash-can" style="font-size: 1.5em;"></div>
       <% end %>
     <% elsif expires.negative? %>
