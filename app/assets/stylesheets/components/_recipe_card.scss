@@ -74,15 +74,23 @@
 .recipe-ingredient-card{
   list-style: none;
   padding:5px 12px;
-  background-color: white;
+  background-color: #f4f4f4;
   border: none;
   margin: 8px;
   border-radius: 8px;
   // position: relative;
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.1);
+  // box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.1);
   // flex-basis: 45%;
   flex-grow: 0;
   text-align: left;
+}
+
+.recipe-ingredient-info{
+  padding:5px 12px;
+  background-color: #f4f4f4;
+  border: none;
+  margin: 8px;
+  border-radius: 8px;
 
 }
 
@@ -137,6 +145,11 @@
 }
 .button-edit-recipe > a{
   text-decoration: none;
+}
+
+.link-delete-recipe{
+  padding:8px;
+  font-size: 16px;
 }
 
 .btn_recipe_save {
