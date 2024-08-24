@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <title><%= meta_title %></title>
+    <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -37,6 +37,16 @@
       <div class="yield-content">
         <%= render "shared/flashes" %>
         <%= yield %>
+        <%# Below is the the basic custom code for the custom turbo_confirm method %>
+        <dialog id="turbo-confirm" class="confirmation-window">
+          <form method="dialog">
+            <p class="confirmation-message">Are you sure?</p>
+              <div class="confirmation-buttons-container">
+                <button class="confirmation-buttons cancel" value="cancel">Cancel</button>
+                <button class="confirmation-buttons confirm" value="confirm">Confirm</button>
+              </div>
+          </form>
+        </dialog>
       </div>
       <%= render "shared/navigation" %>
     <% else %>
