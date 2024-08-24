@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       get 'search', to: 'recipe_searches#search'
       get 'result', to: 'recipe_searches#result'
     end
-    resources :recipe_ingredients
+    resources :recipe_ingredients do
+      post 'to_ingredients', on: :collection
+    end
   end
 end

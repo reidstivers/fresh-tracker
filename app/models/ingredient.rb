@@ -12,6 +12,7 @@ class Ingredient < ApplicationRecord
 
   private
   # These methods add the image_url and are present in the model so they will apply to create, update, and creation via image
+
   def update_image_url
     return unless name.present?
 
@@ -28,5 +29,9 @@ class Ingredient < ApplicationRecord
     api_key = ENV['SPOONACULAR']
     uri = URI.parse("https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=#{api_key}&query=#{ingredient_name}&number=1")
     Net::HTTP.get_response(uri)
+  end
+
+  def in_pantry?
+    status == 0  # Assuming 0 is the status for pantry items
   end
 end
