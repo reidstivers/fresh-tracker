@@ -1,4 +1,5 @@
 <h1>Search Results</h1>
+<div class="search-container">
   <div class="search-bar-recipe">
         <i class="search-icon fa-solid fa-magnifying-glass"></i>
     <%= form_with url: search_recipes_path, method: :get, class: "d-flex" do %>
@@ -11,26 +12,27 @@
     <% end %>
   </div>
 
-<% if @results %>
-  <ul class="recipes-container">
-    <% @results.each do |value| %>
-      <% title = value["title"] %>
-      <% image = value["image"] %>
-      <% missedCount = value["missedIngredientCount"] %>
-      <% usedCount = value["usedIngredientCount"] %>
-      <% recipeid = value["id"] %>
+  <% if @results %>
+    <ul class="recipes-container">
+      <% @results.each do |value| %>
+        <% title = value["title"] %>
+        <% image = value["image"] %>
+        <% missedCount = value["missedIngredientCount"] %>
+        <% usedCount = value["usedIngredientCount"] %>
+        <% recipeid = value["id"] %>
 
-      <%= link_to result_recipes_path(recipe: recipeid), class: "recipe-card" do%>
-        <li>
-            <%= image_tag image, class:"recipe-card-img", alt: '...' %>
-          <div class="info">
-              <div class="title"><%= title %></div>
-              <div class="subtitle"><%= "#{missedCount}/#{missedCount+usedCount} ingredients missing" %></div>
-          </div>
-        </li>
+        <%= link_to result_recipes_path(recipe: recipeid), class: "recipe-card" do%>
+          <li>
+              <%= image_tag image, class:"recipe-card-img", alt: '...' %>
+            <div class="info">
+                <div class="title"><%= title %></div>
+                <div class="subtitle"><%= "#{missedCount}/#{missedCount+usedCount} ingredients missing" %></div>
+            </div>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
-<% else %>
-No recipe found!
-<% end %>
+    </ul>
+  <% else %>
+  No recipe found!
+  <% end %>
+</div>

@@ -28,9 +28,9 @@
           <%= f.fields_for 'recipe_ingredients_attributes[]', RecipeIngredient.new do |fields| %>
             <% extendedIngredients.each do |ingredient| %>
               <li class="recipe-ingredient-card">
-                <span style="font-weight:bold; margin-right: 8px;"><%= name = ingredient["name"] %></span>
-                <%= amount = ingredient["measures"]["metric"]["amount"] %>
-                <%= unit = ingredient["measures"]["metric"]["unitLong"] %>
+                <span style="font-weight:bold; margin-right: 8px;"><%= name = ingredient["name"].titleize %></span>
+                <%= amount = (ingredient["measures"]["metric"]["amount"] - ingredient["measures"]["metric"]["amount"].to_i) > 0 ? ingredient["measures"]["metric"]["amount"] : ingredient["measures"]["metric"]["amount"].to_i %>
+                <%= unit = ingredient["measures"]["metric"]["unitLong"].titleize %>
                 <% category_name = Category::CATEGORY_MAPPING[ingredient["aisle"]] %>
                 <% categoryid = Category.find_by(name:"#{category_name}").id %>
               </li>
@@ -42,10 +42,12 @@
           <% end %>
       </ul>
       <h2>Descriptions</h2>
+       <div class="recipe-ingredient-info">
         <%= simple_format(summary) %>
+        </div>
     </div>
     <div class="btn_recipe_save">
-      <%= f.submit "Save this recipe", class: "pink-button" %>
+      <%= f.submit "Save this recipe", class: "btn-new-search" %>
     </div>
 <% end %>
 
