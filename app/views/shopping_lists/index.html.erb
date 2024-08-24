@@ -17,8 +17,8 @@
                 <%= ingredient.unit %>
               </div>
           </div>
-          <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'add-button fa-solid fa-check-to-slot'} do %><% end %>
-          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button fa-solid fa-trash-can'} do %>
+          <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'add-button fa-solid fa-check-to-slot d-none'} do %><% end %>
+          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button fa-solid fa-trash-can d-none'} do %>
           <% end %>
         </div>
     <% end %>
