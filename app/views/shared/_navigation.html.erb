@@ -39,9 +39,6 @@
     </div>
       <%# add btn menu %>
       <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
-        <% if (@shopping_list) %>
-          <div class="button"><%= link_to 'Add Item to shopping list', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
-        <% end %>
         <% if (@ingredients) %>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
