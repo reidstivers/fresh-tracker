@@ -11,16 +11,12 @@
   <%# has the title amount counter and expiration date %>
   <div class="card-info">
     <div class="card-title"  data-field="name" data-action="click->edit#edit">
-      <span  data-edit-target="nameContent"><%= ingredient.name %> </span>
+      <span  data-edit-target="nameContent"><%= ingredient.name.downcase.titleize %> </span>
       <input type="text" data-edit-target="nameInput" value="<%= ingredient.name %>" class="edit-field d-none">
     </div>
     <div class="amount-and-unit">
     <%# conditional leans up display, returns whole numbers & decimals %>
-      <% if ingredient.amount % 1 == 0 %>
-        <% amount = ingredient.amount.to_i %>
-      <% else %>
-        <% amount = ingredient.amount %>
-      <% end %>
+      <% amount = (ingredient.amount % 1 == 0) ? ingredient.amount.to_i : ingredient.amount %>
       <div id="amount" data-action="click->edit#edit" data-field="amount">
         <span data-edit-target="amountContent"><%= amount %> </span>
         <input type="number" data-edit-target="amountInput" value="<%= amount %>" class="edit-field d-none">
