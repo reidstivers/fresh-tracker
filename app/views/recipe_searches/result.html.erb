@@ -42,15 +42,16 @@
           <% end %>
       </ul>
       <h2>Descriptions</h2>
-       <div class="recipe-ingredient-info">
+      <div class="recipe-ingredient-info">
         <%= simple_format(summary) %>
-        </div>
+      </div>
     </div>
     <div class="btn_recipe_save">
       <%= f.submit "Save this recipe", class: "btn-new-search" %>
     </div>
+  </div>
 <% end %>
 
 <div class="recipe-footer">
-<%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+  <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
 </div>

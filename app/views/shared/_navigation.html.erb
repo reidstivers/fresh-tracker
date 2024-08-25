@@ -2,18 +2,18 @@
 <div class="navigation-form" data-controller="toggler">
   <%# form start %>
   <div data-toggler-target="form" class="form-popup-wrapper d-none">
-  <button class="close-icon" data-action="toggler#toggle" data-target-name="form">
-    <i class="fa-regular fa-circle-xmark"></i>
-  </button>
+    <button class="close-icon" data-action="toggler#toggle" data-target-name="form">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </button>
     <% if (@ingredients) %>
-    <%= render partial: "ingredients/form"%>
+      <%= render partial: "ingredients/form"%>
     <% end %>
   </div>
   <%# form end %>
-    <div data-toggler-target="api_form" class="form-popup-wrapper d-none">
-  <button class="close-icon" data-action="toggler#toggle" data-target-name="api_form">
-    <i class="fa-regular fa-circle-xmark"></i>
-  </button>
+  <div data-toggler-target="api_form" class="form-popup-wrapper d-none">
+    <button class="close-icon" data-action="toggler#toggle" data-target-name="api_form">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </button>
     <% if (@ingredients) %>
     <%= render partial: "ingredients/api_form"%>
     <% end %>
@@ -40,18 +40,18 @@
       <%# add btn menu %>
       <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
         <% if (@shopping_list) %>
-        <div class="button"><%= link_to 'Add Item to shopping list', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
+          <div class="button"><%= link_to 'Add Item to shopping list', new_shopping_list_path, class: "dropdown-item-navigation" %></div>
         <% end %>
         <% if (@ingredients) %>
-        <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
-        <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
+          <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
+          <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
         <% end %>
         <% if (@recipes) %>
-        <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
-        <div><%= link_to 'Add Recipe Manually', new_recipe_path, class: "button dropdown-item-navigation" %></div>
+          <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
+          <div><%= link_to 'Add Recipe Manually', new_recipe_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
         <% if (@result) %>
-        <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
+          <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
       </div>
     <%# add btn end %>
