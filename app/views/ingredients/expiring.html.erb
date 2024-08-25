@@ -14,10 +14,17 @@
             <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
           </div>
         </div>
-          <% @expiring.each do |ingredient| %>
-            <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
-          <% end %>
+        <% @expiring.each do |ingredient| %>
+          <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
+        <% end %>
       </div>
+      <%# Set variable to string of expiring ingredients' names with spaces between %>
+      <% expiring_search_terms = @expiring.map { |ingredient| ingredient.name }.join(" ") %>
+      <%= link_to search_recipes_path(query: expiring_search_terms),
+                  data: { turbo_method: :get, turbo_confirm: "Search for recipes with your expiring ingredients?" },
+                  class:"recommendations" do %>
+        <button class="btn-new-search"> See Recommended Recipes </button>
+      <% end %>
     <% else %>
       <h3> No ingredients are expiring soon! </h3>
     <% end %>
