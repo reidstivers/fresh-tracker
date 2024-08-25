@@ -12,10 +12,11 @@ export default class extends Controller {
     //   console.error("Input target not found.");
     //   return;
     // }
-console.log(this.formTarget)
-const query = this.inputTarget.value
-const url = this.formTarget.action + "?query=" + query
-console.log(url)
+    console.log(this.formTarget)
+    const query = this.inputTarget.value
+    const url = this.formTarget.action + "?query=" + query
+    console.log(url)
+
     fetch(url, {
       method: "GET",
       headers: { "Accept": "text/plain" },

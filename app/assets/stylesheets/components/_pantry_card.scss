@@ -3,6 +3,7 @@
   top: 0;
   z-index: 1000;
   background-color: white;
+  margin-top: 16px;
 }
 
 .ingredient-card {
@@ -70,9 +71,31 @@
   padding: 0;
 }
 
+@keyframes jiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  75% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .expire-icon, .delete-icon {
   display: block;
   text-align: center;
+}
+
+.jiggle {
+  animation: jiggle 1s ease-in-out;
 }
 
 .expire-icon {

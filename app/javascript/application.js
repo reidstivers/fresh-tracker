@@ -3,3 +3,20 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+
+
+// Below method allows me to create custom Turbo methods. We can call this anywhere in the app
+// Just need to make sure that the user only needs to hit confirm or cancel
+Turbo.setConfirmMethod((message, element) => {
+  console.log(message, element)
+  let dialog = document.getElementById("turbo-confirm")
+  dialog.querySelector("p").textContent = message
+  dialog.showModal()
+
+  return new Promise((resolve, reject) => {
+    dialog.addEventListener("close", () => {
+      console.log(dialog.returnValue)
+      resolve(dialog.returnValue === "confirm")
+    }, { once: true })
+  })
+})
