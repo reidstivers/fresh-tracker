@@ -1,32 +1,36 @@
 <%= javascript_include_tag 'swipe' %>
+<h1 class="mt-3"> <%= "#{current_user.name}'s Shopping List" %></h1>
 
-<h1><%= current_user.name %>'s Shopping List</h1>
-
-<% if @ingredients.any? %>
-  <div>
-    <% @ingredients.each do |ingredient| %>
-        <div class="shopping-list-card">
-          <div class="info">
-              <div class="title"><%= ingredient.name %></div>
-              <div class="subtitle">
-                <% if ingredient.amount % 1 == 0 %>
-                  <%= ingredient.amount.to_i %>
-                <% else %>
-                  <%= ingredient.amount %>
-                <% end %>
-                <%= ingredient.unit %>
-              </div>
+<div class="notepad-container">
+  <% if @ingredients.any? %>
+    <div class="mt-3">
+      <% @ingredients.each do |ingredient| %>
+          <div class="shopping-list-card">
+            <div class="info">
+                <div class="title"><%= ingredient.name.capitalize %></div>
+                <div class="subtitle">
+                  <% if ingredient.amount % 1 == 0 %>
+                    <%= ingredient.amount.to_i %>
+                  <% else %>
+                    <%= ingredient.amount %>
+                  <% end %>
+                  <%= ingredient.unit %>
+                </div>
+            </div>
+            <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'add-button fa-solid fa-check-to-slot d-none'} do %><% end %>
+            <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button fa-solid fa-trash-can d-none'} do %>
+            <% end %>
           </div>
-          <%= button_to shopping_list_path(ingredient), {method: :put, params: { status: 0 }, class: 'add-button fa-solid fa-check-to-slot'} do %><% end %>
-          <%= button_to ingredient_path(ingredient), {method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button fa-solid fa-trash-can'} do %>
-          <% end %>
-        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No items in your shopping list.</p>
+  <% end %>
+
+
+  <div class="shopping-btn-container">
+    <%= link_to new_shopping_list_path, class: "pink-shopping-list-button" do %>
+          <span class="material-icons">add</span>
     <% end %>
   </div>
-<% else %>
-  <p>No items in your shopping list.</p>
-<% end %>
-
-<div class="shopping-btn-container">
-  <%= link_to 'Add Item', new_shopping_list_path, class: "pink-button" %>
 </div>
