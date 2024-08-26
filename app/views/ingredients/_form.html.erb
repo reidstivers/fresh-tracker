@@ -3,28 +3,30 @@
 
 <div class="styled-form">
   <%= simple_form_for form_ingredient, html: { id: 'ingredient-form', novalidate: false } do |f| %>
-    <div class="form-row">
+    <div class="form-row new-ingredient-form-row">
       <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" }, required: true %>
     </div>
-    <div class="form-row">
-      <%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" }, required: true %>
+    <div class="form-row new-ingredient-form-row">
+      <div class="qty-and-unit"><%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" }, required: true %>
       <%= f.input :unit, label: "Unit", wrapper_html: { class: "form-group" }, required: false %>
-    </div>
-    <div class="form-row">
+    </div></div>
+    <div class="form-row new-ingredient-form-row">
       <%= f.input :category_id, as: :select,
                   collection: Category.all.pluck(:name, :id),
                   prompt: "Select a category",
                   wrapper_html: { class: "form-group" },
                   required: true %>
     </div>
-    <div class="form-row">
+    <div class="form-row new-ingredient-form-row">
+      <div class="best-by-row">
       <%= f.input :expiration_date,
                   as: :string,
                   input_html: { data: { controller: "datepicker" } },
                   label: "Best by",
                   wrapper_html: { class: "form-group" },
                   required: true %>
-      <%= f.submit "Save", class: "pink-button" %>
+      </div>
+      <%= f.submit "Save", class: "pink-button new-form-save" %>
     </div>
   <% end %>
 </div>
