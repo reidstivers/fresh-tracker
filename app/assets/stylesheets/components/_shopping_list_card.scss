@@ -1,113 +1,252 @@
 .notepad-container {
-  margin-top: 24px;
-  height: 100vh;
-  background: url('notepad.jpeg') no-repeat center center fixed;
-  background-size: cover;
+  margin-top: 0;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  background-image:
+    linear-gradient(90deg, transparent 79px, #9BBAC5 79px, #9BBAC5 81px, transparent 81px),
+    linear-gradient(#d4d4d4 .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  background-position: 0 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+}
+
+.notepad-container::before {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: 79px;
+  bottom: 0;
+  width: 2px;
+  background-color: #ff8080;
+}
+
+.notepad-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #f0f0f0;
+  z-index: 1;
+}
+
+h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  margin-left: 100px;
+  position: relative;
+  z-index: 2; // Ensure the title is above the blank area
 }
 
 .shopping-list-card {
+  width: calc(100% - 100px);
   padding: 8px 12px;
-  background: #fdfafae7;
+  left: -35px;
+  background: transparent;
   border: none;
-  margin: 12px;
-  border-radius: 16px;
+  margin: 0 0 10px 100px;
   position: relative;
-  box-shadow: 6px 1px 12px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
-.swipe-left {
-  transform: translateX(-100%);
-  opacity: 0;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+.shopping-list-card::before {
+  content: none; // For larger screens, replaces the dot with a checkbox
 }
 
-.swipe-right {
-  transform: translateX(100%);
-  opacity: 0;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-}
-
-.shopping-list-card .circle {
-  width: 24px;
-  height: 24px;
-  border: 2px solid black;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-}
-
-.delete-button {
-  border: 0px;
-  background-color: white;
-  font-size: 32px;
-  color: grey;
-}
-
-.add-button {
-  border: 0px;
-  background-color: white;
-  font-size: 32px;
-  color: green;
-  margin-right: 10px;
+.shopping-list-checkbox {
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 
 .shopping-list-card .info {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  font-family: 'Caveat', cursive;
 }
 
 .shopping-list-card .info .title {
-  font-size: 24px;
-  align-items: center;
+  font-size: 1.2rem;
+  margin-right: 10px;
 }
 
 .shopping-list-card .info .subtitle {
-  font-size: 16px;
-  color: gray;
+  font-size: 1rem;
+  color: #666;
+}
+
+.swipe-left, .swipe-right {
+  opacity: 0;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.swipe-left {
+  transform: translateX(-100%);
+}
+
+.swipe-right {
+  transform: translateX(100%);
+}
+
+@keyframes crossOut {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.cross-out::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #6C8E67;
+  animation: crossOut 0.5s ease-out forwards;
+}
+
+.cross-out.delete::after {
+  background-color: #FA9184;
 }
 
 .shopping-btn-container {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .pink-shopping-list-button {
-  margin-top: 8px;
   background-color: #FF6F61;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  position: relative;
-  top: -15px;
-  padding-top: 5px;
-  transition: background-color 0.3s, transform 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+  transition: background-color 0.3s, transform 0.3s;
 
   .material-icons {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 40px;
-    font-weight: bold;
-    color: black;
+    font-size: 30px;
+    color: white;
+  }
+
+  &:hover {
+    background-color: #FF8A80;
+    transform: scale(1.1);
   }
 }
 
-.pink-shopping-list-button:hover {
-  background-color: #FF8A80;
+// New styles for swipe indicators
+.position-relative {
+  position: relative;
+}
+
+.swipe-indicator {
+  display: none;
+  position: fixed;
+  top: 50%;
+  height: 70%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 10px 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  font-size: 22px;
+  z-index: 10;
+
+}
+
+.swipe-indicator.left {
+  left: 0;
+  transform: translateY(-50%) rotate(180deg);
+  border-radius: 0 5px 5px 0;
+  background-color: #6C8E67;
+  color: white;
+}
+
+.swipe-indicator.right {
+  right: 0;
+  border-radius: 5px 0 0 5px;
+  background-color: #FA9184;
+  color: white;
+}
+
+.delete-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FA9184;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #FF6F61;
+  }
+}
+
+@media (max-width: 767px) {
+  .shopping-list-checkbox,
+  .delete-button {
+    display: none; // hides the buttons on mobile to be replaced with swipe indicators
+  }
+
+  .swipe-indicator {
+    display: block; //blocks the swipe indicator for large screens
+  }
+
+  .shopping-list-card::before {
+    content: '•';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3.6rem;
+    color: #333;
+  }
+
+  .notepad-container {
+    background-position: 0 80px; // Adjust for smaller screens
+  }
+
+  .notepad-container::before {
+    top: 80px; // Adjust for smaller screens
+    left: 20px; // Align with the adjusted margin
+  }
+
+  .notepad-container::after {
+    height: 80px; // Adjust for smaller screens
+  }
+
+  h1 {
+    margin-left: 40px; // Adjust for smaller screens
+  }
 }
