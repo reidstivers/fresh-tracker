@@ -85,18 +85,17 @@
 
 // Dropdown menu
 
-.main-dropdown-container {
+.dropdown-container, .dropdown-container-home {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.main-dropdown-container .dropdown-menu {
+.dropdown-container .dropdown-menu {
   position: absolute !important;
   top: -75% !important;
   left: -75% !important;
-  animation: 3s slideup ease;
 }
 
 .dropdown-item-navigation {
@@ -105,6 +104,7 @@
   clear: both;
   font-weight: 400;
   color: $ft-black;
+  text-align: center;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.3s; // Smooth background change on hover
