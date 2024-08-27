@@ -94,9 +94,9 @@
 
 .main-dropdown-container .dropdown-menu {
   position: absolute !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  top: -125px !important;
+  top: -75% !important;
+  left: -75% !important;
+  animation: 3s slideup ease;
 }
 
 .dropdown-item-navigation {
