@@ -35,7 +35,7 @@
   z-index: 1;
 }
 
-h1 {
+.h1-shopping-cart {
   font-family: 'Caveat', cursive;
   font-size: 2.5rem;
   color: #333;
@@ -85,12 +85,12 @@ h1 {
 }
 
 .shopping-list-card .info .title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-right: 10px;
 }
 
 .shopping-list-card .info .subtitle {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
@@ -246,7 +246,7 @@ h1 {
     height: 80px; // Adjust for smaller screens
   }
 
-  h1 {
+  .notepad-container >  h1 {
     margin-left: 40px; // Adjust for smaller screens
   }
 }
