@@ -61,6 +61,7 @@
 // "+" button styling
 .nav-icon-add {
   background-color: $ft-light-green;
+  text-align: center;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -83,8 +84,19 @@
 }
 
 // Dropdown menu
-.dropdown-centered {
-  text-align: center;
+
+.main-dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.main-dropdown-container .dropdown-menu {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: -125px !important;
 }
 
 .dropdown-item-navigation {

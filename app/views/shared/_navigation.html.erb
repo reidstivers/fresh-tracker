@@ -34,11 +34,12 @@
     </div>
     <%# shopping list end %>
     <%# add btn start %>
-    <div class="nav-icon-add dropdown-centered" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="material-icons nav-font-add">add</span>
-    </div>
+    <div class="main-dropdown-container">
+      <div class="nav-icon-add" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="material-icons nav-font-add">add</span>
+      </div>
       <%# add btn menu %>
-      <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
         <% if (@ingredients) %>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
@@ -51,6 +52,7 @@
           <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
       </div>
+    </div>
     <%# add btn end %>
     <%# recipe start %>
     <div class="nav-icon">
