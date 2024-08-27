@@ -1,25 +1,26 @@
 <% recipe = local_assigns[:recipe] || @recipe %>
 <%# recipe_ingredients = local_assigns[:recipe_ingredients] || @recipe_ingredients %>
 
+<body class="green-background">
+  <div class="styled-form">
+    <%= simple_form_for recipe, url: recipe_path(params[:id]) do |f| %>
+      <div class="form-row">
+        <%= f.input :title, label: "Title", wrapper_html: { class: "form-group sign-up-input" } %>
+      </div>
+      <div class="form-row">
+        <%= f.input :description, label: "Instructions", wrapper_html: { class: "form-group sign-up-input" } %>
+      </div>
+      <div class="form-row" class="d-none">
+        <%#= f.input :favorited, label: "Favorite", wrapper_html: { class: "form-group" } %>
+      </div>
+      <%= f.submit "Save", class: "form-button recipe-save" %>
+    <% end %>
+  </div>
 
-<div class="styled-form">
-  <%= simple_form_for recipe, url: recipe_path(params[:id]) do |f| %>
-    <div class="form-row">
-      <%= f.input :title, label: "Title", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row">
-      <%= f.input :description, label: "Instructions", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row" class="d-none">
-      <%#= f.input :favorited, label: "Favorite", wrapper_html: { class: "form-group" } %>
-    </div>
-    <%= f.submit "Save", class: "form-button" %>
-  <% end %>
-</div>
-
-<div class="link-back">
-  <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
-</div>
+  <div class="link-back">
+    <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+  </div>
+</body>
 
 <%# recipe_ingredients.each do |recipe_ingredient| %>
   <%#= render partial: "recipe_ingredients/edit", locals: { recipe_ingredient: recipe_ingredient } %>

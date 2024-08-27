@@ -26,13 +26,10 @@
   margin-right: 8px;
 }
 
-// .form-button {
-//   color: white;
-//   background-color: $ft-pink;
-//   border-radius: 8px;
-//   border: none;
-//   font-size: 24px;
-// }
+.recipe-save {
+  background: #6C8E67 !important;
+  color: white;
+}
 
 // Softens edges of input boxes.
 .styled-form input,
@@ -95,20 +92,11 @@
 }
 
 .small-button {
-  // border: 2px black;
-  // background-color: $ft-dark-green;
-  // box-shadow: 1px 2px 1px black;
-  // width: 40%;
-  // border-radius: 16px;
-  // text-align: center;
   margin-bottom: 2px;
   margin-top: 8px;
-  // opacity: 100%;
-  // padding: 10px;
 }
 
 .small-button a {
-  // color: rgb(255, 255, 255);
   text-align: center;
   font-size: 20px;
   font-weight: 400;
