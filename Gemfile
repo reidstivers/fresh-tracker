@@ -79,3 +79,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "fuzzy_match", "~> 2.1"
+
+gem "levenshtein", "~> 0.2.2"

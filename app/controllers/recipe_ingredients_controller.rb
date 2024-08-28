@@ -1,3 +1,6 @@
+require 'fuzzy_match'
+require 'levenshtein'
+
 class RecipeIngredientsController < ApplicationController
   before_action :set_recipe, only: [:index, :show, :new, :create, :edit, :update, :to_ingredients]
   before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
@@ -50,6 +53,11 @@ class RecipeIngredientsController < ApplicationController
       current_user.pantry.ingredients.where(status: [0, 1], name: attr[:name]).exists?
     end
 
+    missing_items = add_missing_items(new_ingredients, current_user.pantry.ingredients.pluck(:name))
+    new_ingredients = new_ingredients.select { |ingredient| missing_items.include?(ingredient[:name]) }
+
+    Rails.logger.info "new_ingredients: #{new_ingredients}"
+
     if new_ingredients.empty?
       redirect_to recipe_path(@recipe), notice: "Everything is already in your shopping list or pantry!"
     else
@@ -88,5 +96,42 @@ class RecipeIngredientsController < ApplicationController
 
   def recipe_ingredient_params
     params.require(:recipe_ingredient).permit(:name, :amount, :unit, :category_id)
+  end
+
+  def add_missing_items(recipe_items, shopping_list)
+    fz = FuzzyMatch.new(shopping_list, read: :downcase)
+
+    missing_items = []
+
+    recipe_items.each do |item|
+      match = fz.find(item[:name].downcase) do |rule|
+        rule.threshold = 0.9
+        rule.must_match_at_least_one_word = true
+        rule.must_match_words = 1
+      end
+
+      if match.nil? || !similar_enough?(item[:name], match)
+        missing_items << item[:name]
+      end
+    end
+
+    missing_items
+  end
+
+  def similar_enough?(item1, item2)
+    # Remove common plural endings
+    singular1 = item1.downcase.gsub(/s$|es$|ies$/, '')
+    singular2 = item2.downcase.gsub(/s$|es$|ies$/, '')
+
+    # Check if the singular forms are the same
+    return true if singular1 == singular2
+
+    # Calculate Levenshtein distance
+    distance = Levenshtein.distance(singular1, singular2)
+    max_length = [singular1.length, singular2.length].max
+
+    # Allow small differences for longer words
+    return distance <= 1 if max_length > 5
+    return distance == 0
   end
 end
