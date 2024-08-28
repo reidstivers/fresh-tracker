@@ -4,7 +4,10 @@ class RecipesController < ApplicationController
 
   def index
     if params[:query].present?
-      @recipes = @recipes.where("title ILIKE ?", "%#{params[:query]}%")
+      query_term = "%#{params[:query]}%"
+      @recipes = Recipe.joins(:recipe_ingredients)
+                       .where("recipes.title ILIKE ? OR recipe_ingredients.name ILIKE ?", query_term, query_term)
+                       .distinct
     else
       @recipes = current_user.recipes
     end
