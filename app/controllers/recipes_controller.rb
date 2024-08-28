@@ -3,6 +3,17 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
+    if params[:query].present?
+      @recipes = @recipes.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @recipes = current_user.recipes
+    end
+    respond_to do |format|
+      format.text do
+        render partial: 'recipes/recipe_search_results', locals: { recipes: @recipes }, formats: [:html]
+      end
+      format.html
+    end
   end
 
   def show
