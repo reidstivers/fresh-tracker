@@ -65,11 +65,14 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    status = @ingredient.status
     @ingredient.destroy
-    if @ingredient.status == 0
+    if status == "in_pantry"
       redirect_to ingredients_path, notice: "Ingredient removed"
-    elsif @ingredient.status == 1
+    elsif status == "in_cart"
       redirect_to shopping_list_path, notice: "Ingredient removed"
+    elsif status == "pending"
+      redirect_to results_ingredients_path, notice: "Ingredient removed"
     end
   end
 
