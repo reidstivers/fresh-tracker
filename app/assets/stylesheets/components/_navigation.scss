@@ -95,8 +95,24 @@
 
 .dropdown-container .dropdown-menu {
   position: absolute !important;
-  top: -75% !important;
+  top: -65% !important;
   left: -75% !important;
+}
+
+@media (min-width: 801px) {
+  .dropdown-container-home .dropdown-menu {
+    position: absolute !important;
+    left: -150% !important;
+    top: -90% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .dropdown-container-home .dropdown-menu {
+      position: absolute !important;
+      right: -50% !important;
+      top: -90% !important;
+  }
 }
 
 .dropdown-item-navigation {
