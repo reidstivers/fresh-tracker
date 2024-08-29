@@ -12,7 +12,7 @@ class ImagesController < ApplicationController
 
     if @result && @result['objects']
       create_ingredients_from_api(@result['objects'])
-      redirect_to ingredients_path, notice: "Ingredients added from image"
+      redirect_to results_ingredients_path, notice: "Ingredients added from image"
     else
       flash[:error] = "API call failed or no objects detected."
       redirect_to new_ingredient_path
@@ -55,7 +55,7 @@ class ImagesController < ApplicationController
         category: Category.find_by(name: object['category']),
         pantry: pantry,
         in_pantry: true,
-        status: 0
+        status: 2
       )
     end
   end

@@ -3,6 +3,7 @@ class IngredientsController < ApplicationController
   before_action :set_categories, only: [:new, :edit, :update, :index, :create]
   before_action :set_ingredients, only: [:index, :create, :update]
   before_action :set_expiring, only: [:expiring, :index]
+  before_action :set_image_results, only: [:results, :destroy_results, :confirm_results]
 
   def new
     @ingredient = Ingredient.new
@@ -39,6 +40,10 @@ class IngredientsController < ApplicationController
   def expiring
   end
 
+  # Method to display api results before placing in either pantry or shopping list
+  def results
+  end
+
   def show
   end
 
@@ -63,12 +68,28 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
     if @ingredient.status == 0
       redirect_to ingredients_path, notice: "Ingredient removed"
-    else
+    elsif @ingredient.status == 1
       redirect_to shopping_list_path, notice: "Ingredient removed"
     end
   end
 
+  def destroy_results
+    @results.each { |result| result.destroy }
+    redirect_to ingredients_path, notice: "Results removed"
+  end
+
+  def confirm_results
+    @results.each do |result|
+      result.update(status: 0)
+    end
+    redirect_to ingredients_path, notice: "Ingredients added to pantry"
+  end
+
   private
+
+  def set_image_results
+    @results = current_user.pantry.ingredients.pending
+  end
 
   def set_expiring
     filter_expiring = current_user.pantry.ingredients.select do |ingredient|

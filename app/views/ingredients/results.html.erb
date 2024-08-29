@@ -1,0 +1,12 @@
+<div class="results-page">
+  <h1> Ingredients Recognized! </h1>
+  <p style="text-align: center;"> Click on details to edit </p>
+  <% @results.each do |ingredient| %>
+    <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
+  <% end %>
+  <h3 style="text-align: center"> Add these ingredients to your pantry? </h3>
+  <div class="confirmation-buttons-container">
+    <%= button_to "Cancel", destroy_results_ingredients_path, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "confirmation-button cancel" %>
+    <%= button_to "Confirm", confirm_results_ingredients_path, method: :post, data: { turbo_confirm: "Are you sure?" }, class: "confirmation-button confirm" %>
+  </div>
+</div>
