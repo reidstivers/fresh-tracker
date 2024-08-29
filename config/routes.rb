@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :ingredients do
     collection do
       get 'expiring', to: 'ingredients#expiring'
+      get 'results', to: 'ingredients#results'
+      delete 'destroy_results', to: 'ingredients#destroy_results'
+      post 'confirm_results', to: 'ingredients#confirm_results'
     end
   end
 
