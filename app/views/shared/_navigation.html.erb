@@ -34,11 +34,12 @@
     </div>
     <%# shopping list end %>
     <%# add btn start %>
-    <div class="nav-icon-add dropdown-centered" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="material-icons nav-font-add">add</span>
-    </div>
+    <div class="dropdown-container">
+      <div class="nav-icon-add" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="material-icons nav-font-add">add</span>
+      </div>
       <%# add btn menu %>
-      <div class="dropdown-menu dropdown-menu-end dropdown-centered" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0; border: none; background: none;">
         <% if (@ingredients) %>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="api_form">Stock using image</button>
           <button class="button dropdown-item-navigation" data-action="toggler#toggle" data-target-name="form">Stock manually</button>
@@ -51,6 +52,7 @@
           <div><%= link_to 'Search Recipe', search_recipes_path, class: "button dropdown-item-navigation" %></div>
         <% end %>
       </div>
+    </div>
     <%# add btn end %>
     <%# recipe start %>
     <div class="nav-icon">
@@ -60,16 +62,18 @@
     </div>
     <%# recipe end %>
     <%# menu start %>
-    <div class="nav-icon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= link_to "#", class: "nav-icon" do %>
-        <span class="material-icons nav-font">list</span>
-      <% end %>
-    </div>
-    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="border: none; background: none; text-align: center">
-      <%#= link_to "Action", "#", class: "dropdown-item" %>
-      <%#= link_to "Another action", "#", class: "dropdown-item" %>
-      <div><%= link_to 'Back to Home', root_path, class: "button dropdown-item-navigation" %></div>
-      <div><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "button dropdown-item-navigation" %></div>
+    <div class="dropdown-container-home">
+      <div class="nav-icon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= link_to "#", class: "nav-icon" do %>
+          <span class="material-icons nav-font">list</span>
+        <% end %>
+      </div>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border: none; background: none; text-align: center">
+        <%#= link_to "Action", "#", class: "dropdown-item" %>
+        <%#= link_to "Another action", "#", class: "dropdown-item" %>
+        <div><%= link_to 'Back to Home', root_path, class: "button dropdown-item-navigation" %></div>
+        <div><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "button dropdown-item-navigation" %></div>
+      </div>
     </div>
     <%# menu end %>
   </div>

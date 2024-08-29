@@ -62,6 +62,7 @@
 // "+" button styling
 .nav-icon-add {
   background-color: $ft-light-green;
+  text-align: center;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -84,8 +85,34 @@
 }
 
 // Dropdown menu
-.dropdown-centered {
-  text-align: center;
+
+.dropdown-container, .dropdown-container-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.dropdown-container .dropdown-menu {
+  position: absolute !important;
+  top: -65% !important;
+  left: -75% !important;
+}
+
+@media (min-width: 601px) {
+  .dropdown-container-home .dropdown-menu {
+    position: absolute !important;
+    left: -150% !important;
+    top: -90% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .dropdown-container-home .dropdown-menu {
+      position: absolute !important;
+      right: -50% !important;
+      top: -90% !important;
+  }
 }
 
 .dropdown-item-navigation {
@@ -94,6 +121,7 @@
   clear: both;
   font-weight: 400;
   color: $ft-black;
+  text-align: center;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.3s; // Smooth background change on hover
