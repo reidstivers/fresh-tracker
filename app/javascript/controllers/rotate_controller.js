@@ -11,7 +11,7 @@ export default class extends Controller {
     this.listTargets.forEach((list) => {
       list.style.maxHeight = (list.scrollHeight) + "px"; // Set to full height
       list.style.overflow = "hidden";
-      list.style.transition = "max-height .5s linear";
+      list.style.transition = "max-height .5s ease";
     });
 
     // Optionally, set the arrow rotation to 90 degrees if you want it to start rotated
