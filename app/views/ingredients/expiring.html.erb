@@ -1,31 +1,34 @@
 <div id="expiring">
-    <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
-    <% if @expiring.any? %>
-      <div class="expiring-section">
-        <div class="category-title expiring-title">
-          <div class="recycle-container">
-            <div class="pie-chart"></div>
-            <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
-          </div>
-          <h3> Expiring soon! </h3>
-        <%# Rotating recycle icon %>
-          <div class="recycle-container">
-            <div class="pie-chart"></div>
-            <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
-          </div>
+  <%# Conditional Guard -- Hides expiring section if expiring array is empty %>
+  <% if @expiring.any? %>
+    <div class="expiring-section">
+      <div class="category-title expiring-title">
+        <div class="recycle-container">
+          <div class="pie-chart"></div>
+          <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
         </div>
-        <% @expiring.each do |ingredient| %>
-          <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
-        <% end %>
+        <h3> Expiring soon! </h3>
+      <%# Rotating recycle icon %>
+        <div class="recycle-container">
+          <div class="pie-chart"></div>
+          <div class="recycle-overlay"><i class="fa-solid fa-recycle"></i></div>
+        </div>
       </div>
-      <%# Set variable to string of expiring ingredients' names with spaces between %>
-      <% expiring_search_terms = @expiring.map { |ingredient| ingredient.name }.join(" ") %>
-      <%= link_to search_recipes_path(query: expiring_search_terms),
-                  data: { turbo_method: :get, turbo_confirm: "Search for recipes with your expiring ingredients?" },
-                  class:"recommendations" do %>
-        <button class="btn-new-search"> See Recommended Recipes </button>
+      <% @expiring.each do |ingredient| %>
+        <%= render partial: "ingredients_card", locals: { ingredient: ingredient } %>
       <% end %>
-    <% else %>
-      <h3> No ingredients are expiring soon! </h3>
+    </div>
+    <%# Set variable to string of expiring ingredients' names with spaces between %>
+    <% expiring_search_terms = @expiring.map { |ingredient| ingredient.name }.join(" ") %>
+    <%= link_to search_recipes_path(query: expiring_search_terms),
+                data: { turbo_method: :get, turbo_confirm: "Search for recipes with your expiring ingredients?" },
+                class:"recommendations" do %>
+      <button class="btn-new-search"> See Recommended Recipes </button>
     <% end %>
-  </div>
+  <% else %>
+    <h3> No ingredients are expiring soon! </h3>
+  <% end %>
+</div>
+<div class="link-back">
+    <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+</div>

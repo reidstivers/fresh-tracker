@@ -41,9 +41,11 @@
     </div>
 
     <div class="recipe-footer">
-            <span class="button-edit-recipe"><%= button_to 'Edit this recipe', edit_recipe_path(@recipe), method: :get, class: "btn-new-search" %></span>
-            <span class="link-delete-recipe"><%= link_to 'Delete this recipe', recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></span>
+      <span class="button-edit-recipe"><%= button_to 'Edit this recipe', edit_recipe_path(@recipe), method: :get, class: "btn-new-search" %></span>
+      <span class="link-delete-recipe"><%= link_to 'Delete this recipe', recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></span>
+      <div class="link-back">
+        <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
+      </div>
     </div>
-
   </div>
 </div>
