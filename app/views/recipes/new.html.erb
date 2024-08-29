@@ -1,6 +1,6 @@
 <% recipe = local_assigns[:recipe] || @recipe %>
 <%# recipe_ingredients = local_assigns[:recipe_ingredients] || @recipe_ingredients %>
-<body class="green-background">
+<body class="green-background form-center">
   <div class="styled-form">
       <%= simple_form_for recipe, url: recipes_path do |f| %>
       <div class="form-row">
@@ -13,7 +13,6 @@
       <%= f.submit "Save", class: "form-button recipe-save" %>
     <% end %>
   </div>
-
   <div class="link-back">
     <%= link_to '<< Back', 'javascript:history.back()', class: "link-back" %>
   </div>

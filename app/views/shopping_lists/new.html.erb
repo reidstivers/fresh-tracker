@@ -1,20 +1,22 @@
 <% ingredient = local_assigns[:ingredient] || @ingredient %>
 
-<div class="styled-form">
-  <%= simple_form_for ingredient, url: shopping_lists_path do |f| %>
-    <div class="form-row new-ingredient-form-row">
-      <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row new-ingredient-form-row">
-      <%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" } %>
-      <%= f.input :unit, label: "Unit", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row new-ingredient-form-row">
-      <%= f.input :category_id, as: :select,
-                  collection: Category.all.pluck(:name, :id),
-                  prompt: "Select a category",
-                  wrapper_html: { class: "form-group" } %>
-    </div>
-    <%= f.submit "Save", class: "form-button new-form-save" %>
-  <% end %>
+<div style="background-color: #A1CD9A; padding: 20px; min-height: 100vh;">
+  <div class="styled-form">
+    <%= simple_form_for ingredient, url: shopping_lists_path do |f| %>
+      <div class="form-row new-ingredient-form-row">
+        <%= f.input :name, label: "Name", wrapper_html: { class: "form-group" } %>
+      </div>
+      <div class="form-row new-ingredient-form-row">
+        <%= f.input :amount, label: "Qty", wrapper_html: { class: "form-group" } %>
+        <%= f.input :unit, label: "Unit", wrapper_html: { class: "form-group" } %>
+      </div>
+      <div class="form-row new-ingredient-form-row">
+        <%= f.input :category_id, as: :select,
+                    collection: Category.all.pluck(:name, :id),
+                    prompt: "Select a category",
+                    wrapper_html: { class: "form-group" } %>
+      </div>
+      <%= f.submit "Save", class: "form-button new-form-save" %>
+    <% end %>
+  </div>
 </div>

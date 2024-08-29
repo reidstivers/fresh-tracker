@@ -1,7 +1,7 @@
 <% recipe = local_assigns[:recipe] || @recipe %>
 <%# recipe_ingredients = local_assigns[:recipe_ingredients] || @recipe_ingredients %>
 
-<body class="green-background">
+<body class="green-background form-center">
   <div class="styled-form">
     <%= simple_form_for recipe, url: recipe_path(params[:id]) do |f| %>
       <div class="form-row">
