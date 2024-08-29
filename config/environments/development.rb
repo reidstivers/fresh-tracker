@@ -1,14 +1,13 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.hosts << "9a68-36-52-189-171.ngrok-free.app"
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.hosts << "9a68-36-52-189-171.ngrok-free.app"
+  config.hosts << "d496-223-135-200-101.ngrok-free.app"
 
   config.enable_reloading = true
 
