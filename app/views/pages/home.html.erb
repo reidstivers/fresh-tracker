@@ -50,7 +50,7 @@
           <div class="phone-frame">
             <div class="phone-notch"></div>
 
-            <%= video_tag 'demo.mp4', controls: false, autoplay: false, muted: true, alt: 'App Demo', class: 'phone-screen', id: 'demo-video' %>
+            <%= video_tag 'demo.mp4', controls: false, autoplay: true, muted: true, alt: 'App Demo', class: 'phone-screen', id: 'demo-video', data: {controller: "video"}, playsinline: true %>
           </div>
           <div class="phone-feature right-feature">
             <span class="arrow">←</span>
@@ -60,19 +60,4 @@
       </div>
     </div>
   </body>
-       <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('demo-video');
-
-        // Ensure the video is loaded before playing
-        video.addEventListener('canplay', function() {
-          video.play();
-        });
-
-        // Fallback in case 'canplay' event doesn't fire
-        if (video.readyState >= 3) {
-          video.play();
-        }
-      });
-      </script>
 </div>
