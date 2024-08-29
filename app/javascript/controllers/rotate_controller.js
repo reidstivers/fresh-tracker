@@ -9,9 +9,9 @@ export default class extends Controller {
 
     // Sets initial state of list to open
     this.listTargets.forEach((list) => {
-      list.style.maxHeight = (list.scrollHeight + 512) + "px"; // Set to full height
+      list.style.maxHeight = (list.scrollHeight) + "px"; // Set to full height
       list.style.overflow = "hidden";
-      list.style.transition = "max-height 0.5s ease";
+      list.style.transition = "max-height .5s linear";
     });
 
     // Optionally, set the arrow rotation to 90 degrees if you want it to start rotated
@@ -47,7 +47,7 @@ export default class extends Controller {
     if (list.style.maxHeight && list.style.maxHeight !== "0px") {
       list.style.maxHeight = "0px";
     } else {
-      list.style.maxHeight = (list.scrollHeight + 512) + "px";
+      list.style.maxHeight = (list.scrollHeight) + "px";
       // list.style.maxHeight = list.scrollHeight + "px"
     }
   }
