@@ -3,7 +3,7 @@
   <%= form_with url: images_recognize_path, method: :post, local: true, multipart: true, class: "form" do |form| %>
     <div class="form-group">
       <%= form.label :image, "Choose Image", class: "form-label" %>
-      <%= form.file_field :image, class: "form-control" %>
+      <%= form.file_field :image, class: "form-control", required: true %>
     </div>
     <%= form.submit 'Recognize Image', class: "btn big-button recognize-image" %>
   <% end %>
