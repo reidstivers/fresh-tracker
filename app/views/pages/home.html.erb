@@ -59,11 +59,20 @@
         </div>
       </div>
     </div>
-     <script>
+  </body>
+       <script>
         document.addEventListener('DOMContentLoaded', function() {
-          const video = document.getElementById('demo-video');
+        const video = document.getElementById('demo-video');
+
+        // Ensure the video is loaded before playing
+        video.addEventListener('canplay', function() {
           video.play();
         });
-  </script>
-  </body>
+
+        // Fallback in case 'canplay' event doesn't fire
+        if (video.readyState >= 3) {
+          video.play();
+        }
+      });
+      </script>
 </div>
