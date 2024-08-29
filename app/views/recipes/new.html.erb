@@ -1,17 +1,19 @@
 <% recipe = local_assigns[:recipe] || @recipe %>
 <%# recipe_ingredients = local_assigns[:recipe_ingredients] || @recipe_ingredients %>
 
-<div class="styled-form">
-    <%= simple_form_for recipe, url: recipes_path do |f| %>
-    <div class="form-row">
-      <%= f.input :title, label: "Title", wrapper_html: { class: "form-group" } %>
-    </div>
-    <div class="form-row">
-      <%= f.input :description, label: "Instructions", wrapper_html: { class: "form-group" } %>
-    </div>
-    <%= f.hidden_field :image_url, value: "" %>
-    <%= f.submit "Save", class: "form-button" %>
-  <% end %>
+<div style="background-color: #A1CD9A; padding: 20px; min-height: 100vh;">
+  <div class="styled-form">
+      <%= simple_form_for recipe, url: recipes_path do |f| %>
+      <div class="form-row">
+        <%= f.input :title, label: "Title", wrapper_html: { class: "form-group" } %>
+      </div>
+      <div class="form-row">
+        <%= f.input :description, label: "Instructions", wrapper_html: { class: "form-group" } %>
+      </div>
+      <%= f.hidden_field :image_url, value: "" %>
+      <%= f.submit "Save", class: "new-form-save" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="link-back">

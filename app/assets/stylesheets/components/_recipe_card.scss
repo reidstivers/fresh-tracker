@@ -17,10 +17,12 @@
   flex-wrap : wrap;
   text-align: left;
 }
+
 .recipe-container{
   margin: 0px 10px;
   padding: 10px;
 }
+
 .recipe-card{
   list-style: none;
   width: 45%;
@@ -96,6 +98,7 @@
 
 .recipe-btn-container{
   text-align: center;
+  margin-top: 20px;
 }
 
 .recipe-card .info{
@@ -171,4 +174,14 @@
   flex-direction:row;
   align-items: flex-end;
   justify-content: space-between;
+}
+
+.recipes-home-container {
+  margin: 20px 0px;
+  padding: 10px;
+  display: block;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap : wrap;
+  text-align: left;
 }
