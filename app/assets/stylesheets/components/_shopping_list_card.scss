@@ -250,3 +250,9 @@
     margin-left: 40px; // Adjust for smaller screens
   }
 }
+
+.h1-recipe { // for saved recipe page where the margins screw with the centering
+  font-size: 26px;
+  text-align: center;
+  margin-left: 0px !important;
+}

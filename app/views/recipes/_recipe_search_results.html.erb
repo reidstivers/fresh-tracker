@@ -1,0 +1,23 @@
+<% if recipes.any? %>
+  <ul class="recipes-container">
+        <% recipes.each do |recipe| %>
+          <%= link_to recipe_path(recipe),  class: "recipe-card" do %>
+            <li>
+              <% if recipe.image_url? %>
+                <%= image_tag recipe.image_url, class:"recipe-card-img", alt: '...' %>
+              <% else %>
+                <%= image_tag 'no_recipe_image.png', class:"recipe-card-img", alt: '...' %>
+              <% end %>
+              <div class="info">
+                  <div class="title"><%= recipe.title %></div>
+                  <!--<div class="subtitle"><%= recipe.description %></div>-->
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+
+
+<% else %>
+  <p>No recipes found matching your search criteria.</p>
+<% end %>
