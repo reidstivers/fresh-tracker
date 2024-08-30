@@ -8,7 +8,6 @@ export default class extends Controller {
 
     // Ensure the video is loaded before playing
     video.addEventListener('canplay', () => {
-      console.log("canplay event fired");
       video.play();
     });
   }
