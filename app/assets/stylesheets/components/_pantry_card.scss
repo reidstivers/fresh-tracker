@@ -1,10 +1,14 @@
 .pantry-navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
   background-color: white;
-  margin-top: 16px;
   padding-top: 10px;
+  width: 100%;
+}
+
+.ingredients-index {
+  padding-top: 105px;
 }
 
 .ingredient-card {

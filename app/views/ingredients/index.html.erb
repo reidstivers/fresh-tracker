@@ -59,20 +59,21 @@
     </div>
   </div>
     <!-- Search Results -->
-  <div id="search-results" data-search-target="results">
-
-    <div data-controller="filtering">
-      <% @categories.each do |category| %>
-        <%# Isolates ingredients of that category belonging to the current pantry / user %>
-        <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
-        <%# Hides categories if nothing has been added to it yet %>
-        <% if category_ingredients.any? %>
-          <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
-          <div data-category="<%= category.name %>" class="category-section">
-            <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
-          </div>
-          <% end %>
-      <% end %>
+  <div class="ingredients-index">
+    <div id="search-results" data-search-target="results">
+      <div data-controller="filtering">
+        <% @categories.each do |category| %>
+          <%# Isolates ingredients of that category belonging to the current pantry / user %>
+          <% category_ingredients = @ingredients.select { |ingredient| ingredient.category == category } %>
+          <%# Hides categories if nothing has been added to it yet %>
+          <% if category_ingredients.any? %>
+            <%# Using empty class "category-section" to help filtering Stimulus controller. DO NOT DELETE %>
+            <div data-category="<%= category.name %>" class="category-section">
+              <%= render partial: "category", locals: { category: category, ingredients: @ingredients } %>
+            </div>
+            <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
