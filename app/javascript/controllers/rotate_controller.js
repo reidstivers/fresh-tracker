@@ -9,7 +9,7 @@ export default class extends Controller {
 
     // Sets initial state of list to open
     this.listTargets.forEach((list) => {
-      list.style.maxHeight = (list.scrollHeight) + "px"; // Set to full height
+      list.style.maxHeight = (list.scrollHeight) + "8px"; // Set to full height
       list.style.overflow = "hidden";
       list.style.transition = "max-height .5s ease";
     });
