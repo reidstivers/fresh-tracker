@@ -1,29 +1,28 @@
-<div class="recipes-home-container">
-
-  <h1 class="h1-recipe"><%= current_user.name %>'s Saved Recipes</h1>
 
   <div data-controller="search" class="search-controller">
-    <div class="recipe-btn-container">
-      <%= link_to 'Search For New Recipes', search_recipes_path, class: "btn-new-search" %>
-    </div>
-
-    <%# search %>
-    <div class="recipe-search-container">
-      <div class="search-bar-your-recipe">
-        <i class="search-icon fa-solid fa-magnifying-glass"></i>
-        <%= simple_form_for :search, url: recipes_path, method: :get, html: { class: "d-flex", data: { search_target: "form"} } do |f| %>
-          <%= f.input :query,
-                      input_html: {
-                        placeholder: "Search Your Recipes",
-                        data: { action: "keyup->search#fire",
-                        search_target: "input" }
-                      },
-                      label: false %>
-        <% end %>
+    <div class="reciper-search-header">
+      <h1 class="h1-recipe"><%= current_user.name %>'s Saved Recipes</h1>
+      <div class="recipe-btn-container">
+        <%= link_to 'Search For New Recipes', search_recipes_path, class: "btn-new-search" %>
+      </div>
+      <%# search %>
+      <div class="recipe-search-container">
+        <div class="search-bar-your-recipe">
+          <i class="search-icon fa-solid fa-magnifying-glass"></i>
+          <%= simple_form_for :search, url: recipes_path, method: :get, html: { class: "d-flex justify-content-center", data: { search_target: "form"} } do |f| %>
+            <%= f.input :query,
+                        input_html: {
+                          placeholder: "Search Your Recipes",
+                          data: { action: "keyup->search#fire",
+                          search_target: "input" }
+                        },
+                        label: false %>
+          <% end %>
+        </div>
       </div>
     </div>
-
-    <div id="recipe-search-results" data-search-target="results">
+<div class="recipes-home-container">
+  <div id="recipe-search-results" data-search-target="results">
       <% if @recipes.any? %>
         <ul class="recipes-container">
           <% @recipes.each do |recipe| %>
