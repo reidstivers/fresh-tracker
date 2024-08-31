@@ -10,13 +10,26 @@ class IngredientsController < ApplicationController
 
   def create
     @pantry = current_user.pantry
-    @ingredient = Ingredient.new(ingredient_params)
-    @ingredient.pantry = @pantry
-    @ingredient.in_pantry = true
-    if @ingredient.save
-      redirect_to ingredients_path, notice: "Ingredient saved"
+    # Find an existing ingredient in the pantry with the same name
+    existing_ingredient = @pantry.ingredients.find_by(name: ingredient_params[:name])
+
+    if existing_ingredient
+      # If found, update the amount by adding the new amount
+      existing_ingredient.amount += ingredient_params[:amount].to_f
+      if existing_ingredient.save
+        redirect_to ingredients_path, notice: "Ingredient updated with new amount"
+      else
+        render :index, status: :unprocessable_entity
+      end
     else
-      render :index, status: :unprocessable_entity
+      @ingredient = Ingredient.new(ingredient_params)
+      @ingredient.pantry = @pantry
+      @ingredient.in_pantry = true
+      if @ingredient.save
+        redirect_to ingredients_path, notice: "Ingredient saved"
+      else
+        render :index, status: :unprocessable_entity
+      end
     end
   end
 
